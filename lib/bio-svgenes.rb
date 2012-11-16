@@ -9,3 +9,9 @@
 # directly into this file, because doing so causes confusion if this biogem 
 # was ever to get merged into the main bioruby tree.
 
+require 'bio/graphics/svgee'
+require 'bio/graphics/glyph'
+require 'bio/graphics/page'
+require 'bio/graphics/track'
+require 'bio/graphics/mini_feature'
+require 'bio/graphics/primitive'

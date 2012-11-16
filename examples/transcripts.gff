@@ -1,0 +1,16 @@
+##gff-version	3
+##sequence-region	ctg123	1	1497228	
+ctg123	.	mRNA	900	9200	.	+	.	ID=mRNA00001;Name=EDEN.1
+ctg123	.	utr	900	1000	.	+	.	ID=utr00001;Parent=mRNA00001
+ctg123	.	exon	1050	1500	.	+	.	ID=exon00002;Parent=mRNA00001
+ctg123	.	exon	3000	3902	.	+	.	ID=exon00003;Parent=mRNA00001
+ctg123	.	exon	5000	5500	.	+	.	ID=exon00004;Parent=mRNA00001
+ctg123	.	exon	7000	9000	.	+	.	ID=exon00005;Parent=mRNA00001
+ctg123	.	utr	9100	9200	.	+	.	ID=utr00002;Parent=mRNA00001
+ctg123	.	mRNA	10900	19200	.	-	.	ID=mRNA00002;Name=EDEN2.1
+ctg123	.	utr	10900	11000	.	-	.	ID=utr00003;Parent=mRNA00002
+ctg123	.	exon	11050	11500	.	-	.	ID=exon00006;Parent=mRNA00002
+ctg123	.	exon	13000	13902	.	-	.	ID=exon00007;Parent=mRNA00002
+ctg123	.	exon	15000	15500	.	-	.	ID=exon00008;Parent=mRNA00002
+ctg123	.	exon	17000	19000	.	-	.	ID=exon00009;Parent=mRNA00002
+ctg123	.	utr	19100	19200	.	-	.	ID=utr00004;Parent=mRNA00002

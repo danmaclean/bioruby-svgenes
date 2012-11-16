@@ -17,8 +17,8 @@ Jeweler::Tasks.new do |gem|
   gem.name = "bio-svgenes"
   gem.homepage = "http://github.com/danmaclean/bioruby-svgenes"
   gem.license = "MIT"
-  gem.summary = %Q{TODO: one-line summary of your gem}
-  gem.description = %Q{TODO: longer description of your gem}
+  gem.summary = %Q{Create pretty SVG-format images of features, gene models and data tracks}
+  gem.description = %Q{This bio-gem facilitates the creation of pretty, publication quality SVG images from feature data.}
   gem.email = "maclean.daniel@gmail.com"
   gem.authors = ["Dan MacLean"]
   # dependencies defined in Gemfile

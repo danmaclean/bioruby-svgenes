@@ -1,0 +1,49 @@
+{
+	"Page":{"width":800, "height":800, "intervals":15},
+	"Tracks": [ 
+			 {
+			  "glyph":"generic",
+	          "name":"Genes",
+			  "label":true,
+			  "file":"gene.gff",
+			  "file_type":"gff",
+			  "fill_color":"red", 
+              "stroke_width":1, 
+              "x_round":4,
+			  "y_round":4
+			 },
+		     {
+			  "glyph":"transcript",
+	          "name":"Transcripts",
+			  "label":true,
+			  "file":"transcripts.gff",
+			  "file_type":"gff",
+			  "exon_fill_color":"green_white_radial",
+			  "utr_fill_color":"blue_white_radial", 
+              "stroke_width":1,
+			  "gap_marker":"angled"
+			 },
+			{
+			  "glyph":"histogram",
+	          "name":"Data",
+			  "label":true,
+			  "file":"data.txt",
+			  "file_type":"data",
+			  "track_height":100,
+			  "fill_color":"yellow_white_radial",
+              "stroke_width":1
+			 },
+			{
+			  "glyph":"histogram",
+	          "name":"Data with maxed-out scale",
+			  "label":true,
+			  "file":"data.txt",
+			  "file_type":"data",
+			  "track_height":100,
+			  "fill_color":"red_white_radial",
+              "stroke_width":1,
+			  "max_y":1000
+			 }
+			]
+}
+
