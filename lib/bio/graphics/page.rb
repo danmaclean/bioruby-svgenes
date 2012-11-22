@@ -24,7 +24,7 @@ class Page
   
   def self.from_json(args)
     require 'rubygems'
-    require 'JSON'
+    require 'json'
     data = JSON.parse(File.open(args[:json], 'r').read)
     p = Page.new(:width => data["Page"]["width"], 
                  :height => data["Page"]["height"], 
