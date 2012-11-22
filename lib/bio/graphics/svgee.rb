@@ -83,7 +83,7 @@ class SVGEE
   public
   def add_primitive(primitive_object) #adds a primitive object to the SVG 
     args = {}
-    primitive_object.instance_variables.each{|v| args[v.gsub(/@/,"").to_sym] = primitive_object.instance_variable_get(v)  }
+    primitive_object.instance_variables.each{|v| args[v.to_s.gsub(/@/,"").to_sym] = primitive_object.instance_variable_get(v)  }
     primitive_string = args.delete(:primitive)
     make_tag(primitive_string, args)
   end
