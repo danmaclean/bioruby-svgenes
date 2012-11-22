@@ -1,3 +1,5 @@
+module Bio
+  class Graphics
 class Page
   
   def initialize(args)
@@ -262,4 +264,6 @@ class Page
   def write(file)
     File.open(file, 'w').write(get_markup)
   end
+end
+end
 end

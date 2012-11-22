@@ -1,3 +1,5 @@
+module Bio
+  class Graphics
 class Glyph
   attr_reader :glyphs
   #holds a load of definitions for glyphs .. a glyph is an array of primitives... 
@@ -12,7 +14,7 @@ class Glyph
       :x_round => 1, 
       :y_round => 1, 
       :style => "fill-opacity:0.4;"}.merge!(args)
-    [Primitive.new(:rectangle, args)]
+    [Bio::Graphics::Primitive.new(:rectangle, args)]
   end 
   
   def self.directed(args) #:x, :y, :width :fill, :stroke :stroke_width, :style, :height
@@ -29,7 +31,7 @@ class Glyph
       else
         args[:points] = "#{args[:x]},#{args[:y]} #{args[:x] + args[:width] - (args[:height] * 0.2)},#{args[:y]} #{args[:x] + args[:width]},#{args[:y] + (args[:height]/2) } #{args[:x] + args[:width] - (args[:height] * 0.2)},#{args[:y] + args[:height]} #{args[:x]},#{args[:y] + args[:height]}"      
       end
-    [Primitive.new(:polygon, args)]
+    [Bio::Graphics::Primitive.new(:polygon, args)]
   end
   
   def self.transcript(args)
@@ -65,7 +67,7 @@ class Glyph
                                     :style => args[:utr_style] )
         ##draw the other(s!) 
         args[:utrs].each do |utr|
-          composite <<  Primitive.new(:rectangle, {
+          composite <<  Bio::Graphics::Primitive.new(:rectangle, {
                                                     :x => utr.first, 
                                                     :width => utr.last, 
                                                     :y => args[:y], 
@@ -90,7 +92,7 @@ class Glyph
       end
       #draw any remaining exons
       args[:exons].each do |exon|
-          composite <<  Primitive.new(:rectangle, {
+          composite <<  Bio::Graphics::Primitive.new(:rectangle, {
                                                     :x => exon[0], 
                                                     :width => exon[1], 
                                                     :y => args[:y], 
@@ -103,7 +105,7 @@ class Glyph
       if args[:gap_marker] == "angled" and not args[:block_gaps].empty?
         args[:block_gaps].each do |gap|
           points = "#{gap.first},#{args[:y] + (args[:height]/2) } #{gap.first + (gap.last/2)},#{args[:y]} #{gap.first + gap.last},#{args[:y] + (args[:height]/2)}"
-          composite << Primitive.new(:polyline, {
+          composite << Bio::Graphics::Primitive.new(:polyline, {
                                                  :points => points, 
                                                  :stroke => args[:line_color], 
                                                  :stroke_width => args[:line_width], 
@@ -112,7 +114,7 @@ class Glyph
         end
       else
         #add line
-        composite << Primitive.new(:line, {
+        composite << Bio::Graphics::Primitive.new(:line, {
                                             :x1 => args[:x], 
                                             :x2 => "#{args[:x] + args[:width]}", 
                                             :y1 => args[:y] + (args[:height]/2), 
@@ -135,7 +137,7 @@ class Glyph
     interval_width =  full_dist / args[:number_of_intervals] 
 
 
-    a = [Primitive.new(:line, 
+    a = [Bio::Graphics::Primitive.new(:line, 
                                :stroke => 'black', 
                                :stroke_width => 1, 
                                :x1 => 1, :x2 => args[:page_width] * 1.1, 
@@ -146,7 +148,7 @@ class Glyph
     px_per_nt = full_dist / args[:page_width]
     marks.each do |mark|
       x = (mark.to_f - first_mark )/ px_per_nt
-      a << Primitive.new(:rectangle, 
+      a << Bio::Graphics::Primitive.new(:rectangle, 
                          :x => x, 
                          :y => 20, 
                          :stroke => 'black', 
@@ -154,7 +156,7 @@ class Glyph
                          :width => 1, 
                          :height => 5 )
                          
-      a << Primitive.new(:text, 
+      a << Bio::Graphics::Primitive.new(:text, 
                          :x => x, 
                          :y => 40, :fill => 'black', 
                          :text => mark, 
@@ -164,7 +166,7 @@ class Glyph
   end
   
   def self.label(args)
-    [Primitive.new(:text, 
+    [Bio::Graphics::Primitive.new(:text, 
                    :text => args[:text], 
                    :x => args[:x], 
                    :y => args[:y], 
@@ -238,4 +240,6 @@ class Glyph
   end
   
   
+end
+end
 end

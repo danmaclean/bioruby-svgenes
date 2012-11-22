@@ -1,3 +1,5 @@
+module Bio
+  class Graphics
 class MiniFeature
   attr_accessor :start, :end, :strand, :exons, :utrs, :block_gaps, :segment_height, :id
   def initialize(args)
@@ -10,4 +12,7 @@ class MiniFeature
     @id = args[:id]
     @segment_height = args[:segment_height]
   end
+end
+
+end
 end

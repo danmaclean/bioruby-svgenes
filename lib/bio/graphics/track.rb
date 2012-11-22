@@ -1,3 +1,6 @@
+module Bio
+  class Graphics
+
 class Track
   attr_reader :glyph, :name, :label, :args, :track_height, :scale, :max_y
   attr_accessor :features, :feature_rows, :name, :number_rows, :feature_height
@@ -46,4 +49,8 @@ class Track
     (f1.start >= f2.start and f1.start <= f2.end) or (f1.end >= f2.start and f1.end <= f2.end)
   end
   
+end
+
+
+end
 end

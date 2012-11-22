@@ -1,3 +1,6 @@
+module Bio
+  class Graphics
+
 class Primitive
   attr_reader :primitive
   
@@ -14,4 +17,7 @@ class Primitive
     end
   end
   
+end
+
+end
 end

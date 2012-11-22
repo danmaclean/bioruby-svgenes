@@ -1,3 +1,6 @@
+module Bio
+  class Graphics
+
 class SVGEE
   attr_reader :primitives, :defs, :supported_primitives
   def initialize(args)
@@ -33,7 +36,7 @@ class SVGEE
     else
       add self.send("#{primitive}_tag", args)
     end
-    return Primitive.new(primitive, args)
+    return Bio::Graphics::Primitive.new(primitive, args)
   end
   
   def link_and_tag(primitive, args)
@@ -109,6 +112,8 @@ class SVGEE
   
 end
 
+end
+end
 =begin How to use SVGEE
 s = SVGEE.new
 s.gradient(:radial => "grad1", :cx => 50, :cy => 50, :r => 50, :fx => 50, :fy => 50, :stops => [ {:offset => 0, :color => 'rgb(255,255,255)', :opacity => 0},  {:offset => 100, :color => 'rgb(0,0,255)', :opacity => 1},] )
