@@ -28,9 +28,7 @@ optparse.parse!
 
 
 
-$LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
-$LOAD_PATH.unshift(File.dirname(__FILE__))
 
 require 'bio-svgenes'
 
-Page.from_json(:json => options[:json], :outfile => options[:svg] )
+Bio::Graphics::Page.from_json(:json => options[:json], :outfile => options[:svg] )

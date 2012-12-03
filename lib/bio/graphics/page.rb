@@ -262,7 +262,7 @@ class Page
   end
   
   def write(file)
-    File.open(file, 'w').write(get_markup)
+    File.open(file, 'w').write(get_markup).close
   end
 end
 end
