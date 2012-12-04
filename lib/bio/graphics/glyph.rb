@@ -131,23 +131,24 @@ class Glyph
     
     
     first_mark = args[:start]
-    last_mark = args[:stop]  
+    last_mark = args[:stop] 
     #(num.to_f / @nt_per_px_x.to_f)
     full_dist = last_mark - first_mark
-    interval_width =  full_dist / args[:number_of_intervals] 
+    interval_width =  full_dist / (args[:number_of_intervals] - 1) 
 
 
     a = [Bio::Graphics::Primitive.new(:line, 
                                :stroke => 'black', 
                                :stroke_width => 1, 
-                               :x1 => 1, :x2 => args[:page_width] * 1.1, 
+                               :x1 => 1, :x2 => args[:page_width],# * 1.1, 
                                :y1 => "20", :y2 => "20"  )]
 
 
     marks = (first_mark..last_mark).step(interval_width).to_a
-    px_per_nt = full_dist / args[:page_width]
+  
+    px_per_nt =  args[:page_width].to_f / full_dist.to_f
     marks.each do |mark|
-      x = (mark.to_f - first_mark )/ px_per_nt
+      x =   (mark.to_f - first_mark ).to_f * px_per_nt
       a << Bio::Graphics::Primitive.new(:rectangle, 
                          :x => x, 
                          :y => 20, 

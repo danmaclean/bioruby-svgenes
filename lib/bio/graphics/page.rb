@@ -17,9 +17,9 @@ class Page
       @height = height 
     end
     
-    def @svg.update_width(width)
-      @width = width
-    end
+    #def @svg.update_width(width)
+    #  @width = width
+    #end
   end
   
   def self.from_json(args)
@@ -240,7 +240,7 @@ class Page
     
     @height = @track_top + 100 #fudge...
     @svg.update_height(@height)
-    @svg.update_width(@width + 200)
+    #@svg.update_width(@width + 200)
 
   end  
   

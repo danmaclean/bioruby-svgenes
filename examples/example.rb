@@ -10,7 +10,7 @@ $LOAD_PATH.unshift(File.dirname(__FILE__))
 
 require 'bio-svgenes'
 
-p = Page.new(:width => 800, 
+p = Bio::Graphics::Page.new(:width => 800, 
              :height => 200, 
              :number_of_intervals => 10)
              
@@ -19,28 +19,28 @@ generic_track = p.add_track(:glyph => :generic,
                             :name => 'generic_features', 
                             :label => true  )
                             
-feature1 = MiniFeature.new(:start => 923, :end => 2212, :strand => '+', :id => "MyFeature")
+feature1 = Bio::Graphics::MiniFeature.new(:start => 923, :end => 2212, :strand => '+', :id => "MyFeature")
 generic_track.add(feature1) 
-feature2 = MiniFeature.new(:start => 467, :end => 1234)
+feature2 = Bio::Graphics::MiniFeature.new(:start => 467, :end => 1234)
 generic_track.add(feature2)
-feature2 = MiniFeature.new(:start => 12000, :end => 12030)
+feature2 = Bio::Graphics::MiniFeature.new(:start => 12000, :end => 12030)
 generic_track.add(feature2)
-feature2 = MiniFeature.new(:start => 12000, :end => 12030)
+feature2 = Bio::Graphics::MiniFeature.new(:start => 12000, :end => 12030)
 generic_track.add(feature2)
-feature2 = MiniFeature.new(:start => 12000, :end => 12030)
+feature2 = Bio::Graphics::MiniFeature.new(:start => 12000, :end => 12030)
 generic_track.add(feature2)
-feature2 = MiniFeature.new(:start => 12000, :end => 12030)
+feature2 = Bio::Graphics::MiniFeature.new(:start => 12000, :end => 12030)
 generic_track.add(feature2)
 
 
 
 generic_track = p.add_track(:glyph => :generic, :name => 'more_generic_features', :label => true, :fill_color => 'green' )
 
-feature1 = MiniFeature.new(:start => 923, :end => 2212)
+feature1 = Bio::Graphics::MiniFeature.new(:start => 923, :end => 2212)
 generic_track.add(feature1)
-feature1 = MiniFeature.new(:start => 3935, :end => 4212)
+feature1 = Bio::Graphics::MiniFeature.new(:start => 3935, :end => 4212)
 generic_track.add(feature1)
-feature1 = MiniFeature.new(:start => 467, :end => 15000)
+feature1 = Bio::Graphics::MiniFeature.new(:start => 467, :end => 15000)
 generic_track.add(feature1)
 
 
@@ -52,15 +52,15 @@ generic_track = p.add_track(:glyph => :generic,
                             :x_round => 10 )
                             
                             
-feature1 = MiniFeature.new(:start => 923, :end => 2212)
+feature1 = Bio::Graphics::MiniFeature.new(:start => 923, :end => 2212)
 generic_track.add(feature1)
-feature2 = MiniFeature.new(:start => 467, :end => 1234)
+feature2 = Bio::Graphics::MiniFeature.new(:start => 467, :end => 1234)
 generic_track.add(feature2)
-feature2 = MiniFeature.new(:start => 12000, :end => 12030)
+feature2 = Bio::Graphics::MiniFeature.new(:start => 12000, :end => 12030)
 generic_track.add(feature2)
-feature2 = MiniFeature.new(:start => 12000, :end => 12030)
+feature2 = Bio::Graphics::MiniFeature.new(:start => 12000, :end => 12030)
 generic_track.add(feature2)
-feature1 = MiniFeature.new(:start => 467, :end => 15000)
+feature1 = Bio::Graphics::MiniFeature.new(:start => 467, :end => 15000)
 generic_track.add(feature1)
 
 directed_track = p.add_track(:glyph => :directed, 
@@ -68,9 +68,9 @@ directed_track = p.add_track(:glyph => :directed,
                              :label => true,
                              :fill_color => :red_white_h  )
                              
-feature2 = MiniFeature.new(:start => 467, :end => 1234, :strand => '+')
+feature2 = Bio::Graphics::MiniFeature.new(:start => 467, :end => 1234, :strand => '+')
 directed_track.add(feature2)
-feature1 = MiniFeature.new(:start => 923, :end => 2212, :strand => '-')
+feature1 = Bio::Graphics::MiniFeature.new(:start => 923, :end => 2212, :strand => '-')
 directed_track.add(feature1)
 
 
@@ -78,17 +78,17 @@ generic_track = p.add_track(:glyph => :generic,
                             :name => 'generic_features', 
                             :label => true  )
                             
-feature1 = MiniFeature.new(:start => 923, :end => 2212, :strand => '+')
+feature1 = Bio::Graphics::MiniFeature.new(:start => 923, :end => 2212, :strand => '+')
 generic_track.add(feature1) # will be Bio::Feature object
-feature2 = MiniFeature.new(:start => 467, :end => 1234)
+feature2 = Bio::Graphics::MiniFeature.new(:start => 467, :end => 1234)
 generic_track.add(feature2)
-feature2 = MiniFeature.new(:start => 12000, :end => 2030)
+feature2 = Bio::Graphics::MiniFeature.new(:start => 12000, :end => 2030)
 generic_track.add(feature2)
-feature2 = MiniFeature.new(:start => 12000, :end => 12030)
+feature2 = Bio::Graphics::MiniFeature.new(:start => 12000, :end => 12030)
 generic_track.add(feature2)
-feature2 = MiniFeature.new(:start => 12000, :end => 12030)
+feature2 = Bio::Graphics::MiniFeature.new(:start => 12000, :end => 12030)
 generic_track.add(feature2)
-feature2 = MiniFeature.new(:start => 12000, :end => 12030)
+feature2 = Bio::Graphics::MiniFeature.new(:start => 12000, :end => 12030)
 generic_track.add(feature2)
 
 
@@ -98,11 +98,11 @@ generic_track = p.add_track(:glyph => :generic,
                             :label => true, 
                             :fill_color => 'green' )
 
-feature1 = MiniFeature.new(:start => 923, :end => 2212)
+feature1 = Bio::Graphics::MiniFeature.new(:start => 923, :end => 2212)
 generic_track.add(feature1)
-feature1 = MiniFeature.new(:start => 3935, :end => 4212)
+feature1 = Bio::Graphics::MiniFeature.new(:start => 3935, :end => 4212)
 generic_track.add(feature1)
-feature1 = MiniFeature.new(:start => 467, :end => 15000)
+feature1 = Bio::Graphics::MiniFeature.new(:start => 467, :end => 15000)
 generic_track.add(feature1)
 
 
@@ -113,24 +113,24 @@ generic_track = p.add_track(:glyph => :generic,
                             :stroke_width => '1', 
                             :x_round => 1 )
                             
-feature1 = MiniFeature.new(:start => 923, :end => 2212)
+feature1 = Bio::Graphics::MiniFeature.new(:start => 923, :end => 2212)
 generic_track.add(feature1) # will be Bio::Feature object
-feature2 = MiniFeature.new(:start => 467, :end => 1234)
+feature2 = Bio::Graphics::MiniFeature.new(:start => 467, :end => 1234)
 generic_track.add(feature2)
-feature2 = MiniFeature.new(:start => 12000, :end => 12030)
+feature2 = Bio::Graphics::MiniFeature.new(:start => 12000, :end => 12030)
 generic_track.add(feature2)
-feature2 = MiniFeature.new(:start => 12000, :end => 12030)
+feature2 = Bio::Graphics::MiniFeature.new(:start => 12000, :end => 12030)
 generic_track.add(feature2)
-feature1 = MiniFeature.new(:start => 467, :end => 15000)
+feature1 = Bio::Graphics::MiniFeature.new(:start => 467, :end => 15000)
 generic_track.add(feature1)
 
 directed_track = p.add_track(:glyph => :directed, 
                              :name => 'directed_features', 
                              :label => true  )
                              
-feature2 = MiniFeature.new(:start => 467, :end => 1234, :strand => '+')
+feature2 = Bio::Graphics::MiniFeature.new(:start => 467, :end => 1234, :strand => '+')
 directed_track.add(feature2)
-feature1 = MiniFeature.new(:start => 923, :end => 2212, :strand => '-')
+feature1 = Bio::Graphics::MiniFeature.new(:start => 923, :end => 2212, :strand => '-')
 directed_track.add(feature1)
 
 
@@ -138,17 +138,17 @@ generic_track = p.add_track(:glyph => :generic,
                             :name => 'generic_features', 
                             :label => true  )
                             
-feature1 = MiniFeature.new(:start => 923, :end => 2212, :strand => '+')
+feature1 = Bio::Graphics::MiniFeature.new(:start => 923, :end => 2212, :strand => '+')
 generic_track.add(feature1) # will be Bio::Feature object
-feature2 = MiniFeature.new(:start => 467, :end => 1234)
+feature2 = Bio::Graphics::MiniFeature.new(:start => 467, :end => 1234)
 generic_track.add(feature2)
-feature2 = MiniFeature.new(:start => 12000, :end => 12030)
+feature2 = Bio::Graphics::MiniFeature.new(:start => 12000, :end => 12030)
 generic_track.add(feature2)
-feature2 = MiniFeature.new(:start => 12000, :end => 12030)
+feature2 = Bio::Graphics::MiniFeature.new(:start => 12000, :end => 12030)
 generic_track.add(feature2)
-feature2 = MiniFeature.new(:start => 12000, :end => 12030)
+feature2 = Bio::Graphics::MiniFeature.new(:start => 12000, :end => 12030)
 generic_track.add(feature2)
-feature2 = MiniFeature.new(:start => 12000, :end => 12030)
+feature2 = Bio::Graphics::MiniFeature.new(:start => 12000, :end => 12030)
 generic_track.add(feature2)
 
 
@@ -158,11 +158,11 @@ generic_track = p.add_track(:glyph => :generic,
                             :label => true, 
                             :fill_color => 'green' )
 
-feature1 = MiniFeature.new(:start => 923, :end => 2212)
+feature1 = Bio::Graphics::MiniFeature.new(:start => 923, :end => 2212)
 generic_track.add(feature1)
-feature1 = MiniFeature.new(:start => 3935, :end => 4212)
+feature1 = Bio::Graphics::MiniFeature.new(:start => 3935, :end => 4212)
 generic_track.add(feature1)
-feature1 = MiniFeature.new(:start => 467, :end => 15000)
+feature1 = Bio::Graphics::MiniFeature.new(:start => 467, :end => 15000)
 generic_track.add(feature1)
 
 
@@ -173,15 +173,15 @@ generic_track = p.add_track(:glyph => :generic,
                             :stroke_width => '1', 
                             :x_round => 4 )
                             
-feature1 = MiniFeature.new(:start => 923, :end => 2212)
+feature1 = Bio::Graphics::MiniFeature.new(:start => 923, :end => 2212)
 generic_track.add(feature1) # will be Bio::Feature object
-feature2 = MiniFeature.new(:start => 467, :end => 1234)
+feature2 = Bio::Graphics::MiniFeature.new(:start => 467, :end => 1234)
 generic_track.add(feature2)
-feature2 = MiniFeature.new(:start => 12000, :end => 12030)
+feature2 = Bio::Graphics::MiniFeature.new(:start => 12000, :end => 12030)
 generic_track.add(feature2)
-feature2 = MiniFeature.new(:start => 12000, :end => 12030)
+feature2 = Bio::Graphics::MiniFeature.new(:start => 12000, :end => 12030)
 generic_track.add(feature2)
-feature1 = MiniFeature.new(:start => 467, :end => 15000)
+feature1 = Bio::Graphics::MiniFeature.new(:start => 467, :end => 15000)
 generic_track.add(feature1)
 
 directed_track = p.add_track(:glyph => :directed, 
@@ -190,13 +190,13 @@ directed_track = p.add_track(:glyph => :directed,
                              :feature_height => 32,
                              :fill_color => :red_white_h)
                              
-feature2 = MiniFeature.new(:start => 467, :end => 1234, :strand => '+' )
+feature2 = Bio::Graphics::MiniFeature.new(:start => 467, :end => 1234, :strand => '+' )
 directed_track.add(feature2)
-feature1 = MiniFeature.new(:start => 923, :end => 2212, :strand => '-')
+feature1 = Bio::Graphics::MiniFeature.new(:start => 923, :end => 2212, :strand => '-')
 directed_track.add(feature1)
-feature2 = MiniFeature.new(:start => 467, :end => 1234, :strand => '+')
+feature2 = Bio::Graphics::MiniFeature.new(:start => 467, :end => 1234, :strand => '+')
 directed_track.add(feature2)
-feature1 = MiniFeature.new(:start => 923, :end => 2212, :strand => '-')
+feature1 = Bio::Graphics::MiniFeature.new(:start => 923, :end => 2212, :strand => '-')
 directed_track.add(feature1)
 
 transcript_track = p.add_track(:glyph => :transcript, 
@@ -207,14 +207,14 @@ transcript_track = p.add_track(:glyph => :transcript,
                                :line_color => 'black', 
                                :feature_height => 20 )
 
-feature3 = MiniFeature.new(:start => 923, 
+feature3 = Bio::Graphics::MiniFeature.new(:start => 923, 
                            :end => 2345, 
                            :strand => '-', 
                            :exons => [1000,1200,1800,2000], 
                            :utrs => [923,1000,2000,2345])
 transcript_track.add(feature3)
 
-feature1 = MiniFeature.new(:start => 467, 
+feature1 = Bio::Graphics::MiniFeature.new(:start => 467, 
                            :end => 15000, 
                            :exons => [1500,2500, 3000,7000, 9000,12000], 
                            :utrs => [467, 1000, 13500,14000, 14400, 14900],
@@ -231,14 +231,14 @@ transcript_track = p.add_track(:glyph => :transcript,
                                :gap_marker => 'angled', 
                                :feature_height => 20 )
                                
-feature3 = MiniFeature.new(:start => 923, 
+feature3 = Bio::Graphics::MiniFeature.new(:start => 923, 
                            :end => 2345, 
                            :strand => '-', 
                            :exons => [1000,1200,1800,2000], 
                            :utrs => [923,1000,2000,2345])
 transcript_track.add(feature3)
 
-feature1 = MiniFeature.new(:start => 467, 
+feature1 = Bio::Graphics::MiniFeature.new(:start => 467, 
                            :end => 15000, 
                            :exons => [1500,2500, 3000,7000, 9000,12000], 
                            :utrs => [467, 1000, 13500,14000])
@@ -257,7 +257,7 @@ data_track = p.add_track(:glyph => :histogram,  #might also be :density or heatm
                         )
 ##generate a load of data, each data point becomes a feature...                         
 data = (400..25000).step(1000) do |start|
-  data_feature = MiniFeature.new(:start => start,
+  data_feature = Bio::Graphics::MiniFeature.new(:start => start,
                        :end => start + 999,
                        :segment_height => rand(30)
                      )
@@ -279,7 +279,7 @@ data_track1 = p.add_track(:glyph => :histogram,  #might also be :density or heat
                         )
 ##generate a load of data, each data point becomes a feature...                         
 data = (400..25000).step(200) do |start|
-  data_feature = MiniFeature.new(:start => start,
+  data_feature = Bio::Graphics::MiniFeature.new(:start => start,
                        :end => start + 200,
                        :segment_height => rand(30)
                      )
