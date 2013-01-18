@@ -28,7 +28,6 @@ optparse.parse!
 
 
 
-
 require 'bio-svgenes'
 
 Bio::Graphics::Page.from_json(:json => options[:json], :outfile => options[:svg] )
