@@ -25,6 +25,7 @@ class Page
   def self.from_json(args)
     require 'rubygems'
     require 'json'
+    puts "memememe"
     data = JSON.parse(File.open(args[:json], 'r').read)
     p = Page.new(:width => data["Page"]["width"], 
                  :height => data["Page"]["height"], 
@@ -262,7 +263,7 @@ class Page
   end
   
   def write(file)
-    File.open(file, 'w').write(get_markup).close
+    File.open(file, 'w').write(get_markup)
   end
 end
 end
