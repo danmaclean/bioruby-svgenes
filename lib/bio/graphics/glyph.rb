@@ -3,7 +3,7 @@ module Bio
 class Glyph
   attr_reader :glyphs
   #holds a load of definitions for glyphs .. a glyph is an array of primitives... 
-  @glyphs = [:generic, :directed, :transcript, :scale, :label, :histogram]
+  @glyphs = [:generic, :directed, :transcript, :scale, :label, :histogram, :circle, :down_triangle, :up_triangle, :span]
   
   def self.generic(args) #:x, :y, :width :fill, :stroke :stroke_width, :style, :height, 
     args = { 
@@ -16,6 +16,20 @@ class Glyph
       :style => "fill-opacity:0.4;"}.merge!(args)
     [Bio::Graphics::Primitive.new(:rectangle, args)]
   end 
+  
+  def self.circle(args) 
+    args = { 
+      :radius => 10, 
+      :fill_color => 'red', 
+      :stroke => "black", 
+      :stroke_width => 1, 
+      :style => ""}.merge!(args)
+      args[:x_center] = args[:x]
+      args[:y_center] = args[:y]
+      [:x, :y].each {|e| args.delete(e)}
+    [Bio::Graphics::Primitive.new(:circle, args)]
+  end 
+  
   
   def self.directed(args) #:x, :y, :width :fill, :stroke :stroke_width, :style, :height
     args = {
@@ -32,6 +46,44 @@ class Glyph
         args[:points] = "#{args[:x]},#{args[:y]} #{args[:x] + args[:width] - (args[:height] * 0.2)},#{args[:y]} #{args[:x] + args[:width]},#{args[:y] + (args[:height]/2) } #{args[:x] + args[:width] - (args[:height] * 0.2)},#{args[:y] + args[:height]} #{args[:x]},#{args[:y] + args[:height]}"      
       end
     [Bio::Graphics::Primitive.new(:polygon, args)]
+  end
+  
+  def self.down_triangle(args) #:x, :y, :width :fill, :stroke :stroke_width, :style, :height
+    args = {
+      
+      :height => 10, 
+      :fill_color => 'red', 
+      :stroke => "black", 
+      :stroke_width => 1, 
+      :style => "fill-opacity:0.4;"}.merge!(args)
+      args[:points] = "#{args[:x]},#{args[:y]} #{args[:x] + args[:width]},#{args[:y]} #{ args[:x] + (args[:width]/2) },#{(args[:y] + args[:height]) }"
+    [Bio::Graphics::Primitive.new(:polygon, args)]
+  end
+  
+  def self.up_triangle(args) #:x, :y, :width :fill, :stroke :stroke_width, :style, :height
+    args = {
+      :height => 10, 
+      :fill_color => 'red', 
+      :stroke => "black", 
+      :stroke_width => 1, 
+      :style => "fill-opacity:0.4;"}.merge!(args)
+      args[:points] = "#{args[:x]},#{args[:y] + args[:height]} #{args[:x] + args[:width]},#{args[:y] + args[:height]} #{ args[:x] + (args[:width]/2) },#{args[:y] }"
+    [Bio::Graphics::Primitive.new(:polygon, args)]
+  end
+  
+  def self.span(args)
+    args = {
+      :height => 10,
+      :fill_color => 'red',
+      :stroke => "black",
+      :stroke_width => 1,
+      :style => "fill-opacity:1;"
+    }.merge!(args)
+    args[:x1] = args[:x]
+    args[:x2] = args[:x] + args[:width]
+    args[:y1] = args[:y]
+    args[:y2] = args[:y]
+    [Bio::Graphics::Primitive.new(:line, args)]
   end
   
   def self.transcript(args)

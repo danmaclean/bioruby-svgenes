@@ -2,7 +2,7 @@ module Bio
   class Graphics
 
 class Track
-  attr_reader :glyph, :name, :label, :args, :track_height, :scale, :max_y
+  attr_reader :glyph, :name, :label, :args, :track_height, :scale, :max_y, :min_width
   attr_accessor :features, :feature_rows, :name, :number_rows, :feature_height
   def initialize(args)
     @args = {:glyph => :generic, 
@@ -20,6 +20,7 @@ class Track
     @feature_height = @args[:feature_height]
     @number_of_rows = 1
     @max_y = args[:max_y]
+    @min_width = args[:min_width]
     
 
   end

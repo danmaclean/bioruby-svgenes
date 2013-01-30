@@ -5,6 +5,7 @@ class Page
   def initialize(args)
     @height = args[:height]
     @width = args[:width]
+    args[:style] = "background-color:#{args[:background_color]};" if args[:background_color]
     @svg = SVGEE.new(args)
     @scale_start = 1.0/0.0
     @scale_stop = -1.0/0.0
@@ -25,7 +26,6 @@ class Page
   def self.from_json(args)
     require 'rubygems'
     require 'json'
-    puts "memememe"
     data = JSON.parse(File.open(args[:json], 'r').read)
     p = Page.new(:width => data["Page"]["width"], 
                  :height => data["Page"]["height"], 
@@ -64,6 +64,8 @@ class Page
         end
           #now flick through the parentless features and add any exons / UTRs
           parentless_features.each do |plf|
+            require 'pp'
+            pp parentless_features
             gff_id = plf.attributes.select {|a| a.first == 'ID'}
             gff_id = gff_id.first.last
             exons = []
@@ -146,12 +148,28 @@ class Page
       Glyph.directed(args).each {|g| @svg.add_primitive(g) }
   end
   
+  def draw_circle(args)
+      Glyph.circle(args).each {|g| @svg.add_primitive(g) }
+  end
+  
   def draw_transcript(args)
     Glyph.transcript(args).each {|g| @svg.add_primitive(g) }
   end
   
   def draw_histogram(args)
     Glyph.generic(args).each {|g| @svg.add_primitive(g) }
+  end
+  
+  def draw_up_triangle(args)
+    Glyph.up_triangle(args).each {|g| @svg.add_primitive(g) }
+  end
+
+  def draw_down_triangle(args)
+    Glyph.down_triangle(args).each {|g| @svg.add_primitive(g) }
+  end
+
+  def draw_span(args)
+    Glyph.span(args).each {|g| @svg.add_primitive(g) }
   end
   
   def draw_features(track) #sort out the input information into a user friendly format..
@@ -219,7 +237,9 @@ class Page
         end
 
         width = to_px( (f.end - @scale_start) - (f.start - @scale_start) )
-
+        if track.min_width and width < track.min_width
+          width = track.min_width
+        end
         y = @track_top + (track.feature_rows[index] * 2 * track.feature_height)
 
         self.send("draw_#{track.glyph}", {:x => x, 
