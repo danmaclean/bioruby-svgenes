@@ -1,0 +1,1061 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+
+<title>class Bio::Graphics::Glyph - RDoc Documentation</title>
+
+<link type="text/css" media="screen" href="../../rdoc.css" rel="stylesheet">
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../../";
+</script>
+
+<script type="text/javascript" charset="utf-8" src="../../js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="../../js/navigation.js"></script>
+<script type="text/javascript" charset="utf-8" src="../../js/search_index.js"></script>
+<script type="text/javascript" charset="utf-8" src="../../js/search.js"></script>
+<script type="text/javascript" charset="utf-8" src="../../js/searcher.js"></script>
+<script type="text/javascript" charset="utf-8" src="../../js/darkfish.js"></script>
+
+
+<body id="top" class="class">
+<nav id="metadata">
+  <nav id="home-section" class="section">
+  <h3 class="section-header">
+    <a href="../../index.html">Home</a>
+    <a href="../../table_of_contents.html#classes">Classes</a>
+    <a href="../../table_of_contents.html#methods">Methods</a>
+  </h3>
+</nav>
+
+
+  <nav id="search-section" class="section project-section" class="initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <h3 class="section-header">
+      <input type="text" name="search" placeholder="Search" id="search-field"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </h3>
+  </form>
+
+  <ul id="search-results" class="initially-hidden"></ul>
+</nav>
+
+
+  
+
+  <div id="file-metadata">
+    <nav id="file-list-section" class="section">
+  <h3 class="section-header">Defined In</h3>
+  <ul>
+    <li>lib/bio/graphics/glyph.rb
+  </ul>
+</nav>
+
+    
+  </div>
+
+  <div id="class-metadata">
+    
+    <nav id="parent-class-section" class="section">
+  <h3 class="section-header">Parent</h3>
+  
+  <p class="link">Object
+  
+</nav>
+
+    
+    
+    <!-- Method Quickref -->
+<nav id="method-list-section" class="section">
+  <h3 class="section-header">Methods</h3>
+
+  <ul class="link-list">
+    
+    <li ><a href="#method-c-circle">::circle</a>
+    
+    <li ><a href="#method-c-directed">::directed</a>
+    
+    <li ><a href="#method-c-down_triangle">::down_triangle</a>
+    
+    <li ><a href="#method-c-generic">::generic</a>
+    
+    <li ><a href="#method-c-gradient">::gradient</a>
+    
+    <li ><a href="#method-c-gradients">::gradients</a>
+    
+    <li ><a href="#method-c-label">::label</a>
+    
+    <li ><a href="#method-c-scale">::scale</a>
+    
+    <li ><a href="#method-c-span">::span</a>
+    
+    <li ><a href="#method-c-transcript">::transcript</a>
+    
+    <li ><a href="#method-c-up_triangle">::up_triangle</a>
+    
+  </ul>
+</nav>
+
+  </div>
+
+  <div id="project-metadata">
+    <nav id="fileindex-section" class="section project-section">
+  <h3 class="section-header">Pages</h3>
+
+  <ul>
+  
+    <li class="file"><a href="../../LICENSE_txt.html">LICENSE</a>
+  
+  </ul>
+</nav>
+
+    <nav id="classindex-section" class="section project-section">
+  <h3 class="section-header">Class and Module Index</h3>
+
+  <ul class="link-list">
+  
+    <li><a href="../../Bio.html">Bio</a>
+  
+    <li><a href="../../Bio/Graphics.html">Bio::Graphics</a>
+  
+    <li><a href="../../Bio/Graphics/Glyph.html">Bio::Graphics::Glyph</a>
+  
+    <li><a href="../../Bio/Graphics/MiniFeature.html">Bio::Graphics::MiniFeature</a>
+  
+    <li><a href="../../Bio/Graphics/Page.html">Bio::Graphics::Page</a>
+  
+    <li><a href="../../Bio/Graphics/Primitive.html">Bio::Graphics::Primitive</a>
+  
+    <li><a href="../../Bio/Graphics/SVGEE.html">Bio::Graphics::SVGEE</a>
+  
+    <li><a href="../../Bio/Graphics/Track.html">Bio::Graphics::Track</a>
+  
+  </ul>
+</nav>
+
+  </div>
+</nav>
+
+<div id="documentation">
+  <h1 class="class">class Bio::Graphics::Glyph</h1>
+
+  <div id="description" class="description">
+    
+<p>A <a href="Glyph.html">Glyph</a> is an array of <a
+href="Primitive.html">Primitive</a> objects, holding information about the
+type of <a href="Glyph.html">Glyph</a> being created. Each different type
+of <a href="Glyph.html">Glyph</a> has different arguments, pertaining to
+how the <a href="Glyph.html">Glyph</a> will be drawn and the parameters
+provided to <a href="SVGEE.html">SVGEE</a>.</p>
+
+  </div><!-- description -->
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+    <!-- Attributes -->
+    <section id="attribute-method-details" class="method-section section">
+      <h3 class="section-header">Attributes</h3>
+
+      
+      <div id="attribute-i-glyphs" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">glyphs</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>The different type of Glyphs are:</p>
+<ul><li>
+<p>generic</p>
+</li><li>
+<p>circle</p>
+</li><li>
+<p>directed</p>
+</li><li>
+<p>down_triangle</p>
+</li><li>
+<p>up_triangle</p>
+</li><li>
+<p>span</p>
+</li><li>
+<p>transcript</p>
+</li><li>
+<p>scale</p>
+</li><li>
+<p>label</p>
+</li><li>
+<p>histogram</p>
+</li></ul>
+        
+        </div>
+      </div>
+      
+    </section><!-- attribute-method-details -->
+    
+
+    <!-- Methods -->
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Public Class Methods</h3>
+
+    
+      <div id="method-c-circle" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">circle</span><span
+            class="method-args">(args)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Creates a circular <a href="Glyph.html">Glyph</a></p>
+
+<p><code>args</code></p>
+<ul><li>
+<p>radius = the radius of the circle  (10)</p>
+</li><li>
+<p>fill_color = the fill colour of the <a href="Glyph.html">Glyph</a>
+(‘red’)</p>
+</li><li>
+<p>stroke = the outline colour of the <a href="Glyph.html">Glyph</a>
+(“black”)</p>
+</li><li>
+<p>stroke_width = The width of the outline stroke (1)</p>
+</li><li>
+<p>style = the opacity of the fill color</p>
+</li><li>
+<p>x = x-axis centre of the circle</p>
+</li><li>
+<p>y = y-axis centre of the circle</p>
+</li></ul>
+          
+          
+
+          
+          <div class="method-source-code" id="circle-source">
+            <pre><span class="ruby-comment"># File lib/bio/graphics/glyph.rb, line 60</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">circle</span>(<span class="ruby-identifier">args</span>) 
+  <span class="ruby-identifier">args</span> = { 
+    <span class="ruby-value">:radius</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">10</span>, 
+    <span class="ruby-value">:fill_color</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">'red'</span>, 
+    <span class="ruby-value">:stroke</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;black&quot;</span>, 
+    <span class="ruby-value">:stroke_width</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">1</span>, 
+    <span class="ruby-value">:style</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;&quot;</span>}.<span class="ruby-identifier">merge!</span>(<span class="ruby-identifier">args</span>)
+    <span class="ruby-identifier">args</span>[<span class="ruby-value">:x_center</span>] = <span class="ruby-identifier">args</span>[<span class="ruby-value">:x</span>]
+    <span class="ruby-identifier">args</span>[<span class="ruby-value">:y_center</span>] = <span class="ruby-identifier">args</span>[<span class="ruby-value">:y</span>]
+    [<span class="ruby-value">:x</span>, <span class="ruby-value">:y</span>].<span class="ruby-identifier">each</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">e</span><span class="ruby-operator">|</span> <span class="ruby-identifier">args</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-identifier">e</span>)}
+  [<span class="ruby-constant">Bio</span><span class="ruby-operator">::</span><span class="ruby-constant">Graphics</span><span class="ruby-operator">::</span><span class="ruby-constant">Primitive</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">:circle</span>, <span class="ruby-identifier">args</span>)]
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- circle-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- circle-method -->
+
+    
+      <div id="method-c-directed" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">directed</span><span
+            class="method-args">(args)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Creates a polygon <a href="Glyph.html">Glyph</a> to indicate the direction
+in which the <a href="Glyph.html">Glyph</a> is pointing <code>args</code></p>
+<ul><li>
+<p>width = the width of the feature</p>
+</li><li>
+<p>fill_color = the fill colour of the <a href="Glyph.html">Glyph</a>
+(‘red’)</p>
+</li><li>
+<p>stroke = the outline colour of the <a href="Glyph.html">Glyph</a>
+(“black”)</p>
+</li><li>
+<p>stroke_width = The width of the outline stroke (1)</p>
+</li><li>
+<p>style = the opacity of the fill color</p>
+</li><li>
+<p>strand = the strand on which the <a href="Glyph.html">Glyph</a> is located.
+May be ‘+’ or ‘-’</p>
+</li><li>
+<p>points = the x and y axis points used to calculate the shape of the polygon</p>
+</li><li>
+<p>x = the co-ordinates of the <a href="Glyph.html">Glyph</a> for the x-axis</p>
+</li><li>
+<p>y = the co-ordinates of the <a href="Glyph.html">Glyph</a> for the y-axis</p>
+</li></ul>
+
+<p>The points of the polygon are calculated form the <code>x</code> and
+<code>y</code> co-ordinates</p>
+          
+          
+
+          
+          <div class="method-source-code" id="directed-source">
+            <pre><span class="ruby-comment"># File lib/bio/graphics/glyph.rb, line 85</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">directed</span>(<span class="ruby-identifier">args</span>) <span class="ruby-comment">#:x, :y, :width :fill, :stroke :stroke_width, :style, :height</span>
+  <span class="ruby-identifier">args</span> = {
+    
+    <span class="ruby-value">:height</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">10</span>, 
+    <span class="ruby-value">:fill_color</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">'red'</span>, 
+    <span class="ruby-value">:stroke</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;black&quot;</span>, 
+    <span class="ruby-value">:stroke_width</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">1</span>, 
+    <span class="ruby-value">:style</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;fill-opacity:0.4;&quot;</span>}.<span class="ruby-identifier">merge!</span>(<span class="ruby-identifier">args</span>)
+    
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">args</span>[<span class="ruby-value">:strand</span>] <span class="ruby-operator">==</span> <span class="ruby-string">'-'</span>
+      <span class="ruby-identifier">args</span>[<span class="ruby-value">:points</span>] = <span class="ruby-node">&quot;#{args[:x]},#{args[:y]} #{args[:x] + args[:width]},#{args[:y]} #{args[:x] + args[:width]},#{args[:y] + args[:height] } #{args[:x]},#{args[:y] + (args[:height])} #{args[:x] - (args[:height] * 0.2)},#{args[:y] + (args[:height]/2)}&quot;</span>
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-identifier">args</span>[<span class="ruby-value">:points</span>] = <span class="ruby-node">&quot;#{args[:x]},#{args[:y]} #{args[:x] + args[:width] - (args[:height] * 0.2)},#{args[:y]} #{args[:x] + args[:width]},#{args[:y] + (args[:height]/2) } #{args[:x] + args[:width] - (args[:height] * 0.2)},#{args[:y] + args[:height]} #{args[:x]},#{args[:y] + args[:height]}&quot;</span>
+
+    <span class="ruby-keyword">end</span>
+  [<span class="ruby-constant">Bio</span><span class="ruby-operator">::</span><span class="ruby-constant">Graphics</span><span class="ruby-operator">::</span><span class="ruby-constant">Primitive</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">:polygon</span>, <span class="ruby-identifier">args</span>)]
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- directed-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- directed-method -->
+
+    
+      <div id="method-c-down_triangle" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">down_triangle</span><span
+            class="method-args">(args)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Creates a polygon <a href="Glyph.html">Glyph</a> for a downward-pointing
+triangle <code>args</code></p>
+<ul><li>
+<p>height = the height of the <a href="Glyph.html">Glyph</a> (10)</p>
+</li><li>
+<p>fill_color = the fill colour of the <a href="Glyph.html">Glyph</a>
+(‘red’)</p>
+</li><li>
+<p>stroke = the outline colour of the <a href="Glyph.html">Glyph</a>
+(“black”)</p>
+</li><li>
+<p>stroke_width = The width of the outline stroke (1)</p>
+</li><li>
+<p>style = the opacity of the fill color (“fill-opacity:0.4;”)</p>
+</li><li>
+<p>x = the co-ordinates of the <a href="Glyph.html">Glyph</a> for the x-axis</p>
+</li><li>
+<p>y = the co-ordinates of the <a href="Glyph.html">Glyph</a> for the y-axis</p>
+</li></ul>
+
+<p>The points of the triangle are calculated form the <code>x</code> and
+<code>y</code> co-ordinates</p>
+          
+          
+
+          
+          <div class="method-source-code" id="down_triangle-source">
+            <pre><span class="ruby-comment"># File lib/bio/graphics/glyph.rb, line 113</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">down_triangle</span>(<span class="ruby-identifier">args</span>) <span class="ruby-comment">#:x, :y, :width :fill, :stroke :stroke_width, :style, :height</span>
+  <span class="ruby-identifier">args</span> = {
+    
+    <span class="ruby-value">:height</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">10</span>, 
+    <span class="ruby-value">:fill_color</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">'red'</span>, 
+    <span class="ruby-value">:stroke</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;black&quot;</span>, 
+    <span class="ruby-value">:stroke_width</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">1</span>, 
+    <span class="ruby-value">:style</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;fill-opacity:0.4;&quot;</span>}.<span class="ruby-identifier">merge!</span>(<span class="ruby-identifier">args</span>)
+
+    <span class="ruby-identifier">args</span>[<span class="ruby-value">:points</span>] = <span class="ruby-node">&quot;#{args[:x]},#{args[:y]} #{args[:x] + args[:width]},#{args[:y]} #{ args[:x] + (args[:width]/2) },#{(args[:y] + args[:height]) }&quot;</span>
+  [<span class="ruby-constant">Bio</span><span class="ruby-operator">::</span><span class="ruby-constant">Graphics</span><span class="ruby-operator">::</span><span class="ruby-constant">Primitive</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">:polygon</span>, <span class="ruby-identifier">args</span>)]
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- down_triangle-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- down_triangle-method -->
+
+    
+      <div id="method-c-generic" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">generic</span><span
+            class="method-args">(args)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Creates a generic glyph, which is a rectangle</p>
+
+<p><code>args</code></p>
+<ul><li>
+<p>height = the height of the <a href="Glyph.html">Glyph</a> (10)</p>
+</li><li>
+<p>fill_color = the fill colour of the <a href="Glyph.html">Glyph</a>
+(‘red’)</p>
+</li><li>
+<p>stroke = the outline colour of the <a href="Glyph.html">Glyph</a>
+(“black”)</p>
+</li><li>
+<p>stroke_width = The width of the outline stroke (1)</p>
+</li><li>
+<p>x_round = x-axis radius of the ellipse used to round off the corners of the
+rectangle (1)</p>
+</li><li>
+<p>y_round = y-axis radius of the ellipse used to round off the corners of the
+rectangle (1)</p>
+</li><li>
+<p>style = the opacity of the fill color (“fill-opacity:0.4;”)</p>
+</li><li>
+<p>x = the co-ordinates of the <a href="Glyph.html">Glyph</a> for the x-axis</p>
+</li><li>
+<p>y = the co-ordinates of the <a href="Glyph.html">Glyph</a> for the y-axis</p>
+</li></ul>
+          
+          
+
+          
+          <div class="method-source-code" id="generic-source">
+            <pre><span class="ruby-comment"># File lib/bio/graphics/glyph.rb, line 37</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">generic</span>(<span class="ruby-identifier">args</span>) <span class="ruby-comment">#:x, :y, :width :fill, :stroke :stroke_width, :style, :height, </span>
+  <span class="ruby-identifier">args</span> = { 
+    <span class="ruby-value">:height</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">10</span>, 
+    <span class="ruby-value">:fill_color</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">'red'</span>, 
+    <span class="ruby-value">:stroke</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;black&quot;</span>, 
+    <span class="ruby-value">:stroke_width</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">1</span>, 
+    <span class="ruby-value">:x_round</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">1</span>, 
+    <span class="ruby-value">:y_round</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">1</span>, 
+    <span class="ruby-value">:style</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;fill-opacity:0.4;&quot;</span>}.<span class="ruby-identifier">merge!</span>(<span class="ruby-identifier">args</span>)
+  [<span class="ruby-constant">Bio</span><span class="ruby-operator">::</span><span class="ruby-constant">Graphics</span><span class="ruby-operator">::</span><span class="ruby-constant">Primitive</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">:rectangle</span>, <span class="ruby-identifier">args</span>)]
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- generic-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- generic-method -->
+
+    
+      <div id="method-c-gradient" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">gradient</span><span
+            class="method-args">(gradient)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Sets the the type (linear or radial) and colour of gradient for a
+pre-defined gradient along with the pertinent parameters for that type</p>
+
+<p><code>args</code></p>
+<ul><li>
+<p>gradient = a pre-defined gradient</p>
+</li></ul>
+
+<p>The types of gradient are:</p>
+<ul><li>
+<p>red_white_h</p>
+</li><li>
+<p>green_white_h</p>
+</li><li>
+<p>blue_white_h</p>
+</li><li>
+<p>yellow_white_h</p>
+</li><li>
+<p>red_white_radial</p>
+</li><li>
+<p>green_white_radial</p>
+</li><li>
+<p>blue_white_radial</p>
+</li><li>
+<p>yellow_white_radial</p>
+</li></ul>
+          
+          
+
+          
+          <div class="method-source-code" id="gradient-source">
+            <pre><span class="ruby-comment"># File lib/bio/graphics/glyph.rb, line 367</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">gradient</span>(<span class="ruby-identifier">gradient</span>)
+  <span class="ruby-identifier">type</span>, <span class="ruby-identifier">color</span> = <span class="ruby-keyword">case</span> <span class="ruby-identifier">gradient</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-value">:red_white_h</span>
+    [<span class="ruby-value">:linear</span>, <span class="ruby-string">&quot;red&quot;</span>]
+  <span class="ruby-keyword">when</span> <span class="ruby-value">:green_white_h</span>
+    [<span class="ruby-value">:linear</span>, <span class="ruby-string">&quot;green&quot;</span>]
+  <span class="ruby-keyword">when</span> <span class="ruby-value">:blue_white_h</span>
+    [<span class="ruby-value">:linear</span>, <span class="ruby-string">&quot;blue&quot;</span>]
+  <span class="ruby-keyword">when</span> <span class="ruby-value">:yellow_white_h</span>
+    [<span class="ruby-value">:linear</span>, <span class="ruby-string">&quot;yellow&quot;</span>]
+  <span class="ruby-keyword">when</span> <span class="ruby-value">:red_white_radial</span>
+    [<span class="ruby-value">:radial</span>, <span class="ruby-string">&quot;red&quot;</span>]
+  <span class="ruby-keyword">when</span> <span class="ruby-value">:green_white_radial</span>
+    [<span class="ruby-value">:radial</span>, <span class="ruby-string">&quot;green&quot;</span>]
+  <span class="ruby-keyword">when</span> <span class="ruby-value">:blue_white_radial</span>
+    [<span class="ruby-value">:radial</span>, <span class="ruby-string">&quot;blue&quot;</span>]
+  <span class="ruby-keyword">when</span> <span class="ruby-value">:yellow_white_radial</span>
+    [<span class="ruby-value">:radial</span>, <span class="ruby-string">&quot;yellow&quot;</span>]
+  <span class="ruby-keyword">end</span>
+  
+  <span class="ruby-keyword">case</span> <span class="ruby-identifier">type</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-value">:linear</span>
+          {<span class="ruby-value">:type</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">:linear</span>, 
+     <span class="ruby-value">:id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">gradient</span>, 
+     <span class="ruby-value">:x1</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>, <span class="ruby-value">:y1</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>, 
+     <span class="ruby-value">:x2</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>, <span class="ruby-value">:y2</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">100</span>, 
+     <span class="ruby-value">:stops</span> =<span class="ruby-operator">&gt;</span> [
+       {
+        <span class="ruby-value">:color</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">color</span>, 
+        <span class="ruby-value">:offset</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>, 
+        <span class="ruby-value">:opacity=</span><span class="ruby-operator">&gt;</span> <span class="ruby-value">1</span>
+        },
+        {
+         <span class="ruby-value">:color</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;white&quot;</span>, 
+         <span class="ruby-value">:offset</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">100</span>, 
+         <span class="ruby-value">:opacity=</span><span class="ruby-operator">&gt;</span> <span class="ruby-value">1</span> 
+         }
+        ]
+      }
+  <span class="ruby-keyword">when</span> <span class="ruby-value">:radial</span>
+    {
+     <span class="ruby-value">:type</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">:radial</span>, 
+     <span class="ruby-value">:id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">gradient</span>, 
+     <span class="ruby-value">:cx</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">50</span>, <span class="ruby-value">:cy</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">50</span>, 
+     <span class="ruby-value">:r</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">50</span>, <span class="ruby-value">:fx</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">50</span>, <span class="ruby-value">:fy</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">50</span>, 
+     <span class="ruby-value">:stops</span> =<span class="ruby-operator">&gt;</span> [ 
+       {<span class="ruby-value">:offset</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>, 
+        <span class="ruby-value">:color</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;white&quot;</span>, 
+        <span class="ruby-value">:opacity</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>
+        },  
+        {
+        <span class="ruby-value">:offset</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">100</span>, 
+        <span class="ruby-value">:color</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">color</span>, 
+        <span class="ruby-value">:opacity</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">1</span>
+        }
+      ]
+    }
+  <span class="ruby-keyword">end</span>
+  
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- gradient-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- gradient-method -->
+
+    
+      <div id="method-c-gradients" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">gradients</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>The list of pre-defined gradients</p>
+          
+          
+
+          
+          <div class="method-source-code" id="gradients-source">
+            <pre><span class="ruby-comment"># File lib/bio/graphics/glyph.rb, line 348</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">gradients</span> <span class="ruby-comment">#needs to know which of its gradients are predefined</span>
+  [<span class="ruby-value">:red_white_h</span>, <span class="ruby-value">:green_white_h</span>, <span class="ruby-value">:blue_white_h</span>, <span class="ruby-value">:yellow_white_h</span>, <span class="ruby-value">:red_white_radial</span>, <span class="ruby-value">:green_white_radial</span>, <span class="ruby-value">:blue_white_radial</span>, <span class="ruby-value">:yellow_white_radial</span> ]
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- gradients-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- gradients-method -->
+
+    
+      <div id="method-c-label" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">label</span><span
+            class="method-args">(args)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Creates a label <a href="Glyph.html">Glyph</a> to write text</p>
+
+<p><code>args</code></p>
+<ul><li>
+<p>text = the text to write</p>
+</li><li>
+<p>fill = the colour of the text (“black”)</p>
+</li><li>
+<p>style = the style of writing (“font-family:monospace;”)</p>
+</li><li>
+<p>x = the co-ordinates of the <a href="Glyph.html">Glyph</a> for the x-axis</p>
+</li><li>
+<p>y = the co-ordinates of the <a href="Glyph.html">Glyph</a> for the y-axis</p>
+</li></ul>
+          
+          
+
+          
+          <div class="method-source-code" id="label-source">
+            <pre><span class="ruby-comment"># File lib/bio/graphics/glyph.rb, line 339</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">label</span>(<span class="ruby-identifier">args</span>)
+  [<span class="ruby-constant">Bio</span><span class="ruby-operator">::</span><span class="ruby-constant">Graphics</span><span class="ruby-operator">::</span><span class="ruby-constant">Primitive</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">:text</span>, 
+                 <span class="ruby-value">:text</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">args</span>[<span class="ruby-value">:text</span>], 
+                 <span class="ruby-value">:x</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">args</span>[<span class="ruby-value">:x</span>], 
+                 <span class="ruby-value">:y</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">args</span>[<span class="ruby-value">:y</span>], 
+                 <span class="ruby-value">:fill</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;black&quot;</span>, 
+                 <span class="ruby-value">:style</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;font-family:monospace;&quot;</span>)]
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- label-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- label-method -->
+
+    
+      <div id="method-c-scale" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">scale</span><span
+            class="method-args">(args)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Creates the scale across the top of the SVG page</p>
+
+<p><code>args</code></p>
+<ul><li>
+<p>start = the start of the scale</p>
+</li><li>
+<p>stop = the end of the scale</p>
+</li><li>
+<p>number_of_intervals = the number of tick-marks on the scale to show the
+current position</p>
+</li><li>
+<p>page_width = the width of the page</p>
+</li></ul>
+
+<p><code>returns</code></p>
+<ul><li>
+<p>An <a href="http://www.ruby-doc.org/core-2.0/Array.html">Array</a> of <a
+href="Primitive.html">Primitive</a> objects (of type ‘line’,
+‘rectangle’ and ‘text’)</p>
+</li></ul>
+          
+          
+
+          
+          <div class="method-source-code" id="scale-source">
+            <pre><span class="ruby-comment"># File lib/bio/graphics/glyph.rb, line 294</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">scale</span>(<span class="ruby-identifier">args</span>)
+  <span class="ruby-identifier">first_mark</span> = <span class="ruby-identifier">args</span>[<span class="ruby-value">:start</span>]
+  <span class="ruby-identifier">last_mark</span> = <span class="ruby-identifier">args</span>[<span class="ruby-value">:stop</span>] 
+  <span class="ruby-comment">#(num.to_f / @nt_per_px_x.to_f)</span>
+  <span class="ruby-identifier">full_dist</span> = <span class="ruby-identifier">last_mark</span> <span class="ruby-operator">-</span> <span class="ruby-identifier">first_mark</span>
+  <span class="ruby-identifier">interval_width</span> =  <span class="ruby-identifier">full_dist</span> <span class="ruby-operator">/</span> (<span class="ruby-identifier">args</span>[<span class="ruby-value">:number_of_intervals</span>] <span class="ruby-operator">-</span> <span class="ruby-value">1</span>) 
+
+
+  <span class="ruby-identifier">a</span> = [<span class="ruby-constant">Bio</span><span class="ruby-operator">::</span><span class="ruby-constant">Graphics</span><span class="ruby-operator">::</span><span class="ruby-constant">Primitive</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">:line</span>, 
+                             <span class="ruby-value">:stroke</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">'black'</span>, 
+                             <span class="ruby-value">:stroke_width</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">1</span>, 
+                             <span class="ruby-value">:x1</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">1</span>, <span class="ruby-value">:x2</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">args</span>[<span class="ruby-value">:page_width</span>],<span class="ruby-comment"># * 1.1, </span>
+                             <span class="ruby-value">:y1</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;20&quot;</span>, <span class="ruby-value">:y2</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;20&quot;</span>  )]
+
+
+  <span class="ruby-identifier">marks</span> = (<span class="ruby-identifier">first_mark</span><span class="ruby-operator">..</span><span class="ruby-identifier">last_mark</span>).<span class="ruby-identifier">step</span>(<span class="ruby-identifier">interval_width</span>).<span class="ruby-identifier">to_a</span>
+
+  <span class="ruby-identifier">px_per_nt</span> =  <span class="ruby-identifier">args</span>[<span class="ruby-value">:page_width</span>].<span class="ruby-identifier">to_f</span> <span class="ruby-operator">/</span> <span class="ruby-identifier">full_dist</span>.<span class="ruby-identifier">to_f</span>
+  <span class="ruby-identifier">marks</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">mark</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">x</span> =   (<span class="ruby-identifier">mark</span>.<span class="ruby-identifier">to_f</span> <span class="ruby-operator">-</span> <span class="ruby-identifier">first_mark</span> ).<span class="ruby-identifier">to_f</span> <span class="ruby-operator">*</span> <span class="ruby-identifier">px_per_nt</span>
+    <span class="ruby-identifier">a</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-constant">Bio</span><span class="ruby-operator">::</span><span class="ruby-constant">Graphics</span><span class="ruby-operator">::</span><span class="ruby-constant">Primitive</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">:rectangle</span>, 
+                       <span class="ruby-value">:x</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">x</span>, 
+                       <span class="ruby-value">:y</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">20</span>, 
+                       <span class="ruby-value">:stroke</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">'black'</span>, 
+                       <span class="ruby-value">:stroke_width</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">1</span>, 
+                       <span class="ruby-value">:width</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">1</span>, 
+                       <span class="ruby-value">:height</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">5</span> )
+                       
+    <span class="ruby-identifier">a</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-constant">Bio</span><span class="ruby-operator">::</span><span class="ruby-constant">Graphics</span><span class="ruby-operator">::</span><span class="ruby-constant">Primitive</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">:text</span>, 
+                       <span class="ruby-value">:x</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">x</span>, 
+                       <span class="ruby-value">:y</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">40</span>, <span class="ruby-value">:fill</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">'black'</span>, 
+                       <span class="ruby-value">:text</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">mark</span>, 
+                       <span class="ruby-value">:style</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;font-family:Arial;font-style:italic&quot;</span>)
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">a</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- scale-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- scale-method -->
+
+    
+      <div id="method-c-span" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">span</span><span
+            class="method-args">(args)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Creates a span glyph, which is a line</p>
+
+<p><code>args</code></p>
+<ul><li>
+<p>height = the height of the <a href="Glyph.html">Glyph</a> (10)</p>
+</li><li>
+<p>fill_color = the fill colour of the <a href="Glyph.html">Glyph</a>
+(‘red’)</p>
+</li><li>
+<p>stroke = the outline colour of the <a href="Glyph.html">Glyph</a>
+(“black”)</p>
+</li><li>
+<p>stroke_width = The width of the outline stroke (1)</p>
+</li><li>
+<p>style = the opacity of the fill color (“fill-opacity:0.4;”)</p>
+</li><li>
+<p>x = the co-ordinates of the <a href="Glyph.html">Glyph</a> for the x-axis</p>
+</li><li>
+<p>y = the co-ordinates of the <a href="Glyph.html">Glyph</a> for the y-axis</p>
+</li></ul>
+          
+          
+
+          
+          <div class="method-source-code" id="span-source">
+            <pre><span class="ruby-comment"># File lib/bio/graphics/glyph.rb, line 156</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">span</span>(<span class="ruby-identifier">args</span>)
+  <span class="ruby-identifier">args</span> = {
+    <span class="ruby-value">:height</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">10</span>,
+    <span class="ruby-value">:fill_color</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">'red'</span>,
+    <span class="ruby-value">:stroke</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;black&quot;</span>,
+    <span class="ruby-value">:stroke_width</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">1</span>,
+    <span class="ruby-value">:style</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;fill-opacity:1;&quot;</span>
+  }.<span class="ruby-identifier">merge!</span>(<span class="ruby-identifier">args</span>)
+  <span class="ruby-identifier">args</span>[<span class="ruby-value">:x1</span>] = <span class="ruby-identifier">args</span>[<span class="ruby-value">:x</span>]
+  <span class="ruby-identifier">args</span>[<span class="ruby-value">:x2</span>] = <span class="ruby-identifier">args</span>[<span class="ruby-value">:x</span>] <span class="ruby-operator">+</span> <span class="ruby-identifier">args</span>[<span class="ruby-value">:width</span>]
+  <span class="ruby-identifier">args</span>[<span class="ruby-value">:y1</span>] = <span class="ruby-identifier">args</span>[<span class="ruby-value">:y</span>]
+  <span class="ruby-identifier">args</span>[<span class="ruby-value">:y2</span>] = <span class="ruby-identifier">args</span>[<span class="ruby-value">:y</span>]
+  [<span class="ruby-constant">Bio</span><span class="ruby-operator">::</span><span class="ruby-constant">Graphics</span><span class="ruby-operator">::</span><span class="ruby-constant">Primitive</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">:line</span>, <span class="ruby-identifier">args</span>)]
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- span-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- span-method -->
+
+    
+      <div id="method-c-transcript" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">transcript</span><span
+            class="method-args">(args)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Creates a transcript glyph, which is a number of different types of <a
+href="Glyph.html">Glyph</a>, depending on the features within the
+transcript</p>
+
+<p><code>args</code></p>
+<ul><li>
+<p>height = the height of the <a href="Glyph.html">Glyph</a> (10)</p>
+</li><li>
+<p>utr_fill_color = the fill colour of the <a href="Glyph.html">Glyph</a>
+(‘black’)</p>
+</li><li>
+<p>utr_stroke = the outline colour of the <a href="Glyph.html">Glyph</a>
+(“black”)</p>
+</li><li>
+<p>utr_stroke_width = The width of the outline stroke (1)</p>
+</li><li>
+<p>exon_fill_color = the fill colour of the <a href="Glyph.html">Glyph</a>
+(‘red’)</p>
+</li><li>
+<p>exon_stroke = the outline colour of the <a href="Glyph.html">Glyph</a>
+(“black”)</p>
+</li><li>
+<p>exon_stroke_width = The width of the outline stroke (1)</p>
+</li><li>
+<p>line_color = the colour for any line Glyphs</p>
+</li><li>
+<p>line_width = the width for any line Glyphs</p>
+</li><li>
+<p>exon_style = the opacity of the fill color for exons
+(“fill-opacity:0.4;”)</p>
+</li><li>
+<p>utr_style = the opacity of the fill color for utrs</p>
+</li><li>
+<p>line_style = the opacity of the fill color for lines</p>
+</li><li>
+<p>block_gaps = ****I’m not sure what these are****</p>
+</li><li>
+<p>gap_marker = ****I’m not sure what these are****</p>
+</li><li>
+<p>x = the co-ordinates of the <a href="Glyph.html">Glyph</a> for the x-axis</p>
+</li><li>
+<p>y = the co-ordinates of the <a href="Glyph.html">Glyph</a> for the y-axis</p>
+</li></ul>
+          
+          
+
+          
+          <div class="method-source-code" id="transcript-source">
+            <pre><span class="ruby-comment"># File lib/bio/graphics/glyph.rb, line 190</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">transcript</span>(<span class="ruby-identifier">args</span>)
+    <span class="ruby-identifier">args</span> = {
+    <span class="ruby-value">:height</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">10</span>, 
+    <span class="ruby-value">:utr_fill_color</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">'black'</span>, 
+    <span class="ruby-value">:utr_stroke</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;black&quot;</span>, 
+    <span class="ruby-value">:utr_stroke_width</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">1</span>, 
+    <span class="ruby-value">:exon_fill_color</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">'red'</span>, 
+    <span class="ruby-value">:exon_stroke</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;black&quot;</span>, 
+    <span class="ruby-value">:exon_stroke_width</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">1</span>, 
+    <span class="ruby-value">:line_color</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">'black'</span>,
+    <span class="ruby-value">:line_width</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">1</span>, 
+    <span class="ruby-value">:exon_style</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;fill-opacity:0.4;&quot;</span>,
+    <span class="ruby-value">:utr_style</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;&quot;</span>,
+    <span class="ruby-value">:line_style</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;&quot;</span>,
+    <span class="ruby-value">:block_gaps</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;&quot;</span>,
+    <span class="ruby-value">:gap_marker</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;&quot;</span>
+    }.<span class="ruby-identifier">merge!</span>(<span class="ruby-identifier">args</span>)
+    
+    <span class="ruby-identifier">composite</span> = []
+
+    <span class="ruby-keyword">if</span> <span class="ruby-keyword">not</span> <span class="ruby-identifier">args</span>[<span class="ruby-value">:utrs</span>].<span class="ruby-identifier">empty?</span>  <span class="ruby-comment">##draw the utr as terminal element...##terminal utr is the one with the point on...</span>
+      <span class="ruby-identifier">x</span>,<span class="ruby-identifier">width</span> =  <span class="ruby-identifier">args</span>[<span class="ruby-value">:strand</span>] <span class="ruby-operator">==</span> <span class="ruby-string">'-'</span> <span class="ruby-operator">?</span> <span class="ruby-identifier">args</span>[<span class="ruby-value">:utrs</span>].<span class="ruby-identifier">shift</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">args</span>[<span class="ruby-value">:utrs</span>].<span class="ruby-identifier">pop</span> 
+      <span class="ruby-identifier">composite</span> <span class="ruby-operator">+=</span> <span class="ruby-constant">Glyph</span>.<span class="ruby-identifier">directed</span>(<span class="ruby-value">:x</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">x</span>, 
+                                  <span class="ruby-value">:y</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">args</span>[<span class="ruby-value">:y</span>], 
+                                  <span class="ruby-value">:width</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">width</span>, 
+                                  <span class="ruby-value">:strand</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">args</span>[<span class="ruby-value">:strand</span>], 
+                                  <span class="ruby-value">:height</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">args</span>[<span class="ruby-value">:height</span>], 
+                                  <span class="ruby-value">:fill_color</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">args</span>[<span class="ruby-value">:utr_fill_color</span>], 
+                                  <span class="ruby-value">:stroke</span> =<span class="ruby-operator">&gt;</span><span class="ruby-identifier">args</span>[<span class="ruby-value">:utr_stroke</span>], 
+                                  <span class="ruby-value">:stroke_width</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">args</span>[<span class="ruby-value">:utr_stroke_width</span>], 
+                                  <span class="ruby-value">:style</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">args</span>[<span class="ruby-value">:utr_style</span>] )
+      <span class="ruby-comment">##draw the other(s!) </span>
+      <span class="ruby-identifier">args</span>[<span class="ruby-value">:utrs</span>].<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">utr</span><span class="ruby-operator">|</span>
+        <span class="ruby-identifier">composite</span> <span class="ruby-operator">&lt;&lt;</span>  <span class="ruby-constant">Bio</span><span class="ruby-operator">::</span><span class="ruby-constant">Graphics</span><span class="ruby-operator">::</span><span class="ruby-constant">Primitive</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">:rectangle</span>, {
+                                                  <span class="ruby-value">:x</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">utr</span>.<span class="ruby-identifier">first</span>, 
+                                                  <span class="ruby-value">:width</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">utr</span>.<span class="ruby-identifier">last</span>, 
+                                                  <span class="ruby-value">:y</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">args</span>[<span class="ruby-value">:y</span>], 
+                                                  <span class="ruby-value">:height</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">args</span>[<span class="ruby-value">:height</span>], 
+                                                  <span class="ruby-value">:fill_color</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">args</span>[<span class="ruby-value">:utr_fill_color</span>], 
+                                                  <span class="ruby-value">:stroke</span> =<span class="ruby-operator">&gt;</span><span class="ruby-identifier">args</span>[<span class="ruby-value">:utr_stroke</span>], 
+                                                  <span class="ruby-value">:stroke_width</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">args</span>[<span class="ruby-value">:utr_stroke_width</span>], 
+                                                  <span class="ruby-value">:style</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">args</span>[<span class="ruby-value">:utr_style</span>]} )
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">else</span> <span class="ruby-comment">## draw the terminal exon as terminal element  </span>
+      <span class="ruby-identifier">points</span> = <span class="ruby-keyword">nil</span>      
+      <span class="ruby-identifier">x</span>,<span class="ruby-identifier">width</span> =  <span class="ruby-identifier">args</span>[<span class="ruby-value">:strand</span>] <span class="ruby-operator">==</span> <span class="ruby-string">'-'</span> <span class="ruby-operator">?</span> <span class="ruby-identifier">args</span>[<span class="ruby-value">:exons</span>].<span class="ruby-identifier">shift</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">args</span>[<span class="ruby-value">:exons</span>].<span class="ruby-identifier">pop</span> 
+      <span class="ruby-identifier">composite</span> <span class="ruby-operator">+=</span> <span class="ruby-constant">Glyph</span>.<span class="ruby-identifier">directed</span>(<span class="ruby-value">:x</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">x</span>, 
+                                  <span class="ruby-value">:y</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">args</span>[<span class="ruby-value">:y</span>], 
+                                  <span class="ruby-value">:width</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">width</span>, 
+                                  <span class="ruby-value">:strand</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">args</span>[<span class="ruby-value">:strand</span>], 
+                                  <span class="ruby-value">:height</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">args</span>[<span class="ruby-value">:height</span>], 
+                                  <span class="ruby-value">:fill_color</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">args</span>[<span class="ruby-value">:exon_fill_color</span>], 
+                                  <span class="ruby-value">:stroke</span> =<span class="ruby-operator">&gt;</span><span class="ruby-identifier">args</span>[<span class="ruby-value">:exon_stroke</span>], 
+                                  <span class="ruby-value">:stroke_width</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">args</span>[<span class="ruby-value">:exon_stroke_width</span>], 
+                                  <span class="ruby-value">:style</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">args</span>[<span class="ruby-value">:exon_style</span>] )
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-comment">#draw any remaining exons</span>
+    <span class="ruby-identifier">args</span>[<span class="ruby-value">:exons</span>].<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">exon</span><span class="ruby-operator">|</span>
+        <span class="ruby-identifier">composite</span> <span class="ruby-operator">&lt;&lt;</span>  <span class="ruby-constant">Bio</span><span class="ruby-operator">::</span><span class="ruby-constant">Graphics</span><span class="ruby-operator">::</span><span class="ruby-constant">Primitive</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">:rectangle</span>, {
+                                                  <span class="ruby-value">:x</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">exon</span>[<span class="ruby-value">0</span>], 
+                                                  <span class="ruby-value">:width</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">exon</span>[<span class="ruby-value">1</span>], 
+                                                  <span class="ruby-value">:y</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">args</span>[<span class="ruby-value">:y</span>], 
+                                                  <span class="ruby-value">:height</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">args</span>[<span class="ruby-value">:height</span>], 
+                                                  <span class="ruby-value">:fill_color</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">args</span>[<span class="ruby-value">:exon_fill_color</span>], 
+                                                  <span class="ruby-value">:stroke</span> =<span class="ruby-operator">&gt;</span><span class="ruby-identifier">args</span>[<span class="ruby-value">:exon_stroke</span>], 
+                                                  <span class="ruby-value">:stroke_width</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">args</span>[<span class="ruby-value">:exon_stroke_width</span>], 
+                                                  <span class="ruby-value">:style</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">args</span>[<span class="ruby-value">:exon_style</span>]} )
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">args</span>[<span class="ruby-value">:gap_marker</span>] <span class="ruby-operator">==</span> <span class="ruby-string">&quot;angled&quot;</span> <span class="ruby-keyword">and</span> <span class="ruby-keyword">not</span> <span class="ruby-identifier">args</span>[<span class="ruby-value">:block_gaps</span>].<span class="ruby-identifier">empty?</span>
+      <span class="ruby-identifier">args</span>[<span class="ruby-value">:block_gaps</span>].<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">gap</span><span class="ruby-operator">|</span>
+        <span class="ruby-identifier">points</span> = <span class="ruby-node">&quot;#{gap.first},#{args[:y] + (args[:height]/2) } #{gap.first + (gap.last/2)},#{args[:y]} #{gap.first + gap.last},#{args[:y] + (args[:height]/2)}&quot;</span>
+        <span class="ruby-identifier">composite</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-constant">Bio</span><span class="ruby-operator">::</span><span class="ruby-constant">Graphics</span><span class="ruby-operator">::</span><span class="ruby-constant">Primitive</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">:polyline</span>, {
+                                               <span class="ruby-value">:points</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">points</span>, 
+                                               <span class="ruby-value">:stroke</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">args</span>[<span class="ruby-value">:line_color</span>], 
+                                               <span class="ruby-value">:stroke_width</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">args</span>[<span class="ruby-value">:line_width</span>], 
+                                               <span class="ruby-value">:fill</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;none&quot;</span>, 
+                                               <span class="ruby-value">:line_style</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">args</span>[<span class="ruby-value">:line_style</span>]})
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-comment">#add line</span>
+      <span class="ruby-identifier">composite</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-constant">Bio</span><span class="ruby-operator">::</span><span class="ruby-constant">Graphics</span><span class="ruby-operator">::</span><span class="ruby-constant">Primitive</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">:line</span>, {
+                                          <span class="ruby-value">:x1</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">args</span>[<span class="ruby-value">:x</span>], 
+                                          <span class="ruby-value">:x2</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-node">&quot;#{args[:x] + args[:width]}&quot;</span>, 
+                                          <span class="ruby-value">:y1</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">args</span>[<span class="ruby-value">:y</span>] <span class="ruby-operator">+</span> (<span class="ruby-identifier">args</span>[<span class="ruby-value">:height</span>]<span class="ruby-operator">/</span><span class="ruby-value">2</span>), 
+                                          <span class="ruby-value">:y2</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">args</span>[<span class="ruby-value">:y</span>] <span class="ruby-operator">+</span> (<span class="ruby-identifier">args</span>[<span class="ruby-value">:height</span>]<span class="ruby-operator">/</span><span class="ruby-value">2</span>), 
+                                          <span class="ruby-value">:stroke</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">args</span>[<span class="ruby-value">:line_color</span>], 
+                                          <span class="ruby-value">:stroke_width</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">args</span>[<span class="ruby-value">:line_width</span>], 
+                                          <span class="ruby-value">:line_style</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">args</span>[<span class="ruby-value">:line_style</span>]})
+
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-identifier">composite</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- transcript-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- transcript-method -->
+
+    
+      <div id="method-c-up_triangle" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">up_triangle</span><span
+            class="method-args">(args)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Creates a polygon <a href="Glyph.html">Glyph</a> for an upward-pointing
+triangle <code>args</code></p>
+<ul><li>
+<p>height = the height of the <a href="Glyph.html">Glyph</a> (10)</p>
+</li><li>
+<p>fill_color = the fill colour of the <a href="Glyph.html">Glyph</a>
+(‘red’)</p>
+</li><li>
+<p>stroke = the outline colour of the <a href="Glyph.html">Glyph</a>
+(“black”)</p>
+</li><li>
+<p>stroke_width = The width of the outline stroke (1)</p>
+</li><li>
+<p>style = the opacity of the fill color (“fill-opacity:0.4;”)</p>
+</li><li>
+<p>x = the co-ordinates of the <a href="Glyph.html">Glyph</a> for the x-axis</p>
+</li><li>
+<p>y = the co-ordinates of the <a href="Glyph.html">Glyph</a> for the y-axis</p>
+</li></ul>
+
+<p>The points of the triangle are calculated form the <code>x</code> and
+<code>y</code> co-ordinates</p>
+          
+          
+
+          
+          <div class="method-source-code" id="up_triangle-source">
+            <pre><span class="ruby-comment"># File lib/bio/graphics/glyph.rb, line 136</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">up_triangle</span>(<span class="ruby-identifier">args</span>) <span class="ruby-comment">#:x, :y, :width :fill, :stroke :stroke_width, :style, :height</span>
+  <span class="ruby-identifier">args</span> = {
+    <span class="ruby-value">:height</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">10</span>, 
+    <span class="ruby-value">:fill_color</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">'red'</span>, 
+    <span class="ruby-value">:stroke</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;black&quot;</span>, 
+    <span class="ruby-value">:stroke_width</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">1</span>, 
+    <span class="ruby-value">:style</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;fill-opacity:0.4;&quot;</span>}.<span class="ruby-identifier">merge!</span>(<span class="ruby-identifier">args</span>)
+    <span class="ruby-identifier">args</span>[<span class="ruby-value">:points</span>] = <span class="ruby-node">&quot;#{args[:x]},#{args[:y] + args[:height]} #{args[:x] + args[:width]},#{args[:y] + args[:height]} #{ args[:x] + (args[:width]/2) },#{args[:y] }&quot;</span>
+  [<span class="ruby-constant">Bio</span><span class="ruby-operator">::</span><span class="ruby-constant">Graphics</span><span class="ruby-operator">::</span><span class="ruby-constant">Primitive</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">:polygon</span>, <span class="ruby-identifier">args</span>)]
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- up_triangle-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- up_triangle-method -->
+
+    
+    </section><!-- public-class-method-details -->
+  
+  </section><!-- 5Buntitled-5D -->
+
+</div><!-- documentation -->
+
+
+<footer id="validator-badges">
+  <p><a href="http://validator.w3.org/check/referer">[Validate]</a>
+  <p>Generated by <a href="https://github.com/rdoc/rdoc">RDoc</a> 4.0.0.rc.2.1.
+  <p>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish Rdoc Generator</a> 3.
+</footer>
+

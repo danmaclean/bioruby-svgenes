@@ -1,0 +1,1200 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+
+<title>class Bio::Graphics::Page - RDoc Documentation</title>
+
+<link type="text/css" media="screen" href="../../rdoc.css" rel="stylesheet">
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../../";
+</script>
+
+<script type="text/javascript" charset="utf-8" src="../../js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="../../js/navigation.js"></script>
+<script type="text/javascript" charset="utf-8" src="../../js/search_index.js"></script>
+<script type="text/javascript" charset="utf-8" src="../../js/search.js"></script>
+<script type="text/javascript" charset="utf-8" src="../../js/searcher.js"></script>
+<script type="text/javascript" charset="utf-8" src="../../js/darkfish.js"></script>
+
+
+<body id="top" class="class">
+<nav id="metadata">
+  <nav id="home-section" class="section">
+  <h3 class="section-header">
+    <a href="../../index.html">Home</a>
+    <a href="../../table_of_contents.html#classes">Classes</a>
+    <a href="../../table_of_contents.html#methods">Methods</a>
+  </h3>
+</nav>
+
+
+  <nav id="search-section" class="section project-section" class="initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <h3 class="section-header">
+      <input type="text" name="search" placeholder="Search" id="search-field"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </h3>
+  </form>
+
+  <ul id="search-results" class="initially-hidden"></ul>
+</nav>
+
+
+  
+
+  <div id="file-metadata">
+    <nav id="file-list-section" class="section">
+  <h3 class="section-header">Defined In</h3>
+  <ul>
+    <li>lib/bio/graphics/page.rb
+  </ul>
+</nav>
+
+    
+  </div>
+
+  <div id="class-metadata">
+    
+    <nav id="parent-class-section" class="section">
+  <h3 class="section-header">Parent</h3>
+  
+  <p class="link">Object
+  
+</nav>
+
+    
+    
+    <!-- Method Quickref -->
+<nav id="method-list-section" class="section">
+  <h3 class="section-header">Methods</h3>
+
+  <ul class="link-list">
+    
+    <li ><a href="#method-c-from_json">::from_json</a>
+    
+    <li ><a href="#method-c-new">::new</a>
+    
+    <li ><a href="#method-c-parse_gff">::parse_gff</a>
+    
+    <li ><a href="#method-i-add_track">#add_track</a>
+    
+    <li ><a href="#method-i-draw">#draw</a>
+    
+    <li ><a href="#method-i-draw_circle">#draw_circle</a>
+    
+    <li ><a href="#method-i-draw_directed">#draw_directed</a>
+    
+    <li ><a href="#method-i-draw_down_triangle">#draw_down_triangle</a>
+    
+    <li ><a href="#method-i-draw_features">#draw_features</a>
+    
+    <li ><a href="#method-i-draw_generic">#draw_generic</a>
+    
+    <li ><a href="#method-i-draw_histogram">#draw_histogram</a>
+    
+    <li ><a href="#method-i-draw_label">#draw_label</a>
+    
+    <li ><a href="#method-i-draw_scale">#draw_scale</a>
+    
+    <li ><a href="#method-i-draw_span">#draw_span</a>
+    
+    <li ><a href="#method-i-draw_transcript">#draw_transcript</a>
+    
+    <li ><a href="#method-i-draw_up_triangle">#draw_up_triangle</a>
+    
+    <li ><a href="#method-i-get_limits">#get_limits</a>
+    
+    <li ><a href="#method-i-get_markup">#get_markup</a>
+    
+    <li ><a href="#method-i-to_px">#to_px</a>
+    
+    <li ><a href="#method-i-write">#write</a>
+    
+  </ul>
+</nav>
+
+  </div>
+
+  <div id="project-metadata">
+    <nav id="fileindex-section" class="section project-section">
+  <h3 class="section-header">Pages</h3>
+
+  <ul>
+  
+    <li class="file"><a href="../../LICENSE_txt.html">LICENSE</a>
+  
+  </ul>
+</nav>
+
+    <nav id="classindex-section" class="section project-section">
+  <h3 class="section-header">Class and Module Index</h3>
+
+  <ul class="link-list">
+  
+    <li><a href="../../Bio.html">Bio</a>
+  
+    <li><a href="../../Bio/Graphics.html">Bio::Graphics</a>
+  
+    <li><a href="../../Bio/Graphics/Glyph.html">Bio::Graphics::Glyph</a>
+  
+    <li><a href="../../Bio/Graphics/MiniFeature.html">Bio::Graphics::MiniFeature</a>
+  
+    <li><a href="../../Bio/Graphics/Page.html">Bio::Graphics::Page</a>
+  
+    <li><a href="../../Bio/Graphics/Primitive.html">Bio::Graphics::Primitive</a>
+  
+    <li><a href="../../Bio/Graphics/SVGEE.html">Bio::Graphics::SVGEE</a>
+  
+    <li><a href="../../Bio/Graphics/Track.html">Bio::Graphics::Track</a>
+  
+  </ul>
+</nav>
+
+  </div>
+</nav>
+
+<div id="documentation">
+  <h1 class="class">class Bio::Graphics::Page</h1>
+
+  <div id="description" class="description">
+    
+<p>The <a href="Page.html">Page</a> class represents the top level container
+on which svg objects are written. It will contain a scale and all the
+tracks along with their features. The scale will start at the genomic
+co-ordinates of the start of the first feature and stop at the end of the
+last feature)</p>
+
+  </div><!-- description -->
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    <!-- Methods -->
+    
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Public Instance Methods</h3>
+
+    
+      <div id="method-i-add_track" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">add_track</span><span
+            class="method-args">(args)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Calculates the colour or gradient for the supplied <a
+href="Track.html">Bio::Graphics::Track</a> objects and adds them to the <a
+href="Track.html">Track</a> array for the current <a
+href="Page.html">Page</a></p>
+<ul><li>
+<p><code>args</code> - an Array of <a
+href="Track.html">Bio::Graphics::Track</a> objects</p>
+</li><li>
+<p><code>returns</code> - the last element of the <a
+href="Track.html">Track</a> array</p>
+</li></ul>
+          
+          
+
+          
+          <div class="method-source-code" id="add_track-source">
+            <pre><span class="ruby-comment"># File lib/bio/graphics/page.rb, line 138</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">add_track</span>(<span class="ruby-identifier">args</span>)
+  <span class="ruby-comment">#sort out the colour/gradient options</span>
+  [<span class="ruby-value">:fill_color</span>, <span class="ruby-value">:exon_fill_color</span>, <span class="ruby-value">:utr_fill_color</span>].<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">colour_tag</span><span class="ruby-operator">|</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-constant">Glyph</span>.<span class="ruby-identifier">gradients</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">args</span>[<span class="ruby-identifier">colour_tag</span>])
+      <span class="ruby-ivar">@svg</span>.<span class="ruby-identifier">gradient</span>(<span class="ruby-constant">Glyph</span>.<span class="ruby-identifier">gradient</span>(<span class="ruby-identifier">args</span>[<span class="ruby-identifier">colour_tag</span>]))
+      <span class="ruby-identifier">args</span>[<span class="ruby-identifier">colour_tag</span>] = <span class="ruby-node">&quot;url(##{args[colour_tag]})&quot;</span>
+    <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">args</span>[<span class="ruby-identifier">colour_tag</span>].<span class="ruby-identifier">instance_of?</span>(<span class="ruby-constant">Hash</span>)
+      <span class="ruby-ivar">@svg</span>.<span class="ruby-identifier">gradient</span>(<span class="ruby-identifier">args</span>[<span class="ruby-identifier">colour_tag</span>])
+      <span class="ruby-identifier">args</span>[<span class="ruby-identifier">colour_tag</span>] = <span class="ruby-node">&quot;url(##{args[colour_tag][:id]})&quot;</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-ivar">@tracks</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-constant">Track</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">args</span>)
+  <span class="ruby-keyword">return</span> <span class="ruby-ivar">@tracks</span>.<span class="ruby-identifier">last</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- add_track-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- add_track-method -->
+
+    
+      <div id="method-i-draw" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">draw</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Prints out the svg text</p>
+          
+          
+
+          
+          <div class="method-source-code" id="draw-source">
+            <pre><span class="ruby-comment"># File lib/bio/graphics/page.rb, line 332</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">draw</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-identifier">get_markup</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- draw-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- draw-method -->
+
+    
+      <div id="method-i-draw_circle" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">draw_circle</span><span
+            class="method-args">(args)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Adds the <a href="Primitive.html">Bio::Graphics::Primitive</a> objects to
+the <a href="SVGEE.html">SVGEE</a> object</p>
+<ul><li>
+<p><code>args</code> - an Array of <a
+href="Primitive.html">Bio::Graphics::Primitive</a> objects of the stated
+type</p>
+</li></ul>
+          
+          
+
+          
+          <div class="method-source-code" id="draw_circle-source">
+            <pre><span class="ruby-comment"># File lib/bio/graphics/page.rb, line 189</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">draw_circle</span>(<span class="ruby-identifier">args</span>)
+  <span class="ruby-constant">Glyph</span>.<span class="ruby-identifier">circle</span>(<span class="ruby-identifier">args</span>).<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">g</span><span class="ruby-operator">|</span> <span class="ruby-ivar">@svg</span>.<span class="ruby-identifier">add_primitive</span>(<span class="ruby-identifier">g</span>) }
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- draw_circle-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- draw_circle-method -->
+
+    
+      <div id="method-i-draw_directed" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">draw_directed</span><span
+            class="method-args">(args)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Adds the <a href="Primitive.html">Bio::Graphics::Primitive</a> objects to
+the <a href="SVGEE.html">SVGEE</a> object</p>
+<ul><li>
+<p><code>args</code> - an Array of <a
+href="Primitive.html">Bio::Graphics::Primitive</a> objects of the stated
+type</p>
+</li></ul>
+          
+          
+
+          
+          <div class="method-source-code" id="draw_directed-source">
+            <pre><span class="ruby-comment"># File lib/bio/graphics/page.rb, line 184</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">draw_directed</span>(<span class="ruby-identifier">args</span>)
+  <span class="ruby-constant">Glyph</span>.<span class="ruby-identifier">directed</span>(<span class="ruby-identifier">args</span>).<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">g</span><span class="ruby-operator">|</span> <span class="ruby-ivar">@svg</span>.<span class="ruby-identifier">add_primitive</span>(<span class="ruby-identifier">g</span>) }
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- draw_directed-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- draw_directed-method -->
+
+    
+      <div id="method-i-draw_down_triangle" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">draw_down_triangle</span><span
+            class="method-args">(args)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Adds the <a href="Primitive.html">Bio::Graphics::Primitive</a> objects to
+the <a href="SVGEE.html">SVGEE</a> object</p>
+<ul><li>
+<p><code>args</code> - an Array of <a
+href="Primitive.html">Bio::Graphics::Primitive</a> objects of the stated
+type</p>
+</li></ul>
+          
+          
+
+          
+          <div class="method-source-code" id="draw_down_triangle-source">
+            <pre><span class="ruby-comment"># File lib/bio/graphics/page.rb, line 209</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">draw_down_triangle</span>(<span class="ruby-identifier">args</span>)
+  <span class="ruby-constant">Glyph</span>.<span class="ruby-identifier">down_triangle</span>(<span class="ruby-identifier">args</span>).<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">g</span><span class="ruby-operator">|</span> <span class="ruby-ivar">@svg</span>.<span class="ruby-identifier">add_primitive</span>(<span class="ruby-identifier">g</span>) }
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- draw_down_triangle-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- draw_down_triangle-method -->
+
+    
+      <div id="method-i-draw_features" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">draw_features</span><span
+            class="method-args">(track)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Takes a <a href="Track.html">Bio::Graphics::Track</a> object and sorts out
+the input information into a user friendly format.</p>
+
+<p>It examines the the type of track and calculates the required parameters</p>
+<ul><li>
+<p><code>args</code> - an Array of <a
+href="Track.html">Bio::Graphics::Track</a> object</p>
+</li></ul>
+          
+          
+
+          
+          <div class="method-source-code" id="draw_features-source">
+            <pre><span class="ruby-comment"># File lib/bio/graphics/page.rb, line 222</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">draw_features</span>(<span class="ruby-identifier">track</span>)
+  <span class="ruby-keyword">if</span> [<span class="ruby-value">:histogram</span>, <span class="ruby-string">&quot;histogram&quot;</span>].<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">track</span>.<span class="ruby-identifier">glyph</span>) <span class="ruby-comment">#do different stuff for data tracks...</span>
+
+    <span class="ruby-identifier">y</span> = <span class="ruby-ivar">@track_top</span> <span class="ruby-operator">+</span> (<span class="ruby-identifier">track</span>.<span class="ruby-identifier">track_height</span>)
+    <span class="ruby-identifier">max</span> = <span class="ruby-identifier">track</span>.<span class="ruby-identifier">max_y</span> <span class="ruby-operator">?</span> <span class="ruby-identifier">track</span>.<span class="ruby-identifier">max_y</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">track</span>.<span class="ruby-identifier">features</span>.<span class="ruby-identifier">sort</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">a</span>, <span class="ruby-identifier">b</span><span class="ruby-operator">|</span> <span class="ruby-identifier">a</span>.<span class="ruby-identifier">segment_height</span> <span class="ruby-operator">&lt;=&gt;</span> <span class="ruby-identifier">b</span>.<span class="ruby-identifier">segment_height</span> }.<span class="ruby-identifier">last</span>.<span class="ruby-identifier">segment_height</span>
+    <span class="ruby-identifier">min</span> = <span class="ruby-value">0</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">track</span>.<span class="ruby-identifier">label</span>
+      <span class="ruby-identifier">draw_label</span>(<span class="ruby-value">:text</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">track</span>.<span class="ruby-identifier">name</span>, <span class="ruby-value">:y</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@track_top</span> <span class="ruby-operator">+=</span> <span class="ruby-value">30</span>, <span class="ruby-value">:x</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">3</span>)
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-identifier">draw_label</span>(<span class="ruby-value">:text</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">max</span>, <span class="ruby-value">:x</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">to_px</span>(<span class="ruby-ivar">@scale_stop</span> <span class="ruby-operator">-</span> <span class="ruby-ivar">@scale_start</span>) <span class="ruby-operator">+</span> <span class="ruby-value">5</span>, <span class="ruby-value">:y</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@track_top</span> <span class="ruby-operator">+</span> <span class="ruby-value">5</span>)
+    <span class="ruby-identifier">draw_label</span>(<span class="ruby-value">:text</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">min</span>, <span class="ruby-value">:x</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">to_px</span>(<span class="ruby-ivar">@scale_stop</span> <span class="ruby-operator">-</span> <span class="ruby-ivar">@scale_start</span>) <span class="ruby-operator">+</span> <span class="ruby-value">5</span>, <span class="ruby-value">:y</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@track_top</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">track</span>.<span class="ruby-identifier">track_height</span> <span class="ruby-operator">+</span> <span class="ruby-value">5</span>)
+    <span class="ruby-identifier">data_interval</span> = <span class="ruby-identifier">max</span> <span class="ruby-operator">-</span> <span class="ruby-identifier">min</span>
+    <span class="ruby-identifier">data_per_px</span> = <span class="ruby-identifier">track</span>.<span class="ruby-identifier">track_height</span>.<span class="ruby-identifier">to_f</span> <span class="ruby-operator">/</span> <span class="ruby-identifier">data_interval</span>.<span class="ruby-identifier">to_f</span>
+    <span class="ruby-identifier">track</span>.<span class="ruby-identifier">features</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">f</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">x</span> = <span class="ruby-identifier">to_px</span>(<span class="ruby-identifier">f</span>.<span class="ruby-identifier">start</span> <span class="ruby-operator">-</span> <span class="ruby-ivar">@scale_start</span>)
+      <span class="ruby-identifier">width</span> = <span class="ruby-identifier">to_px</span>((<span class="ruby-identifier">f</span>.<span class="ruby-identifier">end</span> <span class="ruby-operator">-</span> <span class="ruby-ivar">@scale_start</span>) <span class="ruby-operator">-</span> (<span class="ruby-identifier">f</span>.<span class="ruby-identifier">start</span> <span class="ruby-operator">-</span> <span class="ruby-ivar">@scale_start</span>))
+      <span class="ruby-identifier">height</span> = <span class="ruby-identifier">f</span>.<span class="ruby-identifier">segment_height</span>.<span class="ruby-identifier">to_f</span> <span class="ruby-operator">*</span> <span class="ruby-identifier">data_per_px</span>
+      <span class="ruby-identifier">y</span> = <span class="ruby-ivar">@track_top</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">track</span>.<span class="ruby-identifier">track_height</span> <span class="ruby-operator">-</span> <span class="ruby-identifier">height</span> <span class="ruby-operator">+</span> <span class="ruby-value">5</span>
+      <span class="ruby-comment">#$stderr.puts f.segment_height, data_per_px, data_interval, max, min, &quot;------&quot;</span>
+      <span class="ruby-keyword">self</span>.<span class="ruby-identifier">send</span>(<span class="ruby-node">&quot;draw_#{track.glyph}&quot;</span>, {<span class="ruby-value">:x</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">x</span>,
+                                        <span class="ruby-value">:y</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">y</span>,
+                                        <span class="ruby-value">:width</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">width</span>,
+                                        <span class="ruby-value">:height</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">height</span>}.<span class="ruby-identifier">merge!</span>(<span class="ruby-identifier">track</span>.<span class="ruby-identifier">args</span>))
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-ivar">@track_top</span> <span class="ruby-operator">+=</span> (<span class="ruby-identifier">track</span>.<span class="ruby-identifier">track_height</span>) <span class="ruby-operator">+</span> <span class="ruby-value">20</span>
+  <span class="ruby-keyword">else</span> <span class="ruby-comment">##following stuff for the features</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">track</span>.<span class="ruby-identifier">label</span>
+      <span class="ruby-identifier">draw_label</span>(<span class="ruby-value">:text</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">track</span>.<span class="ruby-identifier">name</span>, <span class="ruby-value">:y</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@track_top</span> <span class="ruby-operator">+=</span> <span class="ruby-value">30</span>, <span class="ruby-value">:x</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">3</span>)
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-identifier">track</span>.<span class="ruby-identifier">get_rows</span> <span class="ruby-comment">##work out how many rows and which features belong in each row...</span>
+    <span class="ruby-identifier">track</span>.<span class="ruby-identifier">features</span>.<span class="ruby-identifier">each_with_index</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">f</span>, <span class="ruby-identifier">index</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">x</span> = <span class="ruby-identifier">to_px</span>(<span class="ruby-identifier">f</span>.<span class="ruby-identifier">start</span> <span class="ruby-operator">-</span> <span class="ruby-ivar">@scale_start</span>) <span class="ruby-comment">#bottom left of feature</span>
+      <span class="ruby-identifier">all_sub_blocks</span> = []
+
+      <span class="ruby-comment">#convert the exon and utr start stops to px start stops and px widths</span>
+      <span class="ruby-identifier">exons</span> = []
+      <span class="ruby-keyword">if</span> <span class="ruby-identifier">f</span>.<span class="ruby-identifier">exons</span>
+        <span class="ruby-identifier">f</span>.<span class="ruby-identifier">exons</span>.<span class="ruby-identifier">each_slice</span>(<span class="ruby-value">2</span>).<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">exon</span><span class="ruby-operator">|</span>
+          <span class="ruby-identifier">all_sub_blocks</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">exon</span>
+          <span class="ruby-keyword">next</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">exon</span>.<span class="ruby-identifier">nil?</span>
+          <span class="ruby-identifier">exons</span> <span class="ruby-operator">&lt;&lt;</span> [<span class="ruby-identifier">to_px</span>(<span class="ruby-identifier">exon</span>[<span class="ruby-value">0</span>] <span class="ruby-operator">-</span> <span class="ruby-ivar">@scale_start</span>), <span class="ruby-identifier">to_px</span>((<span class="ruby-identifier">exon</span>[<span class="ruby-value">1</span>] <span class="ruby-operator">-</span> <span class="ruby-ivar">@scale_start</span>) <span class="ruby-operator">-</span> (<span class="ruby-identifier">exon</span>[<span class="ruby-value">0</span>] <span class="ruby-operator">-</span> <span class="ruby-ivar">@scale_start</span>))]
+        <span class="ruby-keyword">end</span>
+      <span class="ruby-keyword">end</span>
+      <span class="ruby-identifier">f</span>.<span class="ruby-identifier">exons</span> = <span class="ruby-identifier">exons</span>
+
+      <span class="ruby-identifier">utrs</span> = []
+      <span class="ruby-keyword">if</span> <span class="ruby-identifier">f</span>.<span class="ruby-identifier">utrs</span>
+        <span class="ruby-identifier">f</span>.<span class="ruby-identifier">utrs</span>.<span class="ruby-identifier">each_slice</span>(<span class="ruby-value">2</span>).<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">utr</span><span class="ruby-operator">|</span>
+          <span class="ruby-identifier">all_sub_blocks</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">utr</span>
+          <span class="ruby-keyword">next</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">utr</span>.<span class="ruby-identifier">nil?</span>
+          <span class="ruby-identifier">utrs</span> <span class="ruby-operator">&lt;&lt;</span> [<span class="ruby-identifier">to_px</span>(<span class="ruby-identifier">utr</span>[<span class="ruby-value">0</span>] <span class="ruby-operator">-</span> <span class="ruby-ivar">@scale_start</span>), <span class="ruby-identifier">to_px</span>((<span class="ruby-identifier">utr</span>[<span class="ruby-value">1</span>] <span class="ruby-operator">-</span> <span class="ruby-ivar">@scale_start</span>) <span class="ruby-operator">-</span> (<span class="ruby-identifier">utr</span>[<span class="ruby-value">0</span>] <span class="ruby-operator">-</span> <span class="ruby-ivar">@scale_start</span>))]
+        <span class="ruby-keyword">end</span>
+      <span class="ruby-keyword">end</span>
+      <span class="ruby-identifier">f</span>.<span class="ruby-identifier">utrs</span> = <span class="ruby-identifier">utrs</span>
+
+      <span class="ruby-comment">#if there are any intron like gaps.. get where they would be</span>
+      <span class="ruby-keyword">if</span> <span class="ruby-keyword">not</span> <span class="ruby-identifier">all_sub_blocks</span>.<span class="ruby-identifier">empty?</span>
+        <span class="ruby-identifier">all_sub_blocks</span> = <span class="ruby-identifier">all_sub_blocks</span>.<span class="ruby-identifier">sort</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">a</span>, <span class="ruby-identifier">b</span><span class="ruby-operator">|</span> <span class="ruby-identifier">a</span>.<span class="ruby-identifier">first</span> <span class="ruby-operator">&lt;=&gt;</span> <span class="ruby-identifier">b</span>.<span class="ruby-identifier">first</span> }
+        <span class="ruby-identifier">all_sub_blocks</span>.<span class="ruby-identifier">each_index</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">i</span><span class="ruby-operator">|</span>
+          <span class="ruby-keyword">next</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">i</span> <span class="ruby-operator">+</span> <span class="ruby-value">1</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">all_sub_blocks</span>.<span class="ruby-identifier">length</span> <span class="ruby-keyword">or</span> <span class="ruby-identifier">all_sub_blocks</span>[<span class="ruby-identifier">i</span>].<span class="ruby-identifier">last</span> <span class="ruby-operator">&gt;=</span> <span class="ruby-identifier">all_sub_blocks</span>[<span class="ruby-identifier">i</span> <span class="ruby-operator">+</span> <span class="ruby-value">1</span>].<span class="ruby-identifier">first</span> <span class="ruby-comment">#skip if there is no gap</span>
+          <span class="ruby-identifier">f</span>.<span class="ruby-identifier">block_gaps</span> <span class="ruby-operator">&lt;&lt;</span> [<span class="ruby-identifier">to_px</span>(<span class="ruby-identifier">all_sub_blocks</span>[<span class="ruby-identifier">i</span>].<span class="ruby-identifier">last</span> <span class="ruby-operator">-</span> <span class="ruby-ivar">@scale_start</span>), <span class="ruby-identifier">to_px</span>((<span class="ruby-identifier">all_sub_blocks</span>[<span class="ruby-identifier">i</span> <span class="ruby-operator">+</span> <span class="ruby-value">1</span>].<span class="ruby-identifier">first</span> <span class="ruby-operator">-</span> <span class="ruby-ivar">@scale_start</span>) <span class="ruby-operator">-</span> (<span class="ruby-identifier">all_sub_blocks</span>[<span class="ruby-identifier">i</span>].<span class="ruby-identifier">last</span> <span class="ruby-operator">-</span> <span class="ruby-ivar">@scale_start</span>))]
+        <span class="ruby-keyword">end</span>
+      <span class="ruby-keyword">end</span>
+
+      <span class="ruby-identifier">width</span> = <span class="ruby-identifier">to_px</span>((<span class="ruby-identifier">f</span>.<span class="ruby-identifier">end</span> <span class="ruby-operator">-</span> <span class="ruby-ivar">@scale_start</span>) <span class="ruby-operator">-</span> (<span class="ruby-identifier">f</span>.<span class="ruby-identifier">start</span> <span class="ruby-operator">-</span> <span class="ruby-ivar">@scale_start</span>))
+      <span class="ruby-keyword">if</span> <span class="ruby-identifier">track</span>.<span class="ruby-identifier">min_width</span> <span class="ruby-keyword">and</span> <span class="ruby-identifier">width</span> <span class="ruby-operator">&lt;</span> <span class="ruby-identifier">track</span>.<span class="ruby-identifier">min_width</span>
+        <span class="ruby-identifier">width</span> = <span class="ruby-identifier">track</span>.<span class="ruby-identifier">min_width</span>
+      <span class="ruby-keyword">end</span>
+      <span class="ruby-identifier">y</span> = <span class="ruby-ivar">@track_top</span> <span class="ruby-operator">+</span> (<span class="ruby-identifier">track</span>.<span class="ruby-identifier">feature_rows</span>[<span class="ruby-identifier">index</span>] <span class="ruby-operator">*</span> <span class="ruby-value">2</span> <span class="ruby-operator">*</span> <span class="ruby-identifier">track</span>.<span class="ruby-identifier">feature_height</span>)
+
+      <span class="ruby-keyword">self</span>.<span class="ruby-identifier">send</span>(<span class="ruby-node">&quot;draw_#{track.glyph}&quot;</span>, {<span class="ruby-value">:x</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">x</span>,
+                                        <span class="ruby-value">:y</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">y</span>,
+                                        <span class="ruby-value">:width</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">width</span>,
+                                        <span class="ruby-value">:strand</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">f</span>.<span class="ruby-identifier">strand</span>,
+                                        <span class="ruby-value">:exons</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">f</span>.<span class="ruby-identifier">exons</span>,
+                                        <span class="ruby-value">:utrs</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">f</span>.<span class="ruby-identifier">utrs</span>,
+                                        <span class="ruby-value">:block_gaps</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">f</span>.<span class="ruby-identifier">block_gaps</span>,
+                                        <span class="ruby-value">:height</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">track</span>.<span class="ruby-identifier">feature_height</span>
+      }.<span class="ruby-identifier">merge!</span>(<span class="ruby-identifier">track</span>.<span class="ruby-identifier">args</span>))
+
+      <span class="ruby-keyword">if</span> <span class="ruby-identifier">f</span>.<span class="ruby-identifier">id</span>
+        <span class="ruby-identifier">draw_label</span>(<span class="ruby-value">:y</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">y</span>, <span class="ruby-value">:x</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">x</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">width</span> <span class="ruby-value">+2</span>, <span class="ruby-value">:text</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">f</span>.<span class="ruby-identifier">id</span>)
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-ivar">@track_top</span> <span class="ruby-operator">+=</span> (<span class="ruby-identifier">track</span>.<span class="ruby-identifier">feature_height</span> <span class="ruby-operator">*</span> <span class="ruby-identifier">track</span>.<span class="ruby-identifier">number_rows</span> <span class="ruby-operator">*</span> <span class="ruby-value">2</span>) <span class="ruby-operator">+</span> <span class="ruby-value">20</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-ivar">@height</span> = <span class="ruby-ivar">@track_top</span> <span class="ruby-operator">+</span> <span class="ruby-value">100</span> <span class="ruby-comment">#fudge...</span>
+  <span class="ruby-ivar">@svg</span>.<span class="ruby-identifier">update_height</span>(<span class="ruby-ivar">@height</span>)
+                         <span class="ruby-comment">#@svg.update_width(@width + 200)</span>
+
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- draw_features-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- draw_features-method -->
+
+    
+      <div id="method-i-draw_generic" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">draw_generic</span><span
+            class="method-args">(args)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Adds the <a href="Primitive.html">Bio::Graphics::Primitive</a> objects to
+the <a href="SVGEE.html">SVGEE</a> object</p>
+<ul><li>
+<p><code>args</code> - an Array of <a
+href="Primitive.html">Bio::Graphics::Primitive</a> objects of the stated
+type</p>
+</li></ul>
+          
+          
+
+          
+          <div class="method-source-code" id="draw_generic-source">
+            <pre><span class="ruby-comment"># File lib/bio/graphics/page.rb, line 179</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">draw_generic</span>(<span class="ruby-identifier">args</span>) <span class="ruby-comment">#remember presentation info comes from track@args when the track is defined</span>
+  <span class="ruby-constant">Glyph</span>.<span class="ruby-identifier">generic</span>(<span class="ruby-identifier">args</span>).<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">g</span><span class="ruby-operator">|</span> <span class="ruby-ivar">@svg</span>.<span class="ruby-identifier">add_primitive</span>(<span class="ruby-identifier">g</span>) }
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- draw_generic-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- draw_generic-method -->
+
+    
+      <div id="method-i-draw_histogram" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">draw_histogram</span><span
+            class="method-args">(args)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Adds the <a href="Primitive.html">Bio::Graphics::Primitive</a> objects to
+the <a href="SVGEE.html">SVGEE</a> object</p>
+<ul><li>
+<p><code>args</code> - an Array of <a
+href="Primitive.html">Bio::Graphics::Primitive</a> objects of the stated
+type</p>
+</li></ul>
+          
+          
+
+          
+          <div class="method-source-code" id="draw_histogram-source">
+            <pre><span class="ruby-comment"># File lib/bio/graphics/page.rb, line 199</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">draw_histogram</span>(<span class="ruby-identifier">args</span>)
+  <span class="ruby-constant">Glyph</span>.<span class="ruby-identifier">generic</span>(<span class="ruby-identifier">args</span>).<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">g</span><span class="ruby-operator">|</span> <span class="ruby-ivar">@svg</span>.<span class="ruby-identifier">add_primitive</span>(<span class="ruby-identifier">g</span>) }
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- draw_histogram-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- draw_histogram-method -->
+
+    
+      <div id="method-i-draw_label" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">draw_label</span><span
+            class="method-args">(args)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Adds the <a href="Primitive.html">Bio::Graphics::Primitive</a> objects to
+the <a href="SVGEE.html">SVGEE</a> object</p>
+<ul><li>
+<p><code>args</code> - an Array of <a
+href="Primitive.html">Bio::Graphics::Primitive</a> object</p>
+</li></ul>
+          
+          
+
+          
+          <div class="method-source-code" id="draw_label-source">
+            <pre><span class="ruby-comment"># File lib/bio/graphics/page.rb, line 172</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">draw_label</span>(<span class="ruby-identifier">args</span>)
+  <span class="ruby-constant">Glyph</span>.<span class="ruby-identifier">label</span>(<span class="ruby-value">:text</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">args</span>[<span class="ruby-value">:text</span>],
+              <span class="ruby-value">:x</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">args</span>[<span class="ruby-value">:x</span>],
+              <span class="ruby-value">:y</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">args</span>[<span class="ruby-value">:y</span>]).<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">g</span><span class="ruby-operator">|</span> <span class="ruby-ivar">@svg</span>.<span class="ruby-identifier">add_primitive</span>(<span class="ruby-identifier">g</span>) }
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- draw_label-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- draw_label-method -->
+
+    
+      <div id="method-i-draw_scale" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">draw_scale</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Adds the  <a href="Primitive.html">Bio::Graphics::Primitive</a> objects to
+the <a href="SVGEE.html">SVGEE</a> object</p>
+          
+          
+
+          
+          <div class="method-source-code" id="draw_scale-source">
+            <pre><span class="ruby-comment"># File lib/bio/graphics/page.rb, line 165</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">draw_scale</span>
+  <span class="ruby-constant">Glyph</span>.<span class="ruby-identifier">scale</span>(<span class="ruby-value">:start</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@scale_start</span>,
+              <span class="ruby-value">:stop</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@scale_stop</span>,
+              <span class="ruby-value">:number_of_intervals</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@num_intervals</span>, <span class="ruby-value">:page_width</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@width</span>).<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">g</span><span class="ruby-operator">|</span> <span class="ruby-ivar">@svg</span>.<span class="ruby-identifier">add_primitive</span>(<span class="ruby-identifier">g</span>) }
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- draw_scale-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- draw_scale-method -->
+
+    
+      <div id="method-i-draw_span" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">draw_span</span><span
+            class="method-args">(args)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Adds the <a href="Primitive.html">Bio::Graphics::Primitive</a> objects to
+the <a href="SVGEE.html">SVGEE</a> object</p>
+<ul><li>
+<p><code>args</code> - an Array of <a
+href="Primitive.html">Bio::Graphics::Primitive</a> objects of the stated
+type</p>
+</li></ul>
+          
+          
+
+          
+          <div class="method-source-code" id="draw_span-source">
+            <pre><span class="ruby-comment"># File lib/bio/graphics/page.rb, line 214</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">draw_span</span>(<span class="ruby-identifier">args</span>)
+  <span class="ruby-constant">Glyph</span>.<span class="ruby-identifier">span</span>(<span class="ruby-identifier">args</span>).<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">g</span><span class="ruby-operator">|</span> <span class="ruby-ivar">@svg</span>.<span class="ruby-identifier">add_primitive</span>(<span class="ruby-identifier">g</span>) }
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- draw_span-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- draw_span-method -->
+
+    
+      <div id="method-i-draw_transcript" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">draw_transcript</span><span
+            class="method-args">(args)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Adds the <a href="Primitive.html">Bio::Graphics::Primitive</a> objects to
+the <a href="SVGEE.html">SVGEE</a> object</p>
+<ul><li>
+<p><code>args</code> - an Array of <a
+href="Primitive.html">Bio::Graphics::Primitive</a> objects of the stated
+type</p>
+</li></ul>
+          
+          
+
+          
+          <div class="method-source-code" id="draw_transcript-source">
+            <pre><span class="ruby-comment"># File lib/bio/graphics/page.rb, line 194</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">draw_transcript</span>(<span class="ruby-identifier">args</span>)
+  <span class="ruby-constant">Glyph</span>.<span class="ruby-identifier">transcript</span>(<span class="ruby-identifier">args</span>).<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">g</span><span class="ruby-operator">|</span> <span class="ruby-ivar">@svg</span>.<span class="ruby-identifier">add_primitive</span>(<span class="ruby-identifier">g</span>) }
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- draw_transcript-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- draw_transcript-method -->
+
+    
+      <div id="method-i-draw_up_triangle" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">draw_up_triangle</span><span
+            class="method-args">(args)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Adds the <a href="Primitive.html">Bio::Graphics::Primitive</a> objects to
+the <a href="SVGEE.html">SVGEE</a> object</p>
+<ul><li>
+<p><code>args</code> - an Array of <a
+href="Primitive.html">Bio::Graphics::Primitive</a> objects of the stated
+type</p>
+</li></ul>
+          
+          
+
+          
+          <div class="method-source-code" id="draw_up_triangle-source">
+            <pre><span class="ruby-comment"># File lib/bio/graphics/page.rb, line 204</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">draw_up_triangle</span>(<span class="ruby-identifier">args</span>)
+  <span class="ruby-constant">Glyph</span>.<span class="ruby-identifier">up_triangle</span>(<span class="ruby-identifier">args</span>).<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">g</span><span class="ruby-operator">|</span> <span class="ruby-ivar">@svg</span>.<span class="ruby-identifier">add_primitive</span>(<span class="ruby-identifier">g</span>) }
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- draw_up_triangle-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- draw_up_triangle-method -->
+
+    
+      <div id="method-i-get_limits" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">get_limits</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Calculates the <a href="Page.html">Page</a> scale-start and scale-stop
+position and the nucleotides per pixel for the current <a
+href="Page.html">Page</a></p>
+          
+          
+
+          
+          <div class="method-source-code" id="get_limits-source">
+            <pre><span class="ruby-comment"># File lib/bio/graphics/page.rb, line 154</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">get_limits</span>
+  <span class="ruby-ivar">@tracks</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">track</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">lowest</span> = <span class="ruby-identifier">track</span>.<span class="ruby-identifier">features</span>.<span class="ruby-identifier">sort</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">x</span>, <span class="ruby-identifier">y</span><span class="ruby-operator">|</span> <span class="ruby-identifier">x</span>.<span class="ruby-identifier">start</span> <span class="ruby-operator">&lt;=&gt;</span> <span class="ruby-identifier">y</span>.<span class="ruby-identifier">start</span> }.<span class="ruby-identifier">first</span>.<span class="ruby-identifier">start</span>
+    <span class="ruby-identifier">highest</span> = <span class="ruby-identifier">track</span>.<span class="ruby-identifier">features</span>.<span class="ruby-identifier">sort</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">x</span>, <span class="ruby-identifier">y</span><span class="ruby-operator">|</span> <span class="ruby-identifier">y</span>.<span class="ruby-identifier">end</span> <span class="ruby-operator">&lt;=&gt;</span> <span class="ruby-identifier">x</span>.<span class="ruby-identifier">end</span> }.<span class="ruby-identifier">first</span>.<span class="ruby-identifier">end</span>
+    <span class="ruby-ivar">@scale_start</span> = <span class="ruby-identifier">lowest</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">lowest</span> <span class="ruby-operator">&lt;</span> <span class="ruby-ivar">@scale_start</span>
+    <span class="ruby-ivar">@scale_stop</span> = <span class="ruby-identifier">highest</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">highest</span> <span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@scale_stop</span>
+    <span class="ruby-ivar">@nt_per_px_x</span> = (<span class="ruby-ivar">@scale_stop</span> <span class="ruby-operator">-</span> <span class="ruby-ivar">@scale_start</span>).<span class="ruby-identifier">to_f</span> <span class="ruby-operator">/</span> <span class="ruby-ivar">@width</span>.<span class="ruby-identifier">to_f</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- get_limits-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- get_limits-method -->
+
+    
+      <div id="method-i-get_markup" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">get_markup</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Pulls together all track information to create svg text which will draw all
+the features on the page to scale Uses the methods <code>get_limits</code>
+and <code>draw_scale</code> and then <code>draw_feature</code> for each
+track on the page</p>
+          
+          
+
+          
+          <div class="method-source-code" id="get_markup-source">
+            <pre><span class="ruby-comment"># File lib/bio/graphics/page.rb, line 323</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">get_markup</span>
+  <span class="ruby-identifier">get_limits</span>
+  <span class="ruby-identifier">draw_scale</span>
+  <span class="ruby-ivar">@tracks</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">track</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">draw_features</span>(<span class="ruby-identifier">track</span>)
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-ivar">@svg</span>.<span class="ruby-identifier">draw</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- get_markup-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- get_markup-method -->
+
+    
+      <div id="method-i-to_px" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">to_px</span><span
+            class="method-args">(num)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Provides the number of pixels required for a given number of nucleotides,
+e.g the length of a certain exon</p>
+<ul><li>
+<p><code>num</code> - the number of nucleotides</p>
+</li><li>
+<p><code>returns</code> -  the required number of pixels to draw the object</p>
+</li></ul>
+          
+          
+
+          
+          <div class="method-source-code" id="to_px-source">
+            <pre><span class="ruby-comment"># File lib/bio/graphics/page.rb, line 317</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">to_px</span>(<span class="ruby-identifier">num</span>)
+  (<span class="ruby-identifier">num</span>.<span class="ruby-identifier">to_f</span> <span class="ruby-operator">/</span> <span class="ruby-ivar">@nt_per_px_x</span>.<span class="ruby-identifier">to_f</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- to_px-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- to_px-method -->
+
+    
+      <div id="method-i-write" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">write</span><span
+            class="method-args">(file)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Writes the svg text to a file</p>
+<ul><li>
+<p><code>file</code> - the file to which the svg text should be written</p>
+</li></ul>
+          
+          
+
+          
+          <div class="method-source-code" id="write-source">
+            <pre><span class="ruby-comment"># File lib/bio/graphics/page.rb, line 338</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">write</span>(<span class="ruby-identifier">file</span>)
+  <span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-identifier">file</span>, <span class="ruby-string">'w'</span>).<span class="ruby-identifier">write</span>(<span class="ruby-identifier">get_markup</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- write-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- write-method -->
+
+    
+    </section><!-- public-instance-method-details -->
+  
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Public Class Methods</h3>
+
+    
+      <div id="method-c-from_json" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">from_json</span><span
+            class="method-args">(args)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Takes a custom-written json file and writes an svg page to file which will
+contain the given features described within the json file.</p>
+<ul><li>
+<p><code>args</code> - a custom-written json file describing the parameters
+and resources needed for a new page</p>
+</li></ul>
+          
+          
+
+          
+          <div class="method-source-code" id="from_json-source">
+            <pre><span class="ruby-comment"># File lib/bio/graphics/page.rb, line 53</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">from_json</span>(<span class="ruby-identifier">args</span>)
+  <span class="ruby-identifier">require</span> <span class="ruby-string">'rubygems'</span>
+  <span class="ruby-identifier">require</span> <span class="ruby-string">'json'</span>
+  <span class="ruby-identifier">data</span> = <span class="ruby-constant">JSON</span>.<span class="ruby-identifier">parse</span>(<span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-identifier">args</span>[<span class="ruby-value">:json</span>], <span class="ruby-string">'r'</span>).<span class="ruby-identifier">read</span>)
+  <span class="ruby-identifier">p</span> = <span class="ruby-constant">Page</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">:width</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">data</span>[<span class="ruby-string">&quot;Page&quot;</span>][<span class="ruby-string">&quot;width&quot;</span>],
+               <span class="ruby-value">:height</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">data</span>[<span class="ruby-string">&quot;Page&quot;</span>][<span class="ruby-string">&quot;height&quot;</span>],
+               <span class="ruby-value">:number_of_intervals</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">data</span>[<span class="ruby-string">&quot;Page&quot;</span>][<span class="ruby-string">&quot;intervals&quot;</span>])
+  <span class="ruby-identifier">data</span>[<span class="ruby-string">&quot;Tracks&quot;</span>].<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">track</span><span class="ruby-operator">|</span>
+    <span class="ruby-comment">#prep the track args</span>
+    <span class="ruby-identifier">track_args</span> = <span class="ruby-identifier">track</span>.<span class="ruby-identifier">dup</span>
+    <span class="ruby-identifier">track_args</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-string">&quot;file&quot;</span>)
+    <span class="ruby-identifier">track_args</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-string">&quot;file_type&quot;</span>)
+    <span class="ruby-identifier">track_args</span> = <span class="ruby-identifier">track_args</span>.<span class="ruby-identifier">inject</span>({}) { <span class="ruby-operator">|</span><span class="ruby-identifier">memo</span>, (<span class="ruby-identifier">k</span>, <span class="ruby-identifier">v</span>)<span class="ruby-operator">|</span> <span class="ruby-identifier">memo</span>[<span class="ruby-identifier">k</span>.<span class="ruby-identifier">to_sym</span>] = <span class="ruby-identifier">v</span>; <span class="ruby-identifier">memo</span> }
+    <span class="ruby-comment">##convert any of the pre-made gradient strings in the keys to symbol</span>
+    <span class="ruby-identifier">track_args</span>.<span class="ruby-identifier">each_key</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">k</span><span class="ruby-operator">|</span>
+      <span class="ruby-keyword">next</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">track_args</span>[<span class="ruby-identifier">k</span>].<span class="ruby-identifier">respond_to?</span>(<span class="ruby-value">:to_sym</span>)
+      <span class="ruby-identifier">track_args</span>[<span class="ruby-identifier">k</span>] = <span class="ruby-identifier">track_args</span>[<span class="ruby-identifier">k</span>].<span class="ruby-identifier">to_sym</span> <span class="ruby-keyword">if</span> <span class="ruby-constant">Glyph</span>.<span class="ruby-identifier">gradients</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">track_args</span>[<span class="ruby-identifier">k</span>].<span class="ruby-identifier">to_sym</span>)
+    <span class="ruby-keyword">end</span>
+
+    <span class="ruby-identifier">svg_track</span> = <span class="ruby-identifier">p</span>.<span class="ruby-identifier">add_track</span>(<span class="ruby-identifier">track_args</span>)
+    <span class="ruby-identifier">features</span> = [] <span class="ruby-comment">##set up the features...</span>
+
+    <span class="ruby-keyword">case</span> <span class="ruby-identifier">track</span>[<span class="ruby-string">&quot;file_type&quot;</span>] <span class="ruby-comment">##deal with the gff and data files</span>
+      <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;gff&quot;</span>
+        <span class="ruby-identifier">groups</span> = {}
+        <span class="ruby-identifier">parentless_features</span> = []
+        <span class="ruby-constant">Page</span>.<span class="ruby-identifier">parse_gff</span>(<span class="ruby-identifier">track</span>[<span class="ruby-string">&quot;file&quot;</span>]).<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">gff</span><span class="ruby-operator">|</span> <span class="ruby-comment">#gets features in a list and links their children to them as members of the array at the key</span>
+          <span class="ruby-identifier">parent_id</span> = <span class="ruby-identifier">gff</span>.<span class="ruby-identifier">attributes</span>.<span class="ruby-identifier">select</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">a</span><span class="ruby-operator">|</span> <span class="ruby-identifier">a</span>.<span class="ruby-identifier">first</span> <span class="ruby-operator">==</span> <span class="ruby-string">'Parent'</span> }
+          <span class="ruby-keyword">if</span> <span class="ruby-identifier">parent_id</span>.<span class="ruby-identifier">empty?</span>
+            <span class="ruby-identifier">parentless_features</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">gff</span>
+          <span class="ruby-keyword">else</span>
+            <span class="ruby-keyword">if</span> <span class="ruby-identifier">groups</span>[<span class="ruby-identifier">parent_id</span>.<span class="ruby-identifier">first</span>.<span class="ruby-identifier">last</span>].<span class="ruby-identifier">nil?</span>
+              <span class="ruby-identifier">groups</span>[<span class="ruby-identifier">parent_id</span>.<span class="ruby-identifier">first</span>.<span class="ruby-identifier">last</span>] = []
+              <span class="ruby-identifier">groups</span>[<span class="ruby-identifier">parent_id</span>.<span class="ruby-identifier">first</span>.<span class="ruby-identifier">last</span>] <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">gff</span>
+            <span class="ruby-keyword">else</span>
+              <span class="ruby-identifier">groups</span>[<span class="ruby-identifier">parent_id</span>.<span class="ruby-identifier">first</span>.<span class="ruby-identifier">last</span>] <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">gff</span>
+            <span class="ruby-keyword">end</span>
+          <span class="ruby-keyword">end</span>
+        <span class="ruby-keyword">end</span>
+        <span class="ruby-comment">#now flick through the parentless features and add any exons / UTRs</span>
+        <span class="ruby-identifier">parentless_features</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">plf</span><span class="ruby-operator">|</span>
+          <span class="ruby-identifier">require</span> <span class="ruby-string">'pp'</span>
+          <span class="ruby-comment">#pp parentless_features</span>
+          <span class="ruby-identifier">gff_id</span> = <span class="ruby-identifier">plf</span>.<span class="ruby-identifier">attributes</span>.<span class="ruby-identifier">select</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">a</span><span class="ruby-operator">|</span> <span class="ruby-identifier">a</span>.<span class="ruby-identifier">first</span> <span class="ruby-operator">==</span> <span class="ruby-string">'ID'</span> }
+          <span class="ruby-identifier">gff_id</span> = <span class="ruby-identifier">gff_id</span>.<span class="ruby-identifier">first</span>.<span class="ruby-identifier">last</span>
+          <span class="ruby-identifier">exons</span> = []
+          <span class="ruby-identifier">utrs</span> = []
+          <span class="ruby-identifier">children</span> = <span class="ruby-identifier">groups</span>[<span class="ruby-identifier">gff_id</span>] <span class="ruby-operator">||</span> <span class="ruby-identifier">children</span> = []
+          <span class="ruby-identifier">children</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">child</span><span class="ruby-operator">|</span>
+            <span class="ruby-keyword">if</span> <span class="ruby-identifier">child</span>.<span class="ruby-identifier">feature</span> <span class="ruby-operator">==</span> <span class="ruby-string">'exon'</span> <span class="ruby-keyword">or</span> <span class="ruby-identifier">child</span>.<span class="ruby-identifier">feature</span> <span class="ruby-operator">==</span> <span class="ruby-string">'CDS'</span>
+              <span class="ruby-identifier">exons</span> <span class="ruby-operator">+=</span> [<span class="ruby-identifier">child</span>.<span class="ruby-identifier">start</span>, <span class="ruby-identifier">child</span>.<span class="ruby-identifier">end</span>]
+            <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">child</span>.<span class="ruby-identifier">feature</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp">/utr/</span>
+              <span class="ruby-identifier">utrs</span> <span class="ruby-operator">+=</span> [<span class="ruby-identifier">child</span>.<span class="ruby-identifier">start</span>, <span class="ruby-identifier">child</span>.<span class="ruby-identifier">end</span>]
+            <span class="ruby-keyword">end</span>
+          <span class="ruby-keyword">end</span>
+          <span class="ruby-identifier">features</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-constant">MiniFeature</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">:start</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">plf</span>.<span class="ruby-identifier">start</span>, <span class="ruby-value">:end</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">plf</span>.<span class="ruby-identifier">end</span>, <span class="ruby-value">:exons</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">exons</span>, <span class="ruby-value">:utrs</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">utrs</span>, <span class="ruby-value">:strand</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">plf</span>.<span class="ruby-identifier">strand</span>, <span class="ruby-value">:id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">gff_id</span>)
+        <span class="ruby-keyword">end</span> <span class="ruby-comment">#parentless features end</span>
+      <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;data&quot;</span>
+        <span class="ruby-comment">##each line is a data feature</span>
+        <span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-identifier">track</span>[<span class="ruby-string">&quot;file&quot;</span>], <span class="ruby-string">&quot;r&quot;</span>).<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">line</span><span class="ruby-operator">|</span>
+          <span class="ruby-identifier">start</span>, <span class="ruby-identifier">stop</span>, <span class="ruby-identifier">value</span> = <span class="ruby-identifier">line</span>.<span class="ruby-identifier">split</span>(<span class="ruby-regexp">/\t/</span>)
+          <span class="ruby-identifier">features</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-constant">MiniFeature</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">:start</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">start</span>.<span class="ruby-identifier">to_i</span>, <span class="ruby-value">:end</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">stop</span>.<span class="ruby-identifier">to_i</span>, <span class="ruby-value">:segment_height</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">value</span>.<span class="ruby-identifier">to_f</span>)
+        <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">end</span> <span class="ruby-comment">#data end</span>
+    <span class="ruby-identifier">features</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">f</span><span class="ruby-operator">|</span> <span class="ruby-identifier">svg_track</span>.<span class="ruby-identifier">add</span>(<span class="ruby-identifier">f</span>) }
+  <span class="ruby-keyword">end</span> <span class="ruby-comment">#track end</span>
+  <span class="ruby-identifier">p</span>.<span class="ruby-identifier">write</span>(<span class="ruby-identifier">args</span>[<span class="ruby-value">:outfile</span>])
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- from_json-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- from_json-method -->
+
+    
+      <div id="method-c-new" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">new</span><span
+            class="method-args">(args)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Creates a new <a href="Page.html">Page</a> object.</p>
+
+<p>A new <a href="Page.html">Page</a> contains the following arguments:</p>
+<ul><li>
+<p>height = the height of the page</p>
+</li><li>
+<p>width = the width of the page</p>
+</li><li>
+<p>style = includes the a background colour</p>
+</li><li>
+<p>svg = a new <a href="SVGEE.html">SVGEE</a> object</p>
+</li><li>
+<p>scale_start = the scale-start of the page (1.0/0.0)</p>
+</li><li>
+<p>scale_stop = the scale-stop of the page (-1.0/0.0)</p>
+</li><li>
+<p>tracks = an array of track objects with loads of features in it…</p>
+</li><li>
+<p>nt_per_percent = the number of nucleotides that are represented by 1% of
+the page (1);</p>
+</li><li>
+<p>num_intervals = the number of intervals</p>
+</li><li>
+<p>track_top = the position of the top of the first track (30)</p>
+</li></ul>
+
+<p>A new page maybe set up as follows:</p>
+
+<pre class="ruby"><span class="ruby-ivar">@page</span> = <span class="ruby-constant">Bio</span><span class="ruby-operator">::</span><span class="ruby-constant">Graphics</span><span class="ruby-operator">::</span><span class="ruby-constant">Page</span>.<span class="ruby-identifier">new</span>(:<span class="ruby-identifier">width</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">800</span>,
+:<span class="ruby-identifier">height</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">110</span>, :<span class="ruby-identifier">number_of_intervals</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">10</span>)
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="new-source">
+            <pre><span class="ruby-comment"># File lib/bio/graphics/page.rb, line 30</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">args</span>)
+  <span class="ruby-ivar">@height</span> = <span class="ruby-identifier">args</span>[<span class="ruby-value">:height</span>]
+  <span class="ruby-ivar">@width</span> = <span class="ruby-identifier">args</span>[<span class="ruby-value">:width</span>]
+  <span class="ruby-identifier">args</span>[<span class="ruby-value">:style</span>] = <span class="ruby-node">&quot;background-color:#{args[:background_color]};&quot;</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">args</span>[<span class="ruby-value">:background_color</span>]
+  <span class="ruby-ivar">@svg</span> = <span class="ruby-constant">SVGEE</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">args</span>)
+  <span class="ruby-ivar">@scale_start</span> = <span class="ruby-value">1.0</span><span class="ruby-operator">/</span><span class="ruby-value">0.0</span>
+  <span class="ruby-ivar">@scale_stop</span> = <span class="ruby-value">-1.0</span><span class="ruby-operator">/</span><span class="ruby-value">0.0</span>
+  <span class="ruby-ivar">@tracks</span> = [] <span class="ruby-comment">#array of track objects with loads of features in it...</span>
+  <span class="ruby-ivar">@nt_per_percent</span> = <span class="ruby-value">1</span>;
+  <span class="ruby-ivar">@num_intervals</span> = <span class="ruby-identifier">args</span>[<span class="ruby-value">:number_of_intervals</span>]
+  <span class="ruby-ivar">@track_top</span> = <span class="ruby-value">30</span>
+
+  <span class="ruby-keyword">def</span> <span class="ruby-ivar">@svg</span>.<span class="ruby-identifier">update_height</span>(<span class="ruby-identifier">height</span>)
+    <span class="ruby-ivar">@height</span> = <span class="ruby-identifier">height</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-comment">#def @svg.update_width(width)</span>
+  <span class="ruby-comment">#  @width = width</span>
+  <span class="ruby-comment">#end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- new-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- new-method -->
+
+    
+      <div id="method-c-parse_gff" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">parse_gff</span><span
+            class="method-args">(gff_file)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Parses a GFF file into an Array of <a
+href="http://bioruby.org/rdoc/Bio/GFF/GFF3/Record.html">Bio::GFF::GFF3::Record</a>
+objects</p>
+<ul><li>
+<p><code>gff_file</code> - a GFF-formatted file</p>
+</li><li>
+<p><code>returns</code> - an Array of <a
+href="http://bioruby.org/rdoc/Bio/GFF/GFF3/Record.html">Bio::GFF::GFF3::Record</a>
+objects</p>
+</li></ul>
+          
+          
+
+          
+          <div class="method-source-code" id="parse_gff-source">
+            <pre><span class="ruby-comment"># File lib/bio/graphics/page.rb, line 125</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">parse_gff</span>(<span class="ruby-identifier">gff_file</span>)
+  <span class="ruby-identifier">require</span> <span class="ruby-string">'bio'</span>
+  <span class="ruby-identifier">a</span> = []
+  <span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-identifier">gff_file</span>).<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">line</span><span class="ruby-operator">|</span>
+    <span class="ruby-keyword">next</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">line</span> <span class="ruby-operator">=~</span> <span class="ruby-node">/^#/</span>
+    <span class="ruby-identifier">a</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-constant">Bio</span><span class="ruby-operator">::</span><span class="ruby-constant">GFF</span><span class="ruby-operator">::</span><span class="ruby-constant">GFF3</span><span class="ruby-operator">::</span><span class="ruby-constant">Record</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">line</span>)
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">a</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- parse_gff-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- parse_gff-method -->
+
+    
+    </section><!-- public-class-method-details -->
+  
+  </section><!-- 5Buntitled-5D -->
+
+</div><!-- documentation -->
+
+
+<footer id="validator-badges">
+  <p><a href="http://validator.w3.org/check/referer">[Validate]</a>
+  <p>Generated by <a href="https://github.com/rdoc/rdoc">RDoc</a> 4.0.0.rc.2.1.
+  <p>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish Rdoc Generator</a> 3.
+</footer>
+
