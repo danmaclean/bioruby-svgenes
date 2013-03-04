@@ -1,0 +1,17 @@
+{
+	"Page":{"width":800, "height":800, "intervals":15},
+	"Tracks": [ 
+		     {
+			  "glyph":"transcript",
+	          "name":"Transcripts",
+			  "label":true,
+			  "file":"test/test_transcripts.gff",
+			  "file_type":"gff",
+			  "exon_fill_color":"green_white_radial",
+			  "utr_fill_color":"blue_white_radial",
+              "stroke_width":1,
+			  "gap_marker":"angled"
+			 }
+			]
+}
+
