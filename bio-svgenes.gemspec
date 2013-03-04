@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = "bio-svgenes"
-  s.version = "0.2.3"
+  s.version = "0.3.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Dan MacLean"]
-  s.date = "2013-01-30"
+  s.date = "2013-03-04"
   s.description = "This bio-gem facilitates the creation of pretty, publication quality SVG images from feature data."
   s.email = "maclean.daniel@gmail.com"
   s.extra_rdoc_files = [
@@ -26,6 +26,52 @@ Gem::Specification.new do |s|
     "Rakefile",
     "VERSION",
     "bio-svgenes.gemspec",
+    "doc/.DS_Store",
+    "doc/Bio.html",
+    "doc/Bio/.DS_Store",
+    "doc/Bio/Graphics.html",
+    "doc/Bio/Graphics/Glyph.html",
+    "doc/Bio/Graphics/MiniFeature.html",
+    "doc/Bio/Graphics/Page.html",
+    "doc/Bio/Graphics/Primitive.html",
+    "doc/Bio/Graphics/SVGEE.html",
+    "doc/Bio/Graphics/Track.html",
+    "doc/LICENSE_txt.html",
+    "doc/created.rid",
+    "doc/images/add.png",
+    "doc/images/arrow_up.png",
+    "doc/images/brick.png",
+    "doc/images/brick_link.png",
+    "doc/images/bug.png",
+    "doc/images/bullet_black.png",
+    "doc/images/bullet_toggle_minus.png",
+    "doc/images/bullet_toggle_plus.png",
+    "doc/images/date.png",
+    "doc/images/delete.png",
+    "doc/images/find.png",
+    "doc/images/loadingAnimation.gif",
+    "doc/images/macFFBgHack.png",
+    "doc/images/package.png",
+    "doc/images/page_green.png",
+    "doc/images/page_white_text.png",
+    "doc/images/page_white_width.png",
+    "doc/images/plugin.png",
+    "doc/images/ruby.png",
+    "doc/images/tag_blue.png",
+    "doc/images/tag_green.png",
+    "doc/images/transparent.png",
+    "doc/images/wrench.png",
+    "doc/images/wrench_orange.png",
+    "doc/images/zoom.png",
+    "doc/index.html",
+    "doc/js/darkfish.js",
+    "doc/js/jquery.js",
+    "doc/js/navigation.js",
+    "doc/js/search.js",
+    "doc/js/search_index.js",
+    "doc/js/searcher.js",
+    "doc/rdoc.css",
+    "doc/table_of_contents.html",
     "examples/.DS_Store",
     "examples/annotate_snps.rb",
     "examples/data.txt",
@@ -49,13 +95,22 @@ Gem::Specification.new do |s|
     "lib/bio/graphics/primitive.rb",
     "lib/bio/graphics/svgee.rb",
     "lib/bio/graphics/track.rb",
+    "test/gene.gff",
     "test/helper.rb",
-    "test/test_bio-svgenes.rb"
+    "test/json_config.json",
+    "test/test_bio-svgenes.rb",
+    "test/test_glyph.rb",
+    "test/test_mini_feature.rb",
+    "test/test_page.rb",
+    "test/test_primitive.rb",
+    "test/test_svgee.rb",
+    "test/test_track.rb",
+    "test/test_transcripts.gff"
   ]
   s.homepage = "http://github.com/danmaclean/bioruby-svgenes"
   s.licenses = ["MIT"]
   s.require_paths = ["lib"]
-  s.rubygems_version = "1.8.10"
+  s.rubygems_version = "1.8.25"
   s.summary = "Create pretty SVG-format images of features, gene models and data tracks"
 
   if s.respond_to? :specification_version then
