@@ -1,8 +1,19 @@
 module Bio
   class Graphics
-
+ #The SVGEE class is used to create the text that will go into the final SVG file.
+ #It takes information from the supplied Glyph objects, parses them and creates the SVG text
+  #necessary to display the given glyphs.
 class SVGEE
   attr_reader :primitives, :defs, :supported_primitives
+  #Creates a new SVGEE object which will contain all the necessary objects to display all the features on a page
+  #
+  #+args+
+  #* width = the amount of the page width the svg should take up (100%)
+  #* height = the amount of the page height the svg should take up (100%)
+  #* style = the svg style information
+  #* primitives = an array of glyphs
+  #* defs =  the gradients that will be used in the SVG
+  #* \supported_primitives = a list of permitted Glyphs
   def initialize(args)
     opts = {:width => '100%', :height => '100%'}.merge!(args)
     @width = opts[:width]
@@ -12,11 +23,11 @@ class SVGEE
     @defs = []
     @supported_primitives = [:circle, :rectangle, :ellipse, :line, :polyline, :text]
   end
-  
+  #Produces the opening text for an svg file
   def open_tag
     %{<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="#{@width}" height="#{@height}" style="#{@style}" xmlns:xlink="http://www.w3.org/1999/xlink">}
   end
-  
+  #Produces the closing text for an svg file
   def close_tag
     %{</svg>}
   end
@@ -81,13 +92,15 @@ class SVGEE
   end
   
   public
-  def add_primitive(primitive_object) #adds a primitive object to the SVG 
+  #Adds a Primitive object to the SVGEE object and makes the svg text for that Primitive
+  def add_primitive(primitive_object)
     args = {}
     primitive_object.instance_variables.each{|v| args[v.to_s.gsub(/@/,"").to_sym] = primitive_object.instance_variable_get(v)  }
     primitive_string = args.delete(:primitive)
     make_tag(primitive_string, args)
   end
-  
+  #Takes the gradient information from a Glyph, which must be of type 'radial' or 'linear' and creates the svg text for that gradient
+  #* +a+ = a gradient (a gradient type, a colour and the parameters for a given type)
   def gradient(a)
     definition_string = case a[:type]
     when :radial
@@ -100,7 +113,7 @@ class SVGEE
     end
     add_def definition_string + (a[:type] == :linear ? '</linearGradient>' : '</radialGradient>')
   end
-
+  #Produces the svg text to display all the features on a Page
   def draw
     head = self.open_tag
     defstring = ""
