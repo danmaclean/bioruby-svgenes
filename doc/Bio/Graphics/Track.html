@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+
+<title>class Bio::Graphics::Track - RDoc Documentation</title>
+
+<link type="text/css" media="screen" href="../../rdoc.css" rel="stylesheet">
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../../";
+</script>
+
+<script type="text/javascript" charset="utf-8" src="../../js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="../../js/navigation.js"></script>
+<script type="text/javascript" charset="utf-8" src="../../js/search_index.js"></script>
+<script type="text/javascript" charset="utf-8" src="../../js/search.js"></script>
+<script type="text/javascript" charset="utf-8" src="../../js/searcher.js"></script>
+<script type="text/javascript" charset="utf-8" src="../../js/darkfish.js"></script>
+
+
+<body id="top" class="class">
+<nav id="metadata">
+  <nav id="home-section" class="section">
+  <h3 class="section-header">
+    <a href="../../index.html">Home</a>
+    <a href="../../table_of_contents.html#classes">Classes</a>
+    <a href="../../table_of_contents.html#methods">Methods</a>
+  </h3>
+</nav>
+
+
+  <nav id="search-section" class="section project-section" class="initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <h3 class="section-header">
+      <input type="text" name="search" placeholder="Search" id="search-field"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </h3>
+  </form>
+
+  <ul id="search-results" class="initially-hidden"></ul>
+</nav>
+
+
+  
+
+  <div id="file-metadata">
+    <nav id="file-list-section" class="section">
+  <h3 class="section-header">Defined In</h3>
+  <ul>
+    <li>lib/bio/graphics/track.rb
+  </ul>
+</nav>
+
+    
+  </div>
+
+  <div id="class-metadata">
+    
+    <nav id="parent-class-section" class="section">
+  <h3 class="section-header">Parent</h3>
+  
+  <p class="link">Object
+  
+</nav>
+
+    
+    
+    <!-- Method Quickref -->
+<nav id="method-list-section" class="section">
+  <h3 class="section-header">Methods</h3>
+
+  <ul class="link-list">
+    
+    <li ><a href="#method-c-new">::new</a>
+    
+    <li ><a href="#method-i-add">#add</a>
+    
+    <li ><a href="#method-i-get_rows">#get_rows</a>
+    
+    <li ><a href="#method-i-overlaps">#overlaps</a>
+    
+  </ul>
+</nav>
+
+  </div>
+
+  <div id="project-metadata">
+    <nav id="fileindex-section" class="section project-section">
+  <h3 class="section-header">Pages</h3>
+
+  <ul>
+  
+    <li class="file"><a href="../../LICENSE_txt.html">LICENSE</a>
+  
+  </ul>
+</nav>
+
+    <nav id="classindex-section" class="section project-section">
+  <h3 class="section-header">Class and Module Index</h3>
+
+  <ul class="link-list">
+  
+    <li><a href="../../Bio.html">Bio</a>
+  
+    <li><a href="../../Bio/Graphics.html">Bio::Graphics</a>
+  
+    <li><a href="../../Bio/Graphics/Glyph.html">Bio::Graphics::Glyph</a>
+  
+    <li><a href="../../Bio/Graphics/MiniFeature.html">Bio::Graphics::MiniFeature</a>
+  
+    <li><a href="../../Bio/Graphics/Page.html">Bio::Graphics::Page</a>
+  
+    <li><a href="../../Bio/Graphics/Primitive.html">Bio::Graphics::Primitive</a>
+  
+    <li><a href="../../Bio/Graphics/SVGEE.html">Bio::Graphics::SVGEE</a>
+  
+    <li><a href="../../Bio/Graphics/Track.html">Bio::Graphics::Track</a>
+  
+  </ul>
+</nav>
+
+  </div>
+</nav>
+
+<div id="documentation">
+  <h1 class="class">class Bio::Graphics::Track</h1>
+
+  <div id="description" class="description">
+    
+<p>The <a href="Track.html">Track</a> class holds and organises the features,
+ordering them into different rows if they overlap</p>
+
+  </div><!-- description -->
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+    <!-- Attributes -->
+    <section id="attribute-method-details" class="method-section section">
+      <h3 class="section-header">Attributes</h3>
+
+      
+      <div id="attribute-i-args" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">args</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        
+        
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-feature_height" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">feature_height</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-feature_rows" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">feature_rows</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-features" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">features</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-glyph" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">glyph</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        
+        
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-label" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">label</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        
+        
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-max_y" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">max_y</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        
+        
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-min_width" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">min_width</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        
+        
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-name" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">name</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-number_rows" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">number_rows</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-scale" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">scale</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        
+        
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-track_height" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">track_height</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        
+        
+        
+        </div>
+      </div>
+      
+    </section><!-- attribute-method-details -->
+    
+
+    <!-- Methods -->
+    
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Public Instance Methods</h3>
+
+    
+      <div id="method-i-add" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">add</span><span
+            class="method-args">(feature)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Adds a new <a href="MiniFeature.html">MiniFeature</a> to the the @features
+array</p>
+          
+          
+
+          
+          <div class="method-source-code" id="add-source">
+            <pre><span class="ruby-comment"># File lib/bio/graphics/track.rb, line 31</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">add</span>(<span class="ruby-identifier">feature</span>)
+  <span class="ruby-ivar">@features</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">feature</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- add-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- add-method -->
+
+    
+      <div id="method-i-get_rows" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">get_rows</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Calculates how many rows are needed per track for overlapping features and
+which row each feature should be in</p>
+          
+          
+
+          
+          <div class="method-source-code" id="get_rows-source">
+            <pre><span class="ruby-comment"># File lib/bio/graphics/track.rb, line 38</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">get_rows</span>
+  <span class="ruby-identifier">current_row</span> = <span class="ruby-value">1</span>
+  <span class="ruby-ivar">@feature_rows</span> = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@features</span>.<span class="ruby-identifier">length</span>,<span class="ruby-value">1</span>)
+  <span class="ruby-ivar">@features</span>.<span class="ruby-identifier">each_with_index</span>  <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">f1</span>, <span class="ruby-identifier">i</span><span class="ruby-operator">|</span>
+    <span class="ruby-ivar">@features</span>.<span class="ruby-identifier">each_with_index</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">f2</span>, <span class="ruby-identifier">j</span><span class="ruby-operator">|</span>
+      <span class="ruby-keyword">next</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">i</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">j</span> <span class="ruby-keyword">or</span> <span class="ruby-identifier">j</span> <span class="ruby-operator">&lt;=</span> <span class="ruby-identifier">i</span>
+      <span class="ruby-keyword">if</span> <span class="ruby-identifier">overlaps</span>(<span class="ruby-identifier">f1</span>,<span class="ruby-identifier">f2</span>)
+        <span class="ruby-ivar">@feature_rows</span>[<span class="ruby-identifier">i</span>] <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-ivar">@number_rows</span> = <span class="ruby-ivar">@feature_rows</span>.<span class="ruby-identifier">max</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- get_rows-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- get_rows-method -->
+
+    
+      <div id="method-i-overlaps" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">overlaps</span><span
+            class="method-args">(f1, f2)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Calculates if two <a href="MiniFeature.html">MiniFeature</a> objects
+overlap by examining their start and end positions. If two features overlap
+then then will be placed on separate rows of the track</p>
+
+<p><code>args</code></p>
+<ul><li>
+<p>f1 - a <a href="MiniFeature.html">MiniFeature</a> object</p>
+</li><li>
+<p>f2 - a <a href="MiniFeature.html">MiniFeature</a> object</p>
+</li></ul>
+          
+          
+
+          
+          <div class="method-source-code" id="overlaps-source">
+            <pre><span class="ruby-comment"># File lib/bio/graphics/track.rb, line 58</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">overlaps</span>(<span class="ruby-identifier">f1</span>, <span class="ruby-identifier">f2</span>)
+  (<span class="ruby-identifier">f1</span>.<span class="ruby-identifier">start</span> <span class="ruby-operator">&gt;=</span> <span class="ruby-identifier">f2</span>.<span class="ruby-identifier">start</span> <span class="ruby-keyword">and</span> <span class="ruby-identifier">f1</span>.<span class="ruby-identifier">start</span> <span class="ruby-operator">&lt;=</span> <span class="ruby-identifier">f2</span>.<span class="ruby-identifier">end</span>) <span class="ruby-keyword">or</span> (<span class="ruby-identifier">f1</span>.<span class="ruby-identifier">end</span> <span class="ruby-operator">&gt;=</span> <span class="ruby-identifier">f2</span>.<span class="ruby-identifier">start</span> <span class="ruby-keyword">and</span> <span class="ruby-identifier">f1</span>.<span class="ruby-identifier">end</span> <span class="ruby-operator">&lt;=</span> <span class="ruby-identifier">f2</span>.<span class="ruby-identifier">end</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- overlaps-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- overlaps-method -->
+
+    
+    </section><!-- public-instance-method-details -->
+  
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Public Class Methods</h3>
+
+    
+      <div id="method-c-new" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">new</span><span
+            class="method-args">(args)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Creates a new <a href="Track.html">Track</a></p>
+          
+          
+
+          
+          <div class="method-source-code" id="new-source">
+            <pre><span class="ruby-comment"># File lib/bio/graphics/track.rb, line 9</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">args</span>)
+  <span class="ruby-ivar">@args</span> = {<span class="ruby-value">:glyph</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">:generic</span>, 
+           <span class="ruby-value">:name</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;feature_track&quot;</span>, 
+           <span class="ruby-value">:label</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">true</span>, 
+           <span class="ruby-value">:feature_height</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">10</span>,
+           <span class="ruby-value">:track_height</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">nil</span> }.<span class="ruby-identifier">merge!</span>(<span class="ruby-identifier">args</span>)
+  <span class="ruby-ivar">@glyph</span> = <span class="ruby-ivar">@args</span>[<span class="ruby-value">:glyph</span>]
+  <span class="ruby-ivar">@name</span> = <span class="ruby-ivar">@args</span>[<span class="ruby-value">:name</span>]
+  <span class="ruby-ivar">@label</span> = <span class="ruby-ivar">@args</span>[<span class="ruby-value">:label</span>]
+  <span class="ruby-ivar">@track_height</span> = <span class="ruby-ivar">@args</span>[<span class="ruby-value">:track_height</span>]
+  <span class="ruby-ivar">@features</span> = []
+  <span class="ruby-ivar">@feature_rows</span> = []
+  <span class="ruby-ivar">@scale</span> = <span class="ruby-ivar">@args</span>[<span class="ruby-value">:scale</span>]
+  <span class="ruby-ivar">@feature_height</span> = <span class="ruby-ivar">@args</span>[<span class="ruby-value">:feature_height</span>]
+  <span class="ruby-ivar">@number_of_rows</span> = <span class="ruby-value">1</span>
+  <span class="ruby-ivar">@max_y</span> = <span class="ruby-identifier">args</span>[<span class="ruby-value">:max_y</span>]
+  <span class="ruby-ivar">@min_width</span> = <span class="ruby-identifier">args</span>[<span class="ruby-value">:min_width</span>]
+  
+
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- new-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- new-method -->
+
+    
+    </section><!-- public-class-method-details -->
+  
+  </section><!-- 5Buntitled-5D -->
+
+</div><!-- documentation -->
+
+
+<footer id="validator-badges">
+  <p><a href="http://validator.w3.org/check/referer">[Validate]</a>
+  <p>Generated by <a href="https://github.com/rdoc/rdoc">RDoc</a> 4.0.0.rc.2.1.
+  <p>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish Rdoc Generator</a> 3.
+</footer>
+
