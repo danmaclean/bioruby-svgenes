@@ -1,4 +1,0 @@
-##gff-version	3
-##sequence-region	ctg123 1 1497228       
-ctg123	.	gene	900	9900	.	+	.	ID=gene00001;Name=EDEN
-ctg123	.	gene	10900	19900	.	-	.	ID=gene00002;Name=EDEN2
