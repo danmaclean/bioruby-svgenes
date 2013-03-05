@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = "bio-svgenes"
-  s.version = "0.3.0"
+  s.version = "0.3.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Dan MacLean"]
-  s.date = "2013-03-04"
+  s.date = "2013-03-05"
   s.description = "This bio-gem facilitates the creation of pretty, publication quality SVG images from feature data."
   s.email = "maclean.daniel@gmail.com"
   s.extra_rdoc_files = [
@@ -17,7 +17,6 @@ Gem::Specification.new do |s|
     "README.rdoc"
   ]
   s.files = [
-    ".DS_Store",
     ".document",
     "Gemfile",
     "Gemfile.lock",
@@ -26,9 +25,7 @@ Gem::Specification.new do |s|
     "Rakefile",
     "VERSION",
     "bio-svgenes.gemspec",
-    "doc/.DS_Store",
     "doc/Bio.html",
-    "doc/Bio/.DS_Store",
     "doc/Bio/Graphics.html",
     "doc/Bio/Graphics/Glyph.html",
     "doc/Bio/Graphics/MiniFeature.html",
@@ -72,12 +69,9 @@ Gem::Specification.new do |s|
     "doc/js/searcher.js",
     "doc/rdoc.css",
     "doc/table_of_contents.html",
-    "examples/.DS_Store",
     "examples/annotate_snps.rb",
     "examples/data.txt",
     "examples/draw_from_json.rb",
-    "examples/drawn_from_json.svg",
-    "examples/drawn_from_json2.svg",
     "examples/eg2.rb",
     "examples/example.rb",
     "examples/example.svg",
@@ -86,19 +80,15 @@ Gem::Specification.new do |s|
     "examples/get_coverage_in_windows.rb",
     "examples/make_example.rb",
     "examples/transcripts.gff",
-    "lib/.DS_Store",
     "lib/bio-svgenes.rb",
-    "lib/bio/.DS_Store",
     "lib/bio/graphics/glyph.rb",
     "lib/bio/graphics/mini_feature.rb",
     "lib/bio/graphics/page.rb",
     "lib/bio/graphics/primitive.rb",
     "lib/bio/graphics/svgee.rb",
     "lib/bio/graphics/track.rb",
-    "test/gene.gff",
     "test/helper.rb",
     "test/json_config.json",
-    "test/test_bio-svgenes.rb",
     "test/test_glyph.rb",
     "test/test_mini_feature.rb",
     "test/test_page.rb",
@@ -118,23 +108,26 @@ Gem::Specification.new do |s|
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
       s.add_development_dependency(%q<shoulda>, [">= 0"])
-      s.add_development_dependency(%q<bundler>, ["~> 1.0.0"])
+      s.add_development_dependency(%q<bundler>, [">= 1.0.0"])
       s.add_development_dependency(%q<jeweler>, ["~> 1.6.4"])
       s.add_development_dependency(%q<rcov>, [">= 0"])
       s.add_development_dependency(%q<bio>, [">= 1.4.2"])
+      s.add_development_dependency(%q<json>, [">= 1.7"])
     else
       s.add_dependency(%q<shoulda>, [">= 0"])
-      s.add_dependency(%q<bundler>, ["~> 1.0.0"])
+      s.add_dependency(%q<bundler>, [">= 1.0.0"])
       s.add_dependency(%q<jeweler>, ["~> 1.6.4"])
       s.add_dependency(%q<rcov>, [">= 0"])
       s.add_dependency(%q<bio>, [">= 1.4.2"])
+      s.add_dependency(%q<json>, [">= 1.7"])
     end
   else
     s.add_dependency(%q<shoulda>, [">= 0"])
-    s.add_dependency(%q<bundler>, ["~> 1.0.0"])
+    s.add_dependency(%q<bundler>, [">= 1.0.0"])
     s.add_dependency(%q<jeweler>, ["~> 1.6.4"])
     s.add_dependency(%q<rcov>, [">= 0"])
     s.add_dependency(%q<bio>, [">= 1.4.2"])
+    s.add_dependency(%q<json>, [">= 1.7"])
   end
 end
 
