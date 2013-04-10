@@ -1,40 +1,62 @@
 module Bio
   class Graphics
-    #A Glyph is an array of Primitive objects, holding information about the type of Glyph being created.
-    #Each different type of Glyph has different arguments, pertaining to how the Glyph will be drawn and the parameters provided to SVGEE.
-    #
 
+  #A glyph is a particular shape that represents a genomic feature. Bio::Graphics::Glyph objects represent glyphs. Bio::Graphics::Glyphs are created internally according to
+  #specification from the Bio::Graphics::Track and not instantiated directly by the user.
+  #Internally, these are constructed as an array of Bio::Graphics::Primitive objects, which are collections of simple shapes, combined appropriately to make a glyph
 class Glyph
 
   #The different type of Glyphs are:
-  #* generic
-  #* circle
-  #* directed
-  #* \down_triangle
-  #* \up_triangle
-  #* span
-  #* transcript
-  #* scale
-  #* label
-  #* histogram
+  #* :generic
+  #* :circle
+  #* :directed
+  #* :down_triangle
+  #* :up_triangle
+  #* :span
+  #* :transcript
+  #* :scale
+  #* :label
+  #* :histogram
 
 attr_reader :glyphs
-  #holds a load of definitions for glyphs .. a glyph is an array of primitives... 
+  #only glyphs defined here will be allowed 
   @glyphs = [:generic, :directed, :transcript, :scale, :label, :histogram, :circle, :down_triangle, :up_triangle, :span]
-  #Creates a generic glyph, which is a rectangle
+  
+  #A generic glyph is a block of colour that displays no specific directional information attached.
   #
-  #+args+
-  #* height = the height of the Glyph (10)
-  #* fill_color = the fill colour of the Glyph ('red')
-  #* stroke = the outline colour of the Glyph ("black")
-  #* stroke_width = The width of the outline stroke (1)
-  #* x_round = x-axis radius of the ellipse used to round off the corners of the rectangle (1)
-  #* y_round = y-axis radius of the ellipse used to round off the corners of the rectangle (1)
-  #* style = the opacity of the fill color ("fill-opacity:0.4;")
-  #* x = the co-ordinates of the Glyph for the x-axis
-  #* y = the co-ordinates of the Glyph for the y-axis
-
-  def self.generic(args) #:x, :y, :width :fill, :stroke :stroke_width, :style, :height, 
+  #== args
+  #* :height = the height of the Glyph (default = 10)
+  #* :fill_color = the fill colour of the Glyph (default = 'red'), can be any SVG colour eg rgb(256,0,0) or #FF0000, or one of the built in gradient types Bio::Graphics::Glyph#gradients
+  # [:red_white_h, :green_white_h, :blue_white_h, :yellow_white_h, :red_white_radial, :green_white_radial, :blue_white_radial, :yellow_white_radial ]
+  #or a custom definition of a gradient
+  # {:type => :radial, 
+  # :id => :custom, 
+  # :cx => 5, 
+  # :cy => 5, 
+  # :r => 50, 
+  # :fx => 50, 
+  # :fy => 50, 
+  #   :stops => [ {
+  #        :offset => 0, 
+  #        :color => 'rgb(255,255,255)', 
+  #        :opacity => 0
+  #        },  {
+  #        :offset => 100, 
+  #        :color => 'rgb(0,127,200)', 
+  #        :opacity => 1
+  #        }, ]
+  # }  #* :stroke = the outline colour of the Glyph (default = "black"), can be any SVG colour eg rgb(256,0,0) or #FF0000
+  #* :stroke_width = The width of the outline stroke (default = 1), can be any SVG colour eg rgb(256,0,0) or #FF0000
+  #* :x_round = x-axis radius of the ellipse used to round off the corners of the rectangle (default = 1)
+  #* :y_round = y-axis radius of the ellipse used to round off the corners of the rectangle (default = 1)
+  #* :style = an arbitrary SVG compliant style string eg "fill-opacity:0.4;" 
+  #* :x = x coordinate of the feature in pixels, usually added by the Bio::Graphics::Page object
+  #* :y = y coordinate of the feature in pixels, usually added by the Bio::Graphics::Page object
+  #
+  #=== returns
+  #
+  #* An Array[http://www.ruby-doc.org/core-2.0/Array.html] of Bio::Graphic::Primitive objects
+  def self.generic(args)
     args = { 
       :height => 10, 
       :fill_color => 'red', 
@@ -46,17 +68,38 @@ attr_reader :glyphs
     [Bio::Graphics::Primitive.new(:rectangle, args)]
   end
 
-  #Creates a circular Glyph
+  #A circular glyph centered on the start of the feature it represents
   #
-  #+args+
-  #* radius = the radius of the circle  (10)
-  #* fill_color = the fill colour of the Glyph ('red')
-  #* stroke = the outline colour of the Glyph ("black")
-  #* stroke_width = The width of the outline stroke (1)
-  #* style = the opacity of the fill color
-  #* x = x-axis centre of the circle
-  #* y = y-axis centre of the circle
-
+  #== args
+  #* :radius = the radius of the circle  (default = 10)
+  #* :fill_color = the fill colour of the Glyph (default = 'red'), can be any SVG colour eg rgb(256,0,0) or #FF0000, or one of the built in gradient types Bio::Graphics::Glyph#gradients
+  # [:red_white_h, :green_white_h, :blue_white_h, :yellow_white_h, :red_white_radial, :green_white_radial, :blue_white_radial, :yellow_white_radial ]
+  #or a custom definition of a gradient
+  # {:type => :radial, 
+  # :id => :custom, 
+  # :cx => 5, 
+  # :cy => 5, 
+  # :r => 50, 
+  # :fx => 50, 
+  # :fy => 50, 
+  #   :stops => [ {
+  #        :offset => 0, 
+  #        :color => 'rgb(255,255,255)', 
+  #        :opacity => 0
+  #        },  {
+  #        :offset => 100, 
+  #        :color => 'rgb(0,127,200)', 
+  #        :opacity => 1
+  #        }, ]
+  # }  #* :stroke = the outline colour of the Glyph (default = "black"), can be any SVG colour eg rgb(256,0,0) or #FF0000
+  #* :stroke_width = The width of the outline stroke (default = 1), can be any SVG colour eg rgb(256,0,0) or #FF0000
+  #* :style = an arbitrary SVG compliant style string eg "fill-opacity:0.4;"
+  #* :x = base x coordinate of the feature in pixels, usually added by the Bio::Graphics::Page object
+  #* :y = base y coordinate of the feature in pixels, usually added by the Bio::Graphics::Page object
+  #
+  #=== returns
+  #
+  #* An Array[http://www.ruby-doc.org/core-2.0/Array.html] of Bio::Graphic::Primitive objects
   def self.circle(args) 
     args = { 
       :radius => 10, 
@@ -70,18 +113,41 @@ attr_reader :glyphs
     [Bio::Graphics::Primitive.new(:circle, args)]
   end 
   
-  #Creates a polygon Glyph to indicate the direction in which the Glyph is pointing
-  #+args+
-  #* width = the width of the feature
-  #* fill_color = the fill colour of the Glyph ('red')
-  #* stroke = the outline colour of the Glyph ("black")
-  #* stroke_width = The width of the outline stroke (1)
-  #* style = the opacity of the fill color
-  #* strand = the strand on which the Glyph is located. May be '+' or '-'
-  #* points = the x and y axis points used to calculate the shape of the polygon
-  #* x = the co-ordinates of the Glyph for the x-axis
-  #* y = the co-ordinates of the Glyph for the y-axis
-  #The points of the polygon are calculated form the +x+ and +y+ co-ordinates
+  #A polygon glyph with a point on the end that represents the features strand and direction
+  #== args
+  #* :width = the width of the feature in px
+  #* :fill_color = the fill colour of the Glyph (default = 'red'), can be any SVG colour eg rgb(256,0,0) or #FF0000, or one of the built in gradient types Bio::Graphics::Glyph#gradients
+  # [:red_white_h, :green_white_h, :blue_white_h, :yellow_white_h, :red_white_radial, :green_white_radial, :blue_white_radial, :yellow_white_radial ]
+  #or a custom definition of a gradient
+  # {:type => :radial, 
+  # :id => :custom, 
+  # :cx => 5, 
+  # :cy => 5, 
+  # :r => 50, 
+  # :fx => 50, 
+  # :fy => 50, 
+  #   :stops => [ {
+  #        :offset => 0, 
+  #        :color => 'rgb(255,255,255)', 
+  #        :opacity => 0
+  #        },  {
+  #        :offset => 100, 
+  #        :color => 'rgb(0,127,200)', 
+  #        :opacity => 1
+  #        }, ]
+  # }
+  #* :stroke = the outline colour of the Glyph (default = "black"), can be any SVG colour eg rgb(256,0,0) or #FF0000
+  #* :stroke_width = The width of the outline stroke (default = 1), can be any SVG colour eg rgb(256,0,0) or #FF0000
+  #* :style = an arbitrary SVG compliant style string eg "fill-opacity:0.4;"
+  #* :strand = the strand on which the feature is located. May be '+' or '-'
+  #* :points = the x and y axis coordinates that make up the corners of the polygon, calculated and added by the Bio::Graphics::Page object
+  #* :x = base x coordinate of the feature in pixels, usually added by the Bio::Graphics::Page object
+  #* :y = base y coordinate of the feature in pixels, usually added by the Bio::Graphics::Page object
+  #The points of the polygon are calculated form the +:x+ and +:y+ co-ordinates
+  #
+  #=== returns
+  #
+  #* An Array[http://www.ruby-doc.org/core-2.0/Array.html] of Bio::Graphic::Primitive objects 
   def self.directed(args) #:x, :y, :width :fill, :stroke :stroke_width, :style, :height
     args = {
       
@@ -99,17 +165,38 @@ attr_reader :glyphs
       end
     [Bio::Graphics::Primitive.new(:polygon, args)]
   end
-  #Creates a polygon Glyph for a downward-pointing triangle
-  #+args+
-  #* height = the height of the Glyph (10)
-  #* fill_color = the fill colour of the Glyph ('red')
-  #* stroke = the outline colour of the Glyph ("black")
-  #* stroke_width = The width of the outline stroke (1)
-  #* style = the opacity of the fill color ("fill-opacity:0.4;")
-  #* x = the co-ordinates of the Glyph for the x-axis
-  #* y = the co-ordinates of the Glyph for the y-axis
-  #The points of the triangle are calculated form the +x+ and +y+ co-ordinates
-
+  
+  #A downward-pointing triangle glyph
+  #== args
+  #* :height = the height of the Glyph (default = 10)
+  #* :fill_color = the fill colour of the Glyph (default = 'red'), can be any SVG colour eg rgb(256,0,0) or #FF0000, or one of the built in gradient types Bio::Graphics::Glyph#gradients
+  # [:red_white_h, :green_white_h, :blue_white_h, :yellow_white_h, :red_white_radial, :green_white_radial, :blue_white_radial, :yellow_white_radial ]
+  #or a custom definition of a gradient
+  # {:type => :radial, 
+  # :id => :custom, 
+  # :cx => 5, 
+  # :cy => 5, 
+  # :r => 50, 
+  # :fx => 50, 
+  # :fy => 50, 
+  #   :stops => [ {
+  #        :offset => 0, 
+  #        :color => 'rgb(255,255,255)', 
+  #        :opacity => 0
+  #        },  {
+  #        :offset => 100, 
+  #        :color => 'rgb(0,127,200)', 
+  #        :opacity => 1
+  #        }, ]
+  # } #* :stroke = the outline colour of the Glyph (default = "black"), can be any SVG colour eg rgb(256,0,0) or #FF0000
+  #* :stroke_width = The width of the outline stroke (default = 1), can be any SVG colour eg rgb(256,0,0) or #FF0000
+  #* :style = an arbitrary SVG compliant style string eg "fill-opacity:0.4;" 
+  #* :x = x coordinate of the feature in pixels, usually added by the Bio::Graphics::Page object
+  #* :y = y coordinate of the feature in pixels, usually added by the Bio::Graphics::Page object
+  #
+  #=== returns
+  #
+  #* An Array[http://www.ruby-doc.org/core-2.0/Array.html] of Bio::Graphic::Primitive objects
   def self.down_triangle(args) #:x, :y, :width :fill, :stroke :stroke_width, :style, :height
     args = {
       
@@ -122,17 +209,39 @@ attr_reader :glyphs
       args[:points] = "#{args[:x]},#{args[:y]} #{args[:x] + args[:width]},#{args[:y]} #{ args[:x] + (args[:width]/2) },#{(args[:y] + args[:height]) }"
     [Bio::Graphics::Primitive.new(:polygon, args)]
   end
-  #Creates a polygon Glyph for an upward-pointing triangle
-  #+args+
-  #* height = the height of the Glyph (10)
-  #* fill_color = the fill colour of the Glyph ('red')
-  #* stroke = the outline colour of the Glyph ("black")
-  #* stroke_width = The width of the outline stroke (1)
-  #* style = the opacity of the fill color ("fill-opacity:0.4;")
-  #* x = the co-ordinates of the Glyph for the x-axis
-  #* y = the co-ordinates of the Glyph for the y-axis
-  #The points of the triangle are calculated form the +x+ and +y+ co-ordinates
-
+  
+  #An upward-pointing triangle glyph
+  #== args
+  #* :height = the height of the Glyph (default = 10)
+  #* :fill_color = the fill colour of the Glyph (default = 'red'), can be any SVG colour eg rgb(256,0,0) or #FF0000, or one of the built in gradient types Bio::Graphics::Glyph#gradients
+  # [:red_white_h, :green_white_h, :blue_white_h, :yellow_white_h, :red_white_radial, :green_white_radial, :blue_white_radial, :yellow_white_radial ]
+  #or a custom definition of a gradient
+  # {:type => :radial, 
+  # :id => :custom, 
+  # :cx => 5, 
+  # :cy => 5, 
+  # :r => 50, 
+  # :fx => 50, 
+  # :fy => 50, 
+  #   :stops => [ {
+  #        :offset => 0, 
+  #        :color => 'rgb(255,255,255)', 
+  #        :opacity => 0
+  #        },  {
+  #        :offset => 100, 
+  #        :color => 'rgb(0,127,200)', 
+  #        :opacity => 1
+  #        }, ]
+  # }
+  #* :stroke = the outline colour of the Glyph (default = "black"), can be any SVG colour eg rgb(256,0,0) or #FF0000
+  #* :stroke_width = The width of the outline stroke (default = 1), can be any SVG colour eg rgb(256,0,0) or #FF0000
+  #* :style = an arbitrary SVG compliant style string eg "fill-opacity:0.4;" 
+  #* :x = x coordinate of the feature in pixels, usually added by the Bio::Graphics::Page object
+  #* :y = y coordinate of the feature in pixels, usually added by the Bio::Graphics::Page object
+  #
+  #=== returns
+  #
+  #* An Array[http://www.ruby-doc.org/core-2.0/Array.html] of Bio::Graphic::Primitive objects
   def self.up_triangle(args) #:x, :y, :width :fill, :stroke :stroke_width, :style, :height
     args = {
       :height => 10, 
@@ -143,16 +252,40 @@ attr_reader :glyphs
       args[:points] = "#{args[:x]},#{args[:y] + args[:height]} #{args[:x] + args[:width]},#{args[:y] + args[:height]} #{ args[:x] + (args[:width]/2) },#{args[:y] }"
     [Bio::Graphics::Primitive.new(:polygon, args)]
   end
-  #Creates a span glyph, which is a line
+  
+  #A line (span) glyph
   #
   #+args+
-  #* height = the height of the Glyph (10)
-  #* fill_color = the fill colour of the Glyph ('red')
-  #* stroke = the outline colour of the Glyph ("black")
-  #* stroke_width = The width of the outline stroke (1)
-  #* style = the opacity of the fill color ("fill-opacity:0.4;")
-  #* x = the co-ordinates of the Glyph for the x-axis
-  #* y = the co-ordinates of the Glyph for the y-axis
+  #* :height = the height of the Glyph (default = 10)
+  #* :fill_color = the fill colour of the Glyph (default = 'red'), can be any SVG colour eg rgb(256,0,0) or #FF0000, or one of the built in gradient types Bio::Graphics::Glyph#gradients
+  # [:red_white_h, :green_white_h, :blue_white_h, :yellow_white_h, :red_white_radial, :green_white_radial, :blue_white_radial, :yellow_white_radial ]
+  #or a custom definition of a gradient
+  # {:type => :radial, 
+  # :id => :custom, 
+  # :cx => 5, 
+  # :cy => 5, 
+  # :r => 50, 
+  # :fx => 50, 
+  # :fy => 50, 
+  #   :stops => [ {
+  #        :offset => 0, 
+  #        :color => 'rgb(255,255,255)', 
+  #        :opacity => 0
+  #        },  {
+  #        :offset => 100, 
+  #        :color => 'rgb(0,127,200)', 
+  #        :opacity => 1
+  #        }, ]
+  # }
+  #* :stroke = the outline colour of the Glyph (default = "black"), can be any SVG colour eg rgb(256,0,0) or #FF0000
+  #* :stroke_width = The width of the outline stroke (default = 1)
+  #* :style = an arbitrary SVG compliant style string eg "fill-opacity:0.4;" 
+  #* :x = x coordinate of the feature in pixels, usually added by the Bio::Graphics::Page object
+  #* :y = y coordinate of the feature in pixels, usually added by the Bio::Graphics::Page object
+  #
+  #=== returns
+  #
+  #* An Array[http://www.ruby-doc.org/core-2.0/Array.html] of Bio::Graphic::Primitive objects
   def self.span(args)
     args = {
       :height => 10,
@@ -167,26 +300,69 @@ attr_reader :glyphs
     args[:y2] = args[:y]
     [Bio::Graphics::Primitive.new(:line, args)]
   end
-  #Creates a transcript glyph, which is a number of different types of Glyph, depending on the features
-  #within the transcript
+  
+  #Creates a transcript glyph, which is a composite glyph containing generic glyphs for the exons/utrs and a directed glyph
+  #at the end. The glyphs are joined by lines.
   #
-  #+args+
-  #* height = the height of the Glyph (10)
-  #* utr_fill_color = the fill colour of the Glyph ('black')
-  #* utr_stroke = the outline colour of the Glyph ("black")
-  #* utr_stroke_width = The width of the outline stroke (1)
-  #* exon_fill_color = the fill colour of the Glyph ('red')
-  #* exon_stroke = the outline colour of the Glyph ("black")
-  #* exon_stroke_width = The width of the outline stroke (1)
-  #* line_color = the colour for any line Glyphs
-  #* line_width = the width for any line Glyphs
-  #* exon_style = the opacity of the fill color for exons ("fill-opacity:0.4;")
-  #* utr_style = the opacity of the fill color for utrs
-  #* line_style = the opacity of the fill color for lines
-  #* block_gaps = ****I'm not sure what these are****
-  #* gap_marker = ****I'm not sure what these are****
-  #* x = the co-ordinates of the Glyph for the x-axis
-  #* y = the co-ordinates of the Glyph for the y-axis
+  #== args
+  #* :height = the height of the Glyph (default = 10)
+  #* :utr_fill_color = the fill colour of the utr part of the glyph (default = 'black'), can be any SVG colour eg rgb(256,0,0) or #FF0000, or one of the built in gradient types Bio::Graphics::Glyph#gradients
+  # [:red_white_h, :green_white_h, :blue_white_h, :yellow_white_h, :red_white_radial, :green_white_radial, :blue_white_radial, :yellow_white_radial ]
+  #or a custom definition of a gradient
+  # {:type => :radial, 
+  # :id => :custom, 
+  # :cx => 5, 
+  # :cy => 5, 
+  # :r => 50, 
+  # :fx => 50, 
+  # :fy => 50, 
+  #   :stops => [ {
+  #        :offset => 0, 
+  #        :color => 'rgb(255,255,255)', 
+  #        :opacity => 0
+  #        },  {
+  #        :offset => 100, 
+  #        :color => 'rgb(0,127,200)', 
+  #        :opacity => 1
+  #        }, ]
+  # }
+  #* :utr_stroke = the outline colour of the utr part of the glyph (default = "black"), can be any SVG colour eg rgb(256,0,0) or #FF0000
+  #* :utr_stroke_width = The width of the outline stroke for the utr part of the glyph (default = 1)
+  #* :exon_fill_color = the fill colour of the utr part of the glyph (default = 'red'), can be any SVG colour eg rgb(256,0,0) or #FF0000, or one of the built in gradient types Bio::Graphics::Glyph#gradients or a custom definition of a gradient 
+  # [:red_white_h, :green_white_h, :blue_white_h, :yellow_white_h, :red_white_radial, :green_white_radial, :blue_white_radial, :yellow_white_radial ]
+  #or a custom definition of a gradient
+  # {:type => :radial, 
+  # :id => :custom, 
+  # :cx => 5, 
+  # :cy => 5, 
+  # :r => 50, 
+  # :fx => 50, 
+  # :fy => 50, 
+  #   :stops => [ {
+  #        :offset => 0, 
+  #        :color => 'rgb(255,255,255)', 
+  #        :opacity => 0
+  #        },  {
+  #        :offset => 100, 
+  #        :color => 'rgb(0,127,200)', 
+  #        :opacity => 1
+  #        }, ]
+  # }
+  #* :exon_stroke = the outline colour of the exon part of the glyph (default = "black") can be any SVG colour eg rgb(256,0,0) or #FF0000
+  #* :exon_stroke_width = The width of the outline stroke for the exon part of the glyph (default = 1)
+  #* :line_color = the colour for the line part that joins the blocks (default = 'black') can be any SVG colour eg rgb(256,0,0) or #FF0000
+  #* :line_width = the width ffor the line part that joins the blocks (default = 1)
+  #* :exon_style = an arbitrary SVG compliant style string eg "fill-opacity:0.4;" 
+  #* :utr_style = an arbitrary SVG compliant style string eg "fill-opacity:0.4;" 
+  #* :line_style = an arbitrary SVG compliant style string eg "fill-opacity:0.4;" 
+  #* :block_gaps = gaps between the rendered blocks - calculated internally by Bio::Graphics::Page object
+  #* :gap_marker = style of the line between blocks - either angled or straight
+  #* :x = x coordinate of the feature in pixels, usually added by the Bio::Graphics::Page object
+  #* :y = y coordinate of the feature in pixels, usually added by the Bio::Graphics::Page object
+  #
+  #+returns+
+  #
+  #* An Array[http://www.ruby-doc.org/core-2.0/Array.html] of Bio::Graphic::Primitive objects
   def self.transcript(args)
       args = {
       :height => 10, 
@@ -279,18 +455,18 @@ attr_reader :glyphs
       end
       composite
   end
-  #Creates the scale across the top of the SVG page
+  
+  #Glyph for the scale across the top of the rendered page
   #
-  #+args+
-  #* start = the start of the scale
-  #* stop = the end of the scale
-  #* \number_of_intervals = the number of tick-marks on the scale to show the current position
-  #* page_width = the width of the page
+  #== args
+  #* :start = the start of the scale, usually added by the Bio::Graphics::Page object
+  #* :stop = the end of the scale, usually added by the Bio::Graphics::Page object
+  #* :number_of_intervals = the number of tick-marks the scale will marked with
+  #* :page_width = the minimum width of the page, usually updated by the Bio::Graphics::Page object
   #
   #+returns+
   #
-  #* An Array[http://www.ruby-doc.org/core-2.0/Array.html] of Primitive objects (of type 'line', 'rectangle' and 'text')
-
+  #* An Array[http://www.ruby-doc.org/core-2.0/Array.html] of Bio::Graphic::Primitive objects (of type 'line', 'rectangle' and 'text')
   def self.scale(args)
     first_mark = args[:start]
     last_mark = args[:stop] 
@@ -327,15 +503,15 @@ attr_reader :glyphs
     end
     return a
   end
+  
   #Creates a label Glyph to write text
   #
   #+args+
-  #* text = the text to write
-  #* fill = the colour of the text ("black")
-  #* style = the style of writing ("font-family:monospace;")
-  #* x = the co-ordinates of the Glyph for the x-axis
-  #* y = the co-ordinates of the Glyph for the y-axis
-
+  #* :text = the text to write
+  #* :fill = the colour of the text ("black")
+  #* :style = the style of writing ("font-family:monospace;")
+  #* :x = the co-ordinates of the Glyph for the x-axis
+  #* :y = the co-ordinates of the Glyph for the y-axis
   def self.label(args)
     [Bio::Graphics::Primitive.new(:text, 
                    :text => args[:text], 
@@ -344,26 +520,17 @@ attr_reader :glyphs
                    :fill => "black", 
                    :style => "font-family:monospace;")]
   end
+  
   #The list of pre-defined gradients
   def self.gradients #needs to know which of its gradients are predefined
     [:red_white_h, :green_white_h, :blue_white_h, :yellow_white_h, :red_white_radial, :green_white_radial, :blue_white_radial, :yellow_white_radial ]
   end
 
-  #Sets the the type (linear or radial) and colour of gradient for a pre-defined gradient
-  #along with the pertinent parameters for that type
+  #Sets the the type (linear or radial) and colours for a pre-defined gradient
   #
-  #+args+
-  #* gradient = a pre-defined gradient
-  #The types of gradient are:
-  #* red_white_h
-  #* green_white_h
-  #* blue_white_h
-  #* yellow_white_h
-  #* red_white_radial
-  #* green_white_radial
-  #* blue_white_radial
-  #* yellow_white_radial
-
+  #== args
+  #* gradient = a pre-defined gradient type, one of 
+  # [:red_white_h, :green_white_h, :blue_white_h, :yellow_white_h, :red_white_radial, :green_white_radial, :blue_white_radial, :yellow_white_radial ]
   def self.gradient(gradient)
     type, color = case gradient
     when :red_white_h

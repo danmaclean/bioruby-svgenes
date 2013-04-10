@@ -1,19 +1,15 @@
 module Bio
   class Graphics
- #The SVGEE class is used to create the text that will go into the final SVG file.
- #It takes information from the supplied Glyph objects, parses them and creates the SVG text
-  #necessary to display the given glyphs.
+    
+ #The Bio::Graphics::SVGEE class takes argument information in a hash and creates SVG Markup tags, which it will draw
 class SVGEE
   attr_reader :primitives, :defs, :supported_primitives
-  #Creates a new SVGEE object which will contain all the necessary objects to display all the features on a page
+  #Creates a new Bio::Graphics::SVGEE object which will contain all the necessary objects to display all the features on a page
   #
-  #+args+
-  #* width = the amount of the page width the svg should take up (100%)
-  #* height = the amount of the page height the svg should take up (100%)
-  #* style = the svg style information
-  #* primitives = an array of glyphs
-  #* defs =  the gradients that will be used in the SVG
-  #* \supported_primitives = a list of permitted Glyphs
+  #== args
+  #* :width = the width of the SVG page (100%)
+  #* :height = the amount of the page height the svg should take up (100%)
+  #* :style = the svg style information
   def initialize(args)
     opts = {:width => '100%', :height => '100%'}.merge!(args)
     @width = opts[:width]
@@ -23,10 +19,12 @@ class SVGEE
     @defs = []
     @supported_primitives = [:circle, :rectangle, :ellipse, :line, :polyline, :text]
   end
+  
   #Produces the opening text for an svg file
   def open_tag
     %{<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="#{@width}" height="#{@height}" style="#{@style}" xmlns:xlink="http://www.w3.org/1999/xlink">}
   end
+  
   #Produces the closing text for an svg file
   def close_tag
     %{</svg>}

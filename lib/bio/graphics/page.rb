@@ -2,31 +2,17 @@ module Bio
   class Graphics
 
     ##
-    #The Page class represents the top level container on which svg objects are written. It will contain a scale
-    #and all the tracks along with their features. The scale will start at the genomic co-ordinates of the start
+    #The Bio::Graphics::Page class represents the page of the final rendered SVG and is the top level container into which Bio::Graphics::Tracks are added.
+    #It will contain a scale
+    #and all the tracks along with their features. The scale is calculated will start at the genomic co-ordinates of the start
     #of the first feature and stop at the end of the last feature)
-    #
-
-
     class Page
       #Creates a new Page object.
       #
-      #A new Page contains the following arguments:
-      #* height = the height of the page
-      #* width = the width of the page
-      #* style = includes the a background colour
-      #* svg = a new SVGEE object
-      #* scale_start = the scale-start of the page (1.0/0.0)
-      #* scale_stop = the scale-stop of the page (-1.0/0.0)
-      #* tracks = an array of track objects with loads of features in it...
-      #* nt_per_percent = the number of nucleotides that are represented by 1% of the page (1);
-      #* num_intervals = the number of intervals
-      #* track_top = the position of the top of the first track (30)
-      #
-      #A new page maybe set up as follows:
-      # @page = Bio::Graphics::Page.new(:width => 800,
-      # :height => 110, :number_of_intervals => 10)
-      #
+      #== args
+      #* :height = the minimum height of the rendered page
+      #* :width = the minimum width of the rendered page
+      #* :background_color = the background color of the page (default none), can be any SVG colour eg rgb(256,0,0) or #FF0000
       def initialize(args)
         @height = args[:height]
         @width = args[:width]
@@ -47,9 +33,9 @@ module Bio
         #  @width = width
         #end
       end
-      #Takes a custom-written json file and writes an svg page to file which will contain the given features described within the json file.
-      #* +args+ - a custom-written json file describing the parameters and resources needed for a new page
 
+      #Takes a custom-written json file and uses it to generate an SVG document based on the information in that page.
+      #* :json a JSON file describing the parameters and files needed to build an SVG document
       def self.from_json(args)
         require 'rubygems'
         require 'json'
@@ -120,8 +106,8 @@ module Bio
       end
 
       #Parses a GFF file into an Array of Bio::GFF::GFF3::Record[http://bioruby.org/rdoc/Bio/GFF/GFF3/Record.html] objects
-      #* +gff_file+ - a GFF-formatted file
-      #* +returns+ - an Array of Bio::GFF::GFF3::Record[http://bioruby.org/rdoc/Bio/GFF/GFF3/Record.html] objects
+      #* gff_file - a GFF-formatted file
+      #* returns - an Array of Bio::GFF::GFF3::Record[http://bioruby.org/rdoc/Bio/GFF/GFF3/Record.html] objects
       def self.parse_gff(gff_file)
         require 'bio'
         a = []
@@ -132,9 +118,91 @@ module Bio
         a
       end
 
-      #Calculates the colour or gradient for the supplied Bio::Graphics::Track objects and adds them to the Track array for the current Page
-      #* +args+ - an Array of Bio::Graphics::Track objects
-      #* +returns+ - the last element of the Track array
+      #adds a new Bio::Graphics::Track object to the current Bio::Graphics::Page object
+      #
+      #==args
+      #
+      #* :glyph = one of Bio::Graphics::Glyphs#glyphs currently 
+      # [:generic, :directed, :transcript, :scale, :label, :histogram, :circle, :down_triangle, :up_triangle, :span]
+      #* :stroke_color =  the outline colour of the glyphs in the track (default = "black"), can be any SVG colour eg rgb(256,0,0) or #FF0000
+      #* :fill_color = the fill colour of the glyphs in the track (default = 'red'), can be any SVG colour eg rgb(256,0,0) or #FF0000, or one of the built in gradient types Bio::Graphics::Glyph#gradients 
+      # [:red_white_h, :green_white_h, :blue_white_h, :yellow_white_h, :red_white_radial, :green_white_radial, :blue_white_radial, :yellow_white_radial ]
+      #or a custom definition of a gradient
+      # {:type => :radial, 
+      # :id => :custom, 
+      # :cx => 5, 
+      # :cy => 5, 
+      # :r => 50, 
+      # :fx => 50, 
+      # :fy => 50, 
+      #   :stops => [ {
+      #        :offset => 0, 
+      #        :color => 'rgb(255,255,255)', 
+      #        :opacity => 0
+      #        },  {
+      #        :offset => 100, 
+      #        :color => 'rgb(0,127,200)', 
+      #        :opacity => 1
+      #        }, ]
+      # } 
+      #* :track_height = minimum height for the track, will be modified automatically if more space is needed e.g for overlapping features (default = auto),
+      #* :name = a displayed name for the track (default = 'feature_track')
+      #* :label = display the name given to the track (default = true), 
+      #* :stroke_width = width in pixels of the outline of the glyphs (default=1)
+      #* :x_round = x radius of the ellipse used to round off the corners of rectangles (default = 1)
+      #* :y_round = y radius of the ellipse used to round off the corners of rectangles (default = 1)
+      #:utr_fill_color = the fill colour of the utr part of the glyph (default = 'black'), can be any SVG colour eg rgb(256,0,0) or #FF0000, or one of the built in gradient types Bio::Graphics::Glyph#gradients
+      # [:red_white_h, :green_white_h, :blue_white_h, :yellow_white_h, :red_white_radial, :green_white_radial, :blue_white_radial, :yellow_white_radial ]
+      #or a custom definition of a gradient
+      # {:type => :radial, 
+      # :id => :custom, 
+      # :cx => 5, 
+      # :cy => 5, 
+      # :r => 50, 
+      # :fx => 50, 
+      # :fy => 50, 
+      #   :stops => [ {
+      #        :offset => 0, 
+      #        :color => 'rgb(255,255,255)', 
+      #        :opacity => 0
+      #        },  {
+      #        :offset => 100, 
+      #        :color => 'rgb(0,127,200)', 
+      #        :opacity => 1
+      #        }, ]
+      # }
+      #* :utr_stroke = the outline colour of the utr part of the glyph (default = "black"), can be any SVG colour eg rgb(256,0,0) or #FF0000
+      #* :utr_stroke_width = The width of the outline stroke for the utr part of the glyph (default = 1)
+      #* :exon_fill_color = the fill colour of the utr part of the glyph (default = 'red'), can be any SVG colour eg rgb(256,0,0) or #FF0000, or one of the built in gradient types Bio::Graphics::Glyph#gradients or a custom definition of a gradient 
+      # [:red_white_h, :green_white_h, :blue_white_h, :yellow_white_h, :red_white_radial, :green_white_radial, :blue_white_radial, :yellow_white_radial ]
+      #or a custom definition of a gradient
+      # {:type => :radial, 
+      # :id => :custom, 
+      # :cx => 5, 
+      # :cy => 5, 
+      # :r => 50, 
+      # :fx => 50, 
+      # :fy => 50, 
+      #   :stops => [ {
+      #        :offset => 0, 
+      #        :color => 'rgb(255,255,255)', 
+      #        :opacity => 0
+      #        },  {
+      #        :offset => 100, 
+      #        :color => 'rgb(0,127,200)', 
+      #        :opacity => 1
+      #        }, ]
+      # 
+      #* :exon_stroke = the outline colour of the exon part of the glyph (default = "black") can be any SVG colour eg rgb(256,0,0) or #FF0000
+      #* :exon_stroke_width = The width of the outline stroke for the exon part of the glyph (default = 1)
+      #* :line_color = the colour for the line part that joins the blocks (default = 'black') can be any SVG colour eg rgb(256,0,0) or #FF0000
+      #* :line_width = the width ffor the line part that joins the blocks (default = 1)
+      #* :exon_style = an arbitrary SVG compliant style string eg "fill-opacity:0.4;" 
+      #* :utr_style = an arbitrary SVG compliant style string eg "fill-opacity:0.4;" 
+      #* :line_style = an arbitrary SVG compliant style string eg "fill-opacity:0.4;" 
+      #* :gap_marker = style of the line between blocks - either angled or straight
+      #=== returns
+      # a new Bio::Graphics::Track object
       def add_track(args)
         #sort out the colour/gradient options
         [:fill_color, :exon_fill_color, :utr_fill_color].each do |colour_tag|
@@ -161,12 +229,13 @@ module Bio
         end
       end
 
-      #Adds the  Bio::Graphics::Primitive objects to the SVGEE object
+      #Adds scale bar to the list of objects to be rendered in the final
       def draw_scale
         Glyph.scale(:start => @scale_start,
                     :stop => @scale_stop,
                     :number_of_intervals => @num_intervals, :page_width => @width).each { |g| @svg.add_primitive(g) }
       end
+      
       #Adds the Bio::Graphics::Primitive objects to the SVGEE object
       #* +args+ - an Array of Bio::Graphics::Primitive object
       def draw_label(args)
@@ -174,48 +243,41 @@ module Bio
                     :x => args[:x],
                     :y => args[:y]).each { |g| @svg.add_primitive(g) }
       end
-      #Adds the Bio::Graphics::Primitive objects to the SVGEE object
-      #* +args+ - an Array of Bio::Graphics::Primitive objects of the stated type
+      
+
       def draw_generic(args) #remember presentation info comes from track@args when the track is defined
         Glyph.generic(args).each { |g| @svg.add_primitive(g) }
       end
-      #Adds the Bio::Graphics::Primitive objects to the SVGEE object
-      #* +args+ - an Array of Bio::Graphics::Primitive objects of the stated type
+
       def draw_directed(args)
         Glyph.directed(args).each { |g| @svg.add_primitive(g) }
       end
-      #Adds the Bio::Graphics::Primitive objects to the SVGEE object
-      #* +args+ - an Array of Bio::Graphics::Primitive objects of the stated type
+ 
       def draw_circle(args)
         Glyph.circle(args).each { |g| @svg.add_primitive(g) }
       end
-      #Adds the Bio::Graphics::Primitive objects to the SVGEE object
-      #* +args+ - an Array of Bio::Graphics::Primitive objects of the stated type
+
       def draw_transcript(args)
         Glyph.transcript(args).each { |g| @svg.add_primitive(g) }
       end
-      #Adds the Bio::Graphics::Primitive objects to the SVGEE object
-      #* +args+ - an Array of Bio::Graphics::Primitive objects of the stated type
+
       def draw_histogram(args)
         Glyph.generic(args).each { |g| @svg.add_primitive(g) }
       end
-      #Adds the Bio::Graphics::Primitive objects to the SVGEE object
-      #* +args+ - an Array of Bio::Graphics::Primitive objects of the stated type
+
       def draw_up_triangle(args)
         Glyph.up_triangle(args).each { |g| @svg.add_primitive(g) }
       end
-      #Adds the Bio::Graphics::Primitive objects to the SVGEE object
-      #* +args+ - an Array of Bio::Graphics::Primitive objects of the stated type
+
       def draw_down_triangle(args)
         Glyph.down_triangle(args).each { |g| @svg.add_primitive(g) }
       end
-      #Adds the Bio::Graphics::Primitive objects to the SVGEE object
-      #* +args+ - an Array of Bio::Graphics::Primitive objects of the stated type
+
       def draw_span(args)
         Glyph.span(args).each { |g| @svg.add_primitive(g) }
       end
 
-      #Takes a Bio::Graphics::Track object and sorts out the input information into a user friendly format.
+      #Takes a Bio::Graphics::Track object and does the work to draw features
       #
       #It examines the the type of track and calculates the required parameters
       #* +args+ - an Array of Bio::Graphics::Track object
@@ -311,15 +373,12 @@ module Bio
                                #@svg.update_width(@width + 200)
 
       end
-      #Provides the number of pixels required for a given number of nucleotides, e.g the length of a certain exon
-      #* +num+ - the number of nucleotides
-      #* +returns+ -  the required number of pixels to draw the object
+      #Calculates the pixel value for a given number
       def to_px(num)
         (num.to_f / @nt_per_px_x.to_f)
       end
 
-      #Pulls together all track information to create svg text which will draw all the features on the page to scale
-      #Uses the methods +get_limits+ and +draw_scale+ and then +draw_feature+ for each track on the page
+      #generates the SVG text
       def get_markup
         get_limits
         draw_scale
@@ -328,13 +387,12 @@ module Bio
         end
         @svg.draw
       end
-      #Prints out the svg text
+      #Prints the svg text to STDOUT
       def draw
         puts get_markup
       end
 
-      #Writes the svg text to a file
-      #* +file+ - the file to which the svg text should be written
+      #Writes the SVG text to a file
       def write(file)
         File.open(file, 'w').write(get_markup)
       end

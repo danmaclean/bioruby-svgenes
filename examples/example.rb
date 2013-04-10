@@ -1,24 +1,28 @@
 #!/usr/bin/env ruby
 #
-#  untitled
+#  example.rb
 #
 #  Created by Dan MacLean (TSL) on 2012-09-28.
 #  Copyright (c)  . All rights reserved.
 ###################################################
-$LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
-$LOAD_PATH.unshift(File.dirname(__FILE__))
+
+##A very straightforward example that creates all the features and tracks explicitly.
+
 
 require 'bio-svgenes'
 
+##create the page
 p = Bio::Graphics::Page.new(:width => 800, 
              :height => 200, 
-             :number_of_intervals => 10)
+             :number_of_intervals => 10
+             )
              
-             
+##add a generic glyph track             
 generic_track = p.add_track(:glyph => :generic, 
                             :name => 'generic_features', 
                             :label => true  )
-                            
+
+##and some features                            
 feature1 = Bio::Graphics::MiniFeature.new(:start => 923, :end => 2212, :strand => '+', :id => "MyFeature")
 generic_track.add(feature1) 
 feature2 = Bio::Graphics::MiniFeature.new(:start => 467, :end => 1234)
@@ -33,7 +37,7 @@ feature2 = Bio::Graphics::MiniFeature.new(:start => 12000, :end => 12030)
 generic_track.add(feature2)
 
 
-
+##another generic track
 generic_track = p.add_track(:glyph => :generic, :name => 'more_generic_features', :label => true, :fill_color => 'green' )
 
 feature1 = Bio::Graphics::MiniFeature.new(:start => 923, :end => 2212)
@@ -43,7 +47,7 @@ generic_track.add(feature1)
 feature1 = Bio::Graphics::MiniFeature.new(:start => 467, :end => 15000)
 generic_track.add(feature1)
 
-
+##another generic 
 generic_track = p.add_track(:glyph => :generic, 
                             :name => 'yet_more_generic_features', 
                             :label => true, 

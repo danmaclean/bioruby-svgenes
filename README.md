@@ -67,9 +67,7 @@ This process is repeated for all the features and tracks you want to show in the
 
 See the RDOC in the packages doc directory for more information.
 
-#### 
  
-
 
 
 
