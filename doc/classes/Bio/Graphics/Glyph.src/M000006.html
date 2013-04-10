@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>span (Bio::Graphics::Glyph)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/bio/graphics/glyph.rb, line 289</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">span</span>(<span class="ruby-identifier">args</span>)
+    <span class="ruby-identifier">args</span> = {
+      <span class="ruby-identifier">:height</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">10</span>,
+      <span class="ruby-identifier">:fill_color</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'red'</span>,
+      <span class="ruby-identifier">:stroke</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;black&quot;</span>,
+      <span class="ruby-identifier">:stroke_width</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">1</span>,
+      <span class="ruby-identifier">:style</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;fill-opacity:1;&quot;</span>
+    }.<span class="ruby-identifier">merge!</span>(<span class="ruby-identifier">args</span>)
+    <span class="ruby-identifier">args</span>[<span class="ruby-identifier">:x1</span>] = <span class="ruby-identifier">args</span>[<span class="ruby-identifier">:x</span>]
+    <span class="ruby-identifier">args</span>[<span class="ruby-identifier">:x2</span>] = <span class="ruby-identifier">args</span>[<span class="ruby-identifier">:x</span>] <span class="ruby-operator">+</span> <span class="ruby-identifier">args</span>[<span class="ruby-identifier">:width</span>]
+    <span class="ruby-identifier">args</span>[<span class="ruby-identifier">:y1</span>] = <span class="ruby-identifier">args</span>[<span class="ruby-identifier">:y</span>]
+    <span class="ruby-identifier">args</span>[<span class="ruby-identifier">:y2</span>] = <span class="ruby-identifier">args</span>[<span class="ruby-identifier">:y</span>]
+    [<span class="ruby-constant">Bio</span><span class="ruby-operator">::</span><span class="ruby-constant">Graphics</span><span class="ruby-operator">::</span><span class="ruby-constant">Primitive</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">:line</span>, <span class="ruby-identifier">args</span>)]
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

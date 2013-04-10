@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>from_json (Bio::Graphics::Page)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/bio/graphics/page.rb, line 39</span>
+      <span class="ruby-keyword kw">def</span>  <span class="ruby-keyword kw">self</span><span class="ruby-keyword kw">self</span>..<span class="ruby-identifier">from_json</span><span class="ruby-identifier">from_json</span>(<span class="ruby-identifier">args</span>)
+        <span class="ruby-identifier">require</span> <span class="ruby-value str">'rubygems'</span>
+        <span class="ruby-identifier">require</span> <span class="ruby-value str">'json'</span>
+        <span class="ruby-identifier">data</span> = <span class="ruby-constant">JSON</span>.<span class="ruby-identifier">parse</span>(<span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-identifier">args</span>[<span class="ruby-identifier">:json</span>], <span class="ruby-value str">'r'</span>).<span class="ruby-identifier">read</span>)
+        <span class="ruby-identifier">p</span> = <span class="ruby-constant">Page</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">:width</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">data</span>[<span class="ruby-value str">&quot;Page&quot;</span>][<span class="ruby-value str">&quot;width&quot;</span>],
+                     <span class="ruby-identifier">:height</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">data</span>[<span class="ruby-value str">&quot;Page&quot;</span>][<span class="ruby-value str">&quot;height&quot;</span>],
+                     <span class="ruby-identifier">:number_of_intervals</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">data</span>[<span class="ruby-value str">&quot;Page&quot;</span>][<span class="ruby-value str">&quot;intervals&quot;</span>])
+        <span class="ruby-identifier">data</span>[<span class="ruby-value str">&quot;Tracks&quot;</span>].<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">track</span><span class="ruby-operator">|</span>
+          <span class="ruby-comment cmt">#prep the track args</span>
+          <span class="ruby-identifier">track_args</span> = <span class="ruby-identifier">track</span>.<span class="ruby-identifier">dup</span>
+          <span class="ruby-identifier">track_args</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-value str">&quot;file&quot;</span>)
+          <span class="ruby-identifier">track_args</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-value str">&quot;file_type&quot;</span>)
+          <span class="ruby-identifier">track_args</span> = <span class="ruby-identifier">track_args</span>.<span class="ruby-identifier">inject</span>({}) { <span class="ruby-operator">|</span><span class="ruby-identifier">memo</span>, (<span class="ruby-identifier">k</span>, <span class="ruby-identifier">v</span>)<span class="ruby-operator">|</span> <span class="ruby-identifier">memo</span>[<span class="ruby-identifier">k</span>.<span class="ruby-identifier">to_sym</span>] = <span class="ruby-identifier">v</span>; <span class="ruby-identifier">memo</span> }
+          <span class="ruby-comment cmt">##convert any of the pre-made gradient strings in the keys to symbol</span>
+          <span class="ruby-identifier">track_args</span>.<span class="ruby-identifier">each_key</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">k</span><span class="ruby-operator">|</span>
+            <span class="ruby-keyword kw">next</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">track_args</span>[<span class="ruby-identifier">k</span>].<span class="ruby-identifier">respond_to?</span>(<span class="ruby-identifier">:to_sym</span>)
+            <span class="ruby-identifier">track_args</span>[<span class="ruby-identifier">k</span>] = <span class="ruby-identifier">track_args</span>[<span class="ruby-identifier">k</span>].<span class="ruby-identifier">to_sym</span> <span class="ruby-keyword kw">if</span> <span class="ruby-constant">Glyph</span>.<span class="ruby-identifier">gradients</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">track_args</span>[<span class="ruby-identifier">k</span>].<span class="ruby-identifier">to_sym</span>)
+          <span class="ruby-keyword kw">end</span>
+
+          <span class="ruby-identifier">svg_track</span> = <span class="ruby-identifier">p</span>.<span class="ruby-identifier">add_track</span>(<span class="ruby-identifier">track_args</span>)
+          <span class="ruby-identifier">features</span> = [] <span class="ruby-comment cmt">##set up the features...</span>
+
+          <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">track</span>[<span class="ruby-value str">&quot;file_type&quot;</span>] <span class="ruby-comment cmt">##deal with the gff and data files</span>
+            <span class="ruby-keyword kw">when</span> <span class="ruby-value str">&quot;gff&quot;</span>
+              <span class="ruby-identifier">groups</span> = {}
+              <span class="ruby-identifier">parentless_features</span> = []
+              <span class="ruby-constant">Page</span>.<span class="ruby-identifier">parse_gff</span>(<span class="ruby-identifier">track</span>[<span class="ruby-value str">&quot;file&quot;</span>]).<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">gff</span><span class="ruby-operator">|</span> <span class="ruby-comment cmt">#gets features in a list and links their children to them as members of the array at the key</span>
+                <span class="ruby-identifier">parent_id</span> = <span class="ruby-identifier">gff</span>.<span class="ruby-identifier">attributes</span>.<span class="ruby-identifier">select</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">a</span><span class="ruby-operator">|</span> <span class="ruby-identifier">a</span>.<span class="ruby-identifier">first</span> <span class="ruby-operator">==</span> <span class="ruby-value str">'Parent'</span> }
+                <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">parent_id</span>.<span class="ruby-identifier">empty?</span>
+                  <span class="ruby-identifier">parentless_features</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">gff</span>
+                <span class="ruby-keyword kw">else</span>
+                  <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">groups</span>[<span class="ruby-identifier">parent_id</span>.<span class="ruby-identifier">first</span>.<span class="ruby-identifier">last</span>].<span class="ruby-identifier">nil?</span>
+                    <span class="ruby-identifier">groups</span>[<span class="ruby-identifier">parent_id</span>.<span class="ruby-identifier">first</span>.<span class="ruby-identifier">last</span>] = []
+                    <span class="ruby-identifier">groups</span>[<span class="ruby-identifier">parent_id</span>.<span class="ruby-identifier">first</span>.<span class="ruby-identifier">last</span>] <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">gff</span>
+                  <span class="ruby-keyword kw">else</span>
+                    <span class="ruby-identifier">groups</span>[<span class="ruby-identifier">parent_id</span>.<span class="ruby-identifier">first</span>.<span class="ruby-identifier">last</span>] <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">gff</span>
+                  <span class="ruby-keyword kw">end</span>
+                <span class="ruby-keyword kw">end</span>
+              <span class="ruby-keyword kw">end</span>
+              <span class="ruby-comment cmt">#now flick through the parentless features and add any exons / UTRs</span>
+              <span class="ruby-identifier">parentless_features</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">plf</span><span class="ruby-operator">|</span>
+                <span class="ruby-identifier">require</span> <span class="ruby-value str">'pp'</span>
+                <span class="ruby-comment cmt">#pp parentless_features</span>
+                <span class="ruby-identifier">gff_id</span> = <span class="ruby-identifier">plf</span>.<span class="ruby-identifier">attributes</span>.<span class="ruby-identifier">select</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">a</span><span class="ruby-operator">|</span> <span class="ruby-identifier">a</span>.<span class="ruby-identifier">first</span> <span class="ruby-operator">==</span> <span class="ruby-value str">'ID'</span> }
+                <span class="ruby-identifier">gff_id</span> = <span class="ruby-identifier">gff_id</span>.<span class="ruby-identifier">first</span>.<span class="ruby-identifier">last</span>
+                <span class="ruby-identifier">exons</span> = []
+                <span class="ruby-identifier">utrs</span> = []
+                <span class="ruby-identifier">children</span> = <span class="ruby-identifier">groups</span>[<span class="ruby-identifier">gff_id</span>] <span class="ruby-operator">||</span> <span class="ruby-identifier">children</span> = []
+                <span class="ruby-identifier">children</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">child</span><span class="ruby-operator">|</span>
+                  <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">child</span>.<span class="ruby-identifier">feature</span> <span class="ruby-operator">==</span> <span class="ruby-value str">'exon'</span> <span class="ruby-keyword kw">or</span> <span class="ruby-identifier">child</span>.<span class="ruby-identifier">feature</span> <span class="ruby-operator">==</span> <span class="ruby-value str">'CDS'</span>
+                    <span class="ruby-identifier">exons</span> <span class="ruby-operator">+=</span> [<span class="ruby-identifier">child</span>.<span class="ruby-identifier">start</span>, <span class="ruby-identifier">child</span>.<span class="ruby-identifier">end</span>]
+                  <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">child</span>.<span class="ruby-identifier">feature</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/utr/i</span>
+                    <span class="ruby-identifier">utrs</span> <span class="ruby-operator">+=</span> [<span class="ruby-identifier">child</span>.<span class="ruby-identifier">start</span>, <span class="ruby-identifier">child</span>.<span class="ruby-identifier">end</span>]
+                  <span class="ruby-keyword kw">end</span>
+                <span class="ruby-keyword kw">end</span>
+                <span class="ruby-identifier">features</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-constant">MiniFeature</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">:start</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">plf</span>.<span class="ruby-identifier">start</span>, <span class="ruby-identifier">:end</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">plf</span>.<span class="ruby-identifier">end</span>, <span class="ruby-identifier">:exons</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">exons</span>, <span class="ruby-identifier">:utrs</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">utrs</span>, <span class="ruby-identifier">:strand</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">plf</span>.<span class="ruby-identifier">strand</span>, <span class="ruby-identifier">:id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">gff_id</span>)
+              <span class="ruby-keyword kw">end</span> <span class="ruby-comment cmt">#parentless features end</span>
+            <span class="ruby-keyword kw">when</span> <span class="ruby-value str">&quot;data&quot;</span>
+              <span class="ruby-comment cmt">##each line is a data feature</span>
+              <span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-identifier">track</span>[<span class="ruby-value str">&quot;file&quot;</span>], <span class="ruby-value str">&quot;r&quot;</span>).<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">line</span><span class="ruby-operator">|</span>
+                <span class="ruby-identifier">start</span>, <span class="ruby-identifier">stop</span>, <span class="ruby-identifier">value</span> = <span class="ruby-identifier">line</span>.<span class="ruby-identifier">split</span>(<span class="ruby-regexp re">/\t/</span>)
+                <span class="ruby-identifier">features</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-constant">MiniFeature</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">:start</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">start</span>.<span class="ruby-identifier">to_i</span>, <span class="ruby-identifier">:end</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">stop</span>.<span class="ruby-identifier">to_i</span>, <span class="ruby-identifier">:segment_height</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">value</span>.<span class="ruby-identifier">to_f</span>)
+              <span class="ruby-keyword kw">end</span>
+          <span class="ruby-keyword kw">end</span> <span class="ruby-comment cmt">#data end</span>
+          <span class="ruby-identifier">features</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">f</span><span class="ruby-operator">|</span> <span class="ruby-identifier">svg_track</span>.<span class="ruby-identifier">add</span>(<span class="ruby-identifier">f</span>) }
+        <span class="ruby-keyword kw">end</span> <span class="ruby-comment cmt">#track end</span>
+        <span class="ruby-identifier">p</span>.<span class="ruby-identifier">write</span>(<span class="ruby-identifier">args</span>[<span class="ruby-identifier">:outfile</span>])
+      <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

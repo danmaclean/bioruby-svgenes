@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>scale (Bio::Graphics::Glyph)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/bio/graphics/glyph.rb, line 470</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">scale</span>(<span class="ruby-identifier">args</span>)
+    <span class="ruby-identifier">first_mark</span> = <span class="ruby-identifier">args</span>[<span class="ruby-identifier">:start</span>]
+    <span class="ruby-identifier">last_mark</span> = <span class="ruby-identifier">args</span>[<span class="ruby-identifier">:stop</span>] 
+    <span class="ruby-comment cmt">#(num.to_f / @nt_per_px_x.to_f)</span>
+    <span class="ruby-identifier">full_dist</span> = <span class="ruby-identifier">last_mark</span> <span class="ruby-operator">-</span> <span class="ruby-identifier">first_mark</span>
+    <span class="ruby-identifier">interval_width</span> =  <span class="ruby-identifier">full_dist</span> <span class="ruby-operator">/</span> (<span class="ruby-identifier">args</span>[<span class="ruby-identifier">:number_of_intervals</span>] <span class="ruby-operator">-</span> <span class="ruby-value">1</span>) 
+
+
+    <span class="ruby-identifier">a</span> = [<span class="ruby-constant">Bio</span><span class="ruby-operator">::</span><span class="ruby-constant">Graphics</span><span class="ruby-operator">::</span><span class="ruby-constant">Primitive</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">:line</span>, 
+                               <span class="ruby-identifier">:stroke</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'black'</span>, 
+                               <span class="ruby-identifier">:stroke_width</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">1</span>, 
+                               <span class="ruby-identifier">:x1</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">1</span>, <span class="ruby-identifier">:x2</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">args</span>[<span class="ruby-identifier">:page_width</span>],<span class="ruby-comment cmt"># * 1.1, </span>
+                               <span class="ruby-identifier">:y1</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;20&quot;</span>, <span class="ruby-identifier">:y2</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;20&quot;</span>  )]
+
+
+    <span class="ruby-identifier">marks</span> = (<span class="ruby-identifier">first_mark</span><span class="ruby-operator">..</span><span class="ruby-identifier">last_mark</span>).<span class="ruby-identifier">step</span>(<span class="ruby-identifier">interval_width</span>).<span class="ruby-identifier">to_a</span>
+  
+    <span class="ruby-identifier">px_per_nt</span> =  <span class="ruby-identifier">args</span>[<span class="ruby-identifier">:page_width</span>].<span class="ruby-identifier">to_f</span> <span class="ruby-operator">/</span> <span class="ruby-identifier">full_dist</span>.<span class="ruby-identifier">to_f</span>
+    <span class="ruby-identifier">marks</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">mark</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">x</span> =   (<span class="ruby-identifier">mark</span>.<span class="ruby-identifier">to_f</span> <span class="ruby-operator">-</span> <span class="ruby-identifier">first_mark</span> ).<span class="ruby-identifier">to_f</span> <span class="ruby-operator">*</span> <span class="ruby-identifier">px_per_nt</span>
+      <span class="ruby-identifier">a</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-constant">Bio</span><span class="ruby-operator">::</span><span class="ruby-constant">Graphics</span><span class="ruby-operator">::</span><span class="ruby-constant">Primitive</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">:rectangle</span>, 
+                         <span class="ruby-identifier">:x</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">x</span>, 
+                         <span class="ruby-identifier">:y</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">20</span>, 
+                         <span class="ruby-identifier">:stroke</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'black'</span>, 
+                         <span class="ruby-identifier">:stroke_width</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">1</span>, 
+                         <span class="ruby-identifier">:width</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">1</span>, 
+                         <span class="ruby-identifier">:height</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">5</span> )
+                         
+      <span class="ruby-identifier">a</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-constant">Bio</span><span class="ruby-operator">::</span><span class="ruby-constant">Graphics</span><span class="ruby-operator">::</span><span class="ruby-constant">Primitive</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">:text</span>, 
+                         <span class="ruby-identifier">:x</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">x</span>, 
+                         <span class="ruby-identifier">:y</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">40</span>, <span class="ruby-identifier">:fill</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'black'</span>, 
+                         <span class="ruby-identifier">:text</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">mark</span>, 
+                         <span class="ruby-identifier">:style</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;font-family:Arial;font-style:italic&quot;</span>)
+    <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">a</span>
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

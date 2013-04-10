@@ -1,0 +1,360 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+   "http://www.w3.org/TR/html4/strict.dtd">
+
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>bio-svgenes Manual</title>
+	<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
+	<meta name="generator" content="TextMate http://macromates.com/">
+	<meta name="author" content="Dan MacLean (TSL)">
+	<!-- Date: 2013-04-09 -->
+</head>
+<body>
+<div style="padding : 2em;">
+<h1>bio-svgenes</h1>
+
+<h2>A Ruby gem for rendering genomic features quickly and easily in SVG format</h2>
+
+<p>SVGenes is a Ruby-language library that uses SVG primitives to render typical genomic glyphs through a simple and flexible Ruby interface. </p>
+
+<h2>Installation</h2>
+
+<p>This should be easy - the package is available as a gem. If you have an internet connection try:</p>
+
+<pre><code>gem install bio-svgenes
+</code></pre>
+
+<p>If this doesn't work try,</p>
+
+<pre><code>sudo gem install bio-svgenes
+</code></pre>
+
+<h2>Basic use</h2>
+
+<ol>
+<li>Design</li>
+<li>Setting up a page</li>
+<li>Adding a track</li>
+<li>Creating and adding features</li>
+<li>Writing the resulting SVG</li>
+<li>Styling features
+<ol>
+<li>Available glyphs</li>
+<li>Setting basic styles: colours and outlines</li>
+<li>Setting advanced styles: gradients and arbitrary styles
+4 . Height options for tracks</li>
+</ol></li>
+<li>Generating SVG from JSON configuration files</li>
+<li>File formats</li>
+</ol>
+
+<h3>1. Design</h3>
+
+<p>The library implements a simple Page object (a Bio::Graphics::Page object) that defines the whole drawing area. It carries the horizontal track objects (Bio::Graphics::Track objects). Tracks are the level at which visual information is supplied providing the full styling capability of the SVG standard. 
+A glyph type is chosen for each track and all features in a track are rendered with the same glyph any of a selection of defined glyphs. The feature model within SVGenes is simple but flexible and not dependent on particular existing gene feature formats meaning graphics for any existing datasets can easily be created without need for conversion.</p>
+
+<p>To bring the code into your script, load in the gem</p>
+
+<pre><code>require 'bio-svgenes'
+</code></pre>
+
+<h3>2. Setting up a page</h3>
+
+<p>The first thing we need to do is set up the page object, a <code>Bio::Graphics::Page</code> instance. This defines the attributes of the page into which our features will be drawn.</p>
+
+<pre><code>p = Bio::Graphics::Page.new(
+             :width =&gt; 800, 
+             :height =&gt; 200, 
+             :number_of_intervals =&gt; 10
+)
+</code></pre>
+
+<p>The <code>:width</code> attribute specifies the minimum width of the page and the <code>:height</code> attribute specifies the minimum height. Each of these will be increased if successful rendering requires more room than specified. The <code>:number_of_intervals</code> attributes specifies the number of segments to divide the scale into. A scale is always drawn.</p>
+
+<h3>3. Add a track to the page</h3>
+
+<p>Next, we need to add a track to the page. We do this with the <code>Bio::Graphics::Page#add_track</code> method. Glyphs are rendered within tracks and tracks define how those glyphs will be styled. In this example we create a <code>generic</code> block glyph.</p>
+
+<pre><code>generic_track = p.add_track(
+    :glyph =&gt; :generic, 
+    :name =&gt; 'generic_features', 
+    :label =&gt; true  
+)
+</code></pre>
+
+<p>The <code>:name</code> attribute allows us to define a name for the track and the <code>:label</code> attribute explicitly states whether the name should be written onto the track.</p>
+
+<h3>4. Create a MiniFeature object</h3>
+
+<p>Each of the features is represented by a <code>Bio::Graphics::MiniFeature</code> object. This is easily created:</p>
+
+<pre><code>mini_feature = Bio::Graphics::MiniFeature.new(
+    :start =&gt; 923, 
+    :end =&gt; 2212, 
+    :strand =&gt; '+', 
+    :id =&gt; "MyFeature"
+)
+</code></pre>
+
+<p>The minimum information you need to provide for a feature is the start and end. In this example, we add a strand and an id for the feature.</p>
+
+<h4>Add the feature to the track</h4>
+
+<p>The feature now needs to be added to the track object to be considered during rendering, we use <code>Bio::Graphics::Track#add</code> for this.</p>
+
+<pre><code>generic_track.add(mini_feature)
+</code></pre>
+
+<h3>5. Write the output to a file</h3>
+
+<p>This process is repeated for all the features and tracks you want to show in the final rendered figure. We then tell the page to render itself to a file.</p>
+
+<pre><code>p.write("output.svg")
+</code></pre>
+
+<h3>6. Styling features</h3>
+
+<p>Selecting a style for the features in a track is done when you create the Bio::Graphics::Track object. The style information is applied to all features that appear in that track. </p>
+
+<h4>Available glyphs</h4>
+
+<p>A range of glyphs for features are used, namely</p>
+
+<pre><code>:generic, :directed, :transcript, :histogram, :circle, :down_triangle, :up_triangle, :span
+</code></pre>
+
+<p>These look like this</p>
+
+<ul>
+<li><code>:generic</code> <img src="img/generic.png" alt="generic glyph" title="" /></li>
+<li><code>:directed</code> <img src="img/directed.png" alt="directed glyph" title="" /></li>
+<li><code>:transcript</code> <img src="img/transcript.png" alt="transcript glyph" title="" /></li>
+<li><code>:histogram</code> <img src="img/histogram.png" alt="histogram glyph" title="" /></li>
+<li><code>:circle</code> <img src="img/circle.png" alt="circle glyph" title="" /></li>
+<li><code>:down_triangle</code> <img src="img/down_triangle.png" alt="down triangle glyph" title="" /></li>
+<li><code>:up_triangle</code> <img src="img/up_triangle.png" alt="up triangle glyph" title="" /></li>
+<li><code>:span</code> <img src="img/span.png" alt="span glyph" title="" /></li>
+</ul>
+
+<p>You can specify the glyph to use in the <code>add_track()</code> method for the page</p>
+
+<pre><code>track = page.add_track(
+    :glyph =&gt; :generic
+)
+</code></pre>
+
+<h4>Providing enough feature information for the glyph</h4>
+
+<p>Different types of glyphs need different types of information to render the feature fully. 
+<code>:generic, :circle, :up_triangle, :down_triangle, :span</code> glyphs need the minimum feature information, just a start and a stop. Start and end can be the same number if you want to specify a single nucleotide feature.</p>
+
+<pre><code>track = page.add_track(
+    :glyph =&gt; :circle
+)
+
+feature = Bio::Graphics::MiniFeature.new(
+    :start =&gt; 100,
+    :end =&gt; 200
+)
+
+track.add(feature)
+</code></pre>
+
+<p>In addition, the 'stranded' glyphs <code>:directed</code> and <code>:transcript</code> need a strand (+ will be assumed if none is provided).</p>
+
+<pre><code>track = page.add_track(
+    :glyph =&gt; :circle
+)
+
+feature = Bio::Graphics::MiniFeature.new(
+    :start =&gt; 100,
+    :end =&gt; 200,
+    :strand =&gt; '-'
+)
+
+track.add(feature)
+</code></pre>
+
+<p>The <code>:histogram</code> feature is a bit more complicated. Each bar in the histogram is a feature. It's width on the x-axis is specified by it's <code>:start</code> and <code>:end</code> as for the other features, but it has a <code>:segment_height</code> that specifies the bar-height</p>
+
+<pre><code>data_track = page.add_track(
+    :glyph =&gt; :histogram
+)
+
+data_feature = Bio::Graphics::MiniFeature.new(
+    :start =&gt; 100,
+    :end =&gt; 200,
+    :segment_height =&gt; 30
+)
+
+data_track.add(data_feature)
+</code></pre>
+
+<p>Histogram bars can have overlapping or gapped start and end positions if needed. </p>
+
+<p>Features to be rendered with the <code>:transcript</code> glyph need extra information. The exons and utrs are specified as even-numbered lists of start and stop positions. </p>
+
+<pre><code>track = page.add_track(
+    :glyph =&gt; :transcript
+)
+
+feature = Bio::Graphics::MiniFeature.new(
+    :start =&gt; 100,
+    :end =&gt; 200,
+    :strand =&gt; '-',
+    :utrs =&gt; [100,110,90,200],
+    :exons =&gt; [120,140,160,180]
+)
+
+track.add(feature)
+</code></pre>
+
+<h4>Setting fill and outline colours</h4>
+
+<p>Fill and outline colours are specified when creating the track. Any HTML/SVG compatible colour string can be used, so <code>rgb(125,123,0)</code> or <code>#ffff11</code> or <code>goldenrod</code> are all acceptable for each of the following attributes</p>
+
+<p><code>:stroke_color</code> is the outline colour of the glyph
+<code>:stroke_width</code> is the width of the outline of the glyph
+<code>:fill_color</code> is the fill colour of the glyph</p>
+
+<pre><code>track = page.add_track(
+    :glyph =&gt; :directed,
+    :stroke_color =&gt; 'black',
+    :fill_color =&gt; 'gold',
+    :stroke_width =&gt; '1',
+)
+</code></pre>
+
+<p>Transcript glyphs can have separate colours for the exons and utrs, using <code>:exon_fill_color</code> and <code>:utr_fill_color</code>. The line joining them can be coloured with <code>:line_color</code> and you can decide to have an angled line by setting <code>:gap_marker</code> to "angled"</p>
+
+<pre><code>transcript_track = page.add_track(
+    :glyph =&gt; :transcript, 
+    :exon_fill_color =&gt; 'green', 
+    :utr_fill_color =&gt; 'blue', 
+    :line_color =&gt; 'black', 
+    :gap_marker =&gt; 'angled'
+)
+</code></pre>
+
+<h4>Setting gradients and arbitrary styles</h4>
+
+<p>A number of gradient styles are built-in and can be easily used as a fill colour for glyphs. Two basic types <code>radial</code> (which start from a white centre and fade to a colour) and <code>horizontal</code> (which start from white along the bottom edge and fade to a colour) are available in red, blue, yellow and green. The symbols for the attributes are</p>
+
+<pre><code>:red_white_radial, :green_white_radial, :blue_white_radial, :yellow_white_radial, :red_white_h, :green_white_h, :blue_white, :yellow_white_h
+</code></pre>
+
+<p>and are set as</p>
+
+<pre><code>track = page.add_track(
+    :glyph =&gt; :directed,
+    :stroke_color =&gt; 'black',
+    :fill_color =&gt; :red_white_h
+)
+</code></pre>
+
+<p>Arbitrary gradients can be built according to the SVG gradient rules (see <a href="http://www.w3schools.com/svg/svg_grad_linear.asp">SVG gradient linear</a> and <a href="http://www.w3schools.com/svg/svg_grad_radial.asp">SVG gradient radial</a> ) using a ruby-ish attributes hash.</p>
+
+<pre><code>my_gradient = {
+
+    :radial =&gt; "grad1", 
+    :cx =&gt; 50, 
+    :cy =&gt; 50, 
+    :r =&gt; 50, :fx =&gt; 50, :
+    fy =&gt; 50, 
+    :stops =&gt; [ 
+        {
+            :offset =&gt; 0, 
+            :color =&gt; 'rgb(255,255,255)', 
+            :opacity =&gt; 0
+            },  
+            {
+                :offset =&gt; 100, 
+                :color =&gt; 'rgb(0,0,255)', 
+                :opacity =&gt; 1
+            }
+    ]
+}
+</code></pre>
+
+<p>simply pass this to the track <code>:fill_color</code> attribute.</p>
+
+<pre><code>track = page.add_track(
+    :glyph =&gt; :directed,
+    :stroke_color =&gt; 'black',
+    :fill_color =&gt; my_gradient
+)
+</code></pre>
+
+<p>The <code>:style</code> attribute can accept and use any arbitrarily complex SVG compliant style tag (see <a href="http://www.w3.org/TR/SVG/styling.html">SVG styling</a> ). A common use is to modify the opacity of glyphs</p>
+
+<pre><code>track = page.add_track(
+        :glyph =&gt; :generic, 
+        :style =&gt; "fill-opacity:0.4;"
+)
+</code></pre>
+
+<h4>Height options for tracks</h4>
+
+<p>The height of the glyphs may also be specified. Do this by setting the <code>:feature_height</code> attribute</p>
+
+<pre><code>track = page.add_track(
+        :glyph =&gt; :generic, 
+        :feature_height =&gt; 123
+)
+</code></pre>
+
+<p>In data tracks (with the <code>:histogram</code> glyph) a maximum value for the y-scale can be specified that will be enforced and prevent the scale from being auto-calculated. This allows for easy comparison between multiple data tracks, use <code>:max_y</code>.</p>
+
+<pre><code>track = page.add_track(
+        :glyph =&gt; :histogram, 
+        :max_y =&gt; 1000
+)
+</code></pre>
+
+<h3>6. Generating SVG from JSON configuration files</h3>
+
+<p>It is also possible to generate the SVG from a <a href="http://en.wikipedia.org/wiki/JSON">JSON</a> file containing the track information and a reference to file of features in <a href="http://www.sequenceontology.org/gff3.shtml">GFF</a> format or histogram data in a tab-delimited file. The following sample specifies the page and two tracks, one for features one for data. The new attributes <code>file</code> and <code>file_type</code> specify the file and file format respectively. </p>
+
+<pre><code>{
+"Page":{"width":800, "height":800, "intervals":15},
+"Tracks": [ 
+         {
+          "glyph":"generic",
+          "name":"Genes",
+          "label":true,
+          "file":"gene.gff",
+          "file_type":"gff",
+          "fill_color":"red", 
+          "stroke_width":1, 
+          "x_round":4,
+          "y_round":4
+         },
+        {
+          "glyph":"histogram",
+          "name":"Data",
+          "label":true,
+          "file":"data.txt",
+          "file_type":"data",
+          "track_height":100,
+          "fill_color":"yellow_white_radial",
+          "stroke_width":1
+         }
+        ]
+}
+</code></pre>
+
+<p>The data file has a simple format, for each bar of the histogram specify one row with three columns</p>
+
+<pre><code>start, end, height
+</code></pre>
+
+<p>To generate the file, run the provided accessory script <code>draw_from_json.rb</code> which is found in the package examples folder. Find the folder the gem installed into with <code>gem which bio-svgenes</code>. You can then run the script with the following
+
+<pre><code>ruby draw_from_json.rb --json_file json_config_file --svg_file svg_outfile.svg</code></pre>
+
+where <code>json_config_file</code> is the name of the file with the JSON in and <code>svg_outfile.svg</code> is the name of the file into which the SVG is written.	
+</p>
+</div>
+</body>
+</html>

@@ -1,0 +1,987 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Class: Bio::Graphics::Glyph</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Class</strong></td>
+          <td class="class-name-in-header">Bio::Graphics::Glyph</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../../../files/lib/bio/graphics/glyph_rb.html">
+                lib/bio/graphics/glyph.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        <tr class="top-aligned-row">
+            <td><strong>Parent:</strong></td>
+            <td>
+                Object
+            </td>
+        </tr>
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <p>
+A glyph is a particular shape that represents a genomic feature. <a
+href="Glyph.html">Bio::Graphics::Glyph</a> objects represent glyphs.
+Bio::Graphics::Glyphs are created internally according to specification
+from the <a href="Track.html">Bio::Graphics::Track</a> and not instantiated
+directly by the user. Internally, these are constructed as an array of <a
+href="Primitive.html">Bio::Graphics::Primitive</a> objects, which are
+collections of simple shapes, combined appropriately to make a glyph
+</p>
+
+    </div>
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000015">circle</a>&nbsp;&nbsp;
+      <a href="#M000016">directed</a>&nbsp;&nbsp;
+      <a href="#M000017">down_triangle</a>&nbsp;&nbsp;
+      <a href="#M000014">generic</a>&nbsp;&nbsp;
+      <a href="#M000024">gradient</a>&nbsp;&nbsp;
+      <a href="#M000023">gradients</a>&nbsp;&nbsp;
+      <a href="#M000022">label</a>&nbsp;&nbsp;
+      <a href="#M000021">scale</a>&nbsp;&nbsp;
+      <a href="#M000019">span</a>&nbsp;&nbsp;
+      <a href="#M000020">transcript</a>&nbsp;&nbsp;
+      <a href="#M000018">up_triangle</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+
+
+
+    <div id="attribute-list">
+      <h3 class="section-bar">Attributes</h3>
+
+      <div class="name-list">
+        <table>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">glyphs</td>
+          <td class="context-item-value">&nbsp;[R]&nbsp;</td>
+          <td class="context-item-desc">
+The different type of Glyphs are:
+
+<ul>
+<li>:<a href="Glyph.html#M000014">generic</a>
+
+</li>
+<li>:<a href="Glyph.html#M000015">circle</a>
+
+</li>
+<li>:<a href="Glyph.html#M000016">directed</a>
+
+</li>
+<li>:<a href="Glyph.html#M000017">down_triangle</a>
+
+</li>
+<li>:<a href="Glyph.html#M000018">up_triangle</a>
+
+</li>
+<li>:<a href="Glyph.html#M000019">span</a>
+
+</li>
+<li>:<a href="Glyph.html#M000020">transcript</a>
+
+</li>
+<li>:<a href="Glyph.html#M000021">scale</a>
+
+</li>
+<li>:<a href="Glyph.html#M000022">label</a>
+
+</li>
+<li>:histogram
+
+</li>
+</ul>
+</td>
+        </tr>
+        </table>
+      </div>
+    </div>
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Class methods</h3>
+
+      <div id="method-M000015" class="method-detail">
+        <a name="M000015"></a>
+
+        <div class="method-heading">
+          <a href="Glyph.src/M000015.html" target="Code" class="method-signature"
+            onclick="popupCode('Glyph.src/M000015.html');return false;">
+          <span class="method-name">circle</span><span class="method-args">(args)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+A circular glyph centered on the start of the feature it represents
+</p>
+<h2>args</h2>
+<ul>
+<li>:radius = the radius of the <a href="Glyph.html#M000015">circle</a>
+(default = 10)
+
+</li>
+<li>:fill_color = the fill colour of the <a href="Glyph.html">Glyph</a>
+(default = &#8216;red&#8217;), can be any SVG colour eg rgb(256,0,0) or
+FF0000, or one of the built in <a href="Glyph.html#M000024">gradient</a>
+types <a href="Glyph.html#M000023">Bio::Graphics::Glyph#gradients</a>
+
+</li>
+</ul>
+<pre>
+ [:red_white_h, :green_white_h, :blue_white_h, :yellow_white_h, :red_white_radial, :green_white_radial, :blue_white_radial, :yellow_white_radial ]
+</pre>
+<p>
+or a custom definition of a <a href="Glyph.html#M000024">gradient</a>
+</p>
+<pre>
+ {:type =&gt; :radial,
+ :id =&gt; :custom,
+ :cx =&gt; 5,
+ :cy =&gt; 5,
+ :r =&gt; 50,
+ :fx =&gt; 50,
+ :fy =&gt; 50,
+   :stops =&gt; [ {
+        :offset =&gt; 0,
+        :color =&gt; 'rgb(255,255,255)',
+        :opacity =&gt; 0
+        },  {
+        :offset =&gt; 100,
+        :color =&gt; 'rgb(0,127,200)',
+        :opacity =&gt; 1
+        }, ]
+ }  #* :stroke = the outline colour of the Glyph (default = &quot;black&quot;), can be any SVG colour eg rgb(256,0,0) or #FF0000
+</pre>
+<ul>
+<li>:stroke_width = The width of the outline stroke (default = 1), can be any
+SVG colour eg rgb(256,0,0) or FF0000
+
+</li>
+<li>:style = an arbitrary SVG compliant style string eg
+&quot;fill-opacity:0.4;&quot;
+
+</li>
+<li>:x = base x coordinate of the feature in pixels, usually added by the <a
+href="Page.html">Bio::Graphics::Page</a> object
+
+</li>
+<li>:y = base y coordinate of the feature in pixels, usually added by the <a
+href="Page.html">Bio::Graphics::Page</a> object
+
+</li>
+</ul>
+<h3>returns</h3>
+<ul>
+<li>An <a href="http://www.ruby-doc.org/core-2.0/Array.html">Array</a> of
+Bio::Graphic::Primitive objects
+
+</li>
+</ul>
+        </div>
+      </div>
+
+      <div id="method-M000016" class="method-detail">
+        <a name="M000016"></a>
+
+        <div class="method-heading">
+          <a href="Glyph.src/M000016.html" target="Code" class="method-signature"
+            onclick="popupCode('Glyph.src/M000016.html');return false;">
+          <span class="method-name">directed</span><span class="method-args">(args)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+A polygon glyph with a point on the end that represents the features strand
+and direction
+</p>
+<h2>args</h2>
+<ul>
+<li>:width = the width of the feature in px
+
+</li>
+<li>:fill_color = the fill colour of the <a href="Glyph.html">Glyph</a>
+(default = &#8216;red&#8217;), can be any SVG colour eg rgb(256,0,0) or
+FF0000, or one of the built in <a href="Glyph.html#M000024">gradient</a>
+types <a href="Glyph.html#M000023">Bio::Graphics::Glyph#gradients</a>
+
+</li>
+</ul>
+<pre>
+ [:red_white_h, :green_white_h, :blue_white_h, :yellow_white_h, :red_white_radial, :green_white_radial, :blue_white_radial, :yellow_white_radial ]
+</pre>
+<p>
+or a custom definition of a <a href="Glyph.html#M000024">gradient</a>
+</p>
+<pre>
+ {:type =&gt; :radial,
+ :id =&gt; :custom,
+ :cx =&gt; 5,
+ :cy =&gt; 5,
+ :r =&gt; 50,
+ :fx =&gt; 50,
+ :fy =&gt; 50,
+   :stops =&gt; [ {
+        :offset =&gt; 0,
+        :color =&gt; 'rgb(255,255,255)',
+        :opacity =&gt; 0
+        },  {
+        :offset =&gt; 100,
+        :color =&gt; 'rgb(0,127,200)',
+        :opacity =&gt; 1
+        }, ]
+ }
+</pre>
+<ul>
+<li>:stroke = the outline colour of the <a href="Glyph.html">Glyph</a> (default
+= &quot;black&quot;), can be any SVG colour eg rgb(256,0,0) or FF0000
+
+</li>
+<li>:stroke_width = The width of the outline stroke (default = 1), can be any
+SVG colour eg rgb(256,0,0) or FF0000
+
+</li>
+<li>:style = an arbitrary SVG compliant style string eg
+&quot;fill-opacity:0.4;&quot;
+
+</li>
+<li>:strand = the strand on which the feature is located. May be
+&#8217;+&#8217; or &#8217;-&#8217;
+
+</li>
+<li>:points = the x and y axis coordinates that make up the corners of the
+polygon, calculated and added by the <a
+href="Page.html">Bio::Graphics::Page</a> object
+
+</li>
+<li>:x = base x coordinate of the feature in pixels, usually added by the <a
+href="Page.html">Bio::Graphics::Page</a> object
+
+</li>
+<li>:y = base y coordinate of the feature in pixels, usually added by the <a
+href="Page.html">Bio::Graphics::Page</a> object
+
+</li>
+</ul>
+<p>
+The points of the polygon are calculated form the +:x+ and +:y+
+co-ordinates
+</p>
+<h3>returns</h3>
+<ul>
+<li>An <a href="http://www.ruby-doc.org/core-2.0/Array.html">Array</a> of
+Bio::Graphic::Primitive objects
+
+</li>
+</ul>
+        </div>
+      </div>
+
+      <div id="method-M000017" class="method-detail">
+        <a name="M000017"></a>
+
+        <div class="method-heading">
+          <a href="Glyph.src/M000017.html" target="Code" class="method-signature"
+            onclick="popupCode('Glyph.src/M000017.html');return false;">
+          <span class="method-name">down_triangle</span><span class="method-args">(args)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+A downward-pointing triangle glyph
+</p>
+<h2>args</h2>
+<ul>
+<li>:height = the height of the <a href="Glyph.html">Glyph</a> (default = 10)
+
+</li>
+<li>:fill_color = the fill colour of the <a href="Glyph.html">Glyph</a>
+(default = &#8216;red&#8217;), can be any SVG colour eg rgb(256,0,0) or
+FF0000, or one of the built in <a href="Glyph.html#M000024">gradient</a>
+types <a href="Glyph.html#M000023">Bio::Graphics::Glyph#gradients</a>
+
+</li>
+</ul>
+<pre>
+ [:red_white_h, :green_white_h, :blue_white_h, :yellow_white_h, :red_white_radial, :green_white_radial, :blue_white_radial, :yellow_white_radial ]
+</pre>
+<p>
+or a custom definition of a <a href="Glyph.html#M000024">gradient</a>
+</p>
+<pre>
+ {:type =&gt; :radial,
+ :id =&gt; :custom,
+ :cx =&gt; 5,
+ :cy =&gt; 5,
+ :r =&gt; 50,
+ :fx =&gt; 50,
+ :fy =&gt; 50,
+   :stops =&gt; [ {
+        :offset =&gt; 0,
+        :color =&gt; 'rgb(255,255,255)',
+        :opacity =&gt; 0
+        },  {
+        :offset =&gt; 100,
+        :color =&gt; 'rgb(0,127,200)',
+        :opacity =&gt; 1
+        }, ]
+ } #* :stroke = the outline colour of the Glyph (default = &quot;black&quot;), can be any SVG colour eg rgb(256,0,0) or #FF0000
+</pre>
+<ul>
+<li>:stroke_width = The width of the outline stroke (default = 1), can be any
+SVG colour eg rgb(256,0,0) or FF0000
+
+</li>
+<li>:style = an arbitrary SVG compliant style string eg
+&quot;fill-opacity:0.4;&quot;
+
+</li>
+<li>:x = x coordinate of the feature in pixels, usually added by the <a
+href="Page.html">Bio::Graphics::Page</a> object
+
+</li>
+<li>:y = y coordinate of the feature in pixels, usually added by the <a
+href="Page.html">Bio::Graphics::Page</a> object
+
+</li>
+</ul>
+<h3>returns</h3>
+<ul>
+<li>An <a href="http://www.ruby-doc.org/core-2.0/Array.html">Array</a> of
+Bio::Graphic::Primitive objects
+
+</li>
+</ul>
+        </div>
+      </div>
+
+      <div id="method-M000014" class="method-detail">
+        <a name="M000014"></a>
+
+        <div class="method-heading">
+          <a href="Glyph.src/M000014.html" target="Code" class="method-signature"
+            onclick="popupCode('Glyph.src/M000014.html');return false;">
+          <span class="method-name">generic</span><span class="method-args">(args)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+A <a href="Glyph.html#M000014">generic</a> glyph is a block of colour that
+displays no specific directional information attached.
+</p>
+<h2>args</h2>
+<ul>
+<li>:height = the height of the <a href="Glyph.html">Glyph</a> (default = 10)
+
+</li>
+<li>:fill_color = the fill colour of the <a href="Glyph.html">Glyph</a>
+(default = &#8216;red&#8217;), can be any SVG colour eg rgb(256,0,0) or
+FF0000, or one of the built in <a href="Glyph.html#M000024">gradient</a>
+types <a href="Glyph.html#M000023">Bio::Graphics::Glyph#gradients</a>
+
+</li>
+</ul>
+<pre>
+ [:red_white_h, :green_white_h, :blue_white_h, :yellow_white_h, :red_white_radial, :green_white_radial, :blue_white_radial, :yellow_white_radial ]
+</pre>
+<p>
+or a custom definition of a <a href="Glyph.html#M000024">gradient</a>
+</p>
+<pre>
+ {:type =&gt; :radial,
+ :id =&gt; :custom,
+ :cx =&gt; 5,
+ :cy =&gt; 5,
+ :r =&gt; 50,
+ :fx =&gt; 50,
+ :fy =&gt; 50,
+   :stops =&gt; [ {
+        :offset =&gt; 0,
+        :color =&gt; 'rgb(255,255,255)',
+        :opacity =&gt; 0
+        },  {
+        :offset =&gt; 100,
+        :color =&gt; 'rgb(0,127,200)',
+        :opacity =&gt; 1
+        }, ]
+ }  #* :stroke = the outline colour of the Glyph (default = &quot;black&quot;), can be any SVG colour eg rgb(256,0,0) or #FF0000
+</pre>
+<ul>
+<li>:stroke_width = The width of the outline stroke (default = 1), can be any
+SVG colour eg rgb(256,0,0) or FF0000
+
+</li>
+<li>:x_round = x-axis radius of the ellipse used to round off the corners of
+the rectangle (default = 1)
+
+</li>
+<li>:y_round = y-axis radius of the ellipse used to round off the corners of
+the rectangle (default = 1)
+
+</li>
+<li>:style = an arbitrary SVG compliant style string eg
+&quot;fill-opacity:0.4;&quot;
+
+</li>
+<li>:x = x coordinate of the feature in pixels, usually added by the <a
+href="Page.html">Bio::Graphics::Page</a> object
+
+</li>
+<li>:y = y coordinate of the feature in pixels, usually added by the <a
+href="Page.html">Bio::Graphics::Page</a> object
+
+</li>
+</ul>
+<h3>returns</h3>
+<ul>
+<li>An <a href="http://www.ruby-doc.org/core-2.0/Array.html">Array</a> of
+Bio::Graphic::Primitive objects
+
+</li>
+</ul>
+        </div>
+      </div>
+
+      <div id="method-M000024" class="method-detail">
+        <a name="M000024"></a>
+
+        <div class="method-heading">
+          <a href="Glyph.src/M000024.html" target="Code" class="method-signature"
+            onclick="popupCode('Glyph.src/M000024.html');return false;">
+          <span class="method-name">gradient</span><span class="method-args">(gradient)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Sets the the type (linear or radial) and colours for a pre-defined <a
+href="Glyph.html#M000024">gradient</a>
+</p>
+<h2>args</h2>
+<ul>
+<li><a href="Glyph.html#M000024">gradient</a> = a pre-defined <a
+href="Glyph.html#M000024">gradient</a> type, one of
+
+</li>
+</ul>
+<pre>
+ [:red_white_h, :green_white_h, :blue_white_h, :yellow_white_h, :red_white_radial, :green_white_radial, :blue_white_radial, :yellow_white_radial ]
+</pre>
+        </div>
+      </div>
+
+      <div id="method-M000023" class="method-detail">
+        <a name="M000023"></a>
+
+        <div class="method-heading">
+          <a href="Glyph.src/M000023.html" target="Code" class="method-signature"
+            onclick="popupCode('Glyph.src/M000023.html');return false;">
+          <span class="method-name">gradients</span><span class="method-args">(</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+The list of pre-defined <a href="Glyph.html#M000023">gradients</a>
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000022" class="method-detail">
+        <a name="M000022"></a>
+
+        <div class="method-heading">
+          <a href="Glyph.src/M000022.html" target="Code" class="method-signature"
+            onclick="popupCode('Glyph.src/M000022.html');return false;">
+          <span class="method-name">label</span><span class="method-args">(args)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Creates a <a href="Glyph.html#M000022">label</a> <a
+href="Glyph.html">Glyph</a> to write text
+</p>
+<p>
+<tt>args</tt>
+</p>
+<ul>
+<li>:text = the text to write
+
+</li>
+<li>:fill = the colour of the text (&quot;black&quot;)
+
+</li>
+<li>:style = the style of writing (&quot;font-family:monospace;&quot;)
+
+</li>
+<li>:x = the co-ordinates of the <a href="Glyph.html">Glyph</a> for the x-axis
+
+</li>
+<li>:y = the co-ordinates of the <a href="Glyph.html">Glyph</a> for the y-axis
+
+</li>
+</ul>
+        </div>
+      </div>
+
+      <div id="method-M000021" class="method-detail">
+        <a name="M000021"></a>
+
+        <div class="method-heading">
+          <a href="Glyph.src/M000021.html" target="Code" class="method-signature"
+            onclick="popupCode('Glyph.src/M000021.html');return false;">
+          <span class="method-name">scale</span><span class="method-args">(args)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+<a href="Glyph.html">Glyph</a> for the <a
+href="Glyph.html#M000021">scale</a> across the top of the rendered page
+</p>
+<h2>args</h2>
+<ul>
+<li>:start = the start of the <a href="Glyph.html#M000021">scale</a>, usually
+added by the <a href="Page.html">Bio::Graphics::Page</a> object
+
+</li>
+<li>:stop = the end of the <a href="Glyph.html#M000021">scale</a>, usually
+added by the <a href="Page.html">Bio::Graphics::Page</a> object
+
+</li>
+<li>:number_of_intervals = the number of tick-marks the <a
+href="Glyph.html#M000021">scale</a> will marked with
+
+</li>
+<li>:page_width = the minimum width of the page, usually updated by the <a
+href="Page.html">Bio::Graphics::Page</a> object
+
+</li>
+</ul>
+<p>
+<tt>returns</tt>
+</p>
+<ul>
+<li>An <a href="http://www.ruby-doc.org/core-2.0/Array.html">Array</a> of
+Bio::Graphic::Primitive objects (of type &#8216;line&#8217;,
+&#8216;rectangle&#8217; and &#8216;text&#8217;)
+
+</li>
+</ul>
+        </div>
+      </div>
+
+      <div id="method-M000019" class="method-detail">
+        <a name="M000019"></a>
+
+        <div class="method-heading">
+          <a href="Glyph.src/M000019.html" target="Code" class="method-signature"
+            onclick="popupCode('Glyph.src/M000019.html');return false;">
+          <span class="method-name">span</span><span class="method-args">(args)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+A line (<a href="Glyph.html#M000019">span</a>) glyph
+</p>
+<p>
+<tt>args</tt>
+</p>
+<ul>
+<li>:height = the height of the <a href="Glyph.html">Glyph</a> (default = 10)
+
+</li>
+<li>:fill_color = the fill colour of the <a href="Glyph.html">Glyph</a>
+(default = &#8216;red&#8217;), can be any SVG colour eg rgb(256,0,0) or
+FF0000, or one of the built in <a href="Glyph.html#M000024">gradient</a>
+types <a href="Glyph.html#M000023">Bio::Graphics::Glyph#gradients</a>
+
+</li>
+</ul>
+<pre>
+ [:red_white_h, :green_white_h, :blue_white_h, :yellow_white_h, :red_white_radial, :green_white_radial, :blue_white_radial, :yellow_white_radial ]
+</pre>
+<p>
+or a custom definition of a <a href="Glyph.html#M000024">gradient</a>
+</p>
+<pre>
+ {:type =&gt; :radial,
+ :id =&gt; :custom,
+ :cx =&gt; 5,
+ :cy =&gt; 5,
+ :r =&gt; 50,
+ :fx =&gt; 50,
+ :fy =&gt; 50,
+   :stops =&gt; [ {
+        :offset =&gt; 0,
+        :color =&gt; 'rgb(255,255,255)',
+        :opacity =&gt; 0
+        },  {
+        :offset =&gt; 100,
+        :color =&gt; 'rgb(0,127,200)',
+        :opacity =&gt; 1
+        }, ]
+ }
+</pre>
+<ul>
+<li>:stroke = the outline colour of the <a href="Glyph.html">Glyph</a> (default
+= &quot;black&quot;), can be any SVG colour eg rgb(256,0,0) or FF0000
+
+</li>
+<li>:stroke_width = The width of the outline stroke (default = 1)
+
+</li>
+<li>:style = an arbitrary SVG compliant style string eg
+&quot;fill-opacity:0.4;&quot;
+
+</li>
+<li>:x = x coordinate of the feature in pixels, usually added by the <a
+href="Page.html">Bio::Graphics::Page</a> object
+
+</li>
+<li>:y = y coordinate of the feature in pixels, usually added by the <a
+href="Page.html">Bio::Graphics::Page</a> object
+
+</li>
+</ul>
+<h3>returns</h3>
+<ul>
+<li>An <a href="http://www.ruby-doc.org/core-2.0/Array.html">Array</a> of
+Bio::Graphic::Primitive objects
+
+</li>
+</ul>
+        </div>
+      </div>
+
+      <div id="method-M000020" class="method-detail">
+        <a name="M000020"></a>
+
+        <div class="method-heading">
+          <a href="Glyph.src/M000020.html" target="Code" class="method-signature"
+            onclick="popupCode('Glyph.src/M000020.html');return false;">
+          <span class="method-name">transcript</span><span class="method-args">(args)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Creates a <a href="Glyph.html#M000020">transcript</a> glyph, which is a
+composite glyph containing <a href="Glyph.html#M000014">generic</a> glyphs
+for the exons/utrs and a <a href="Glyph.html#M000016">directed</a> glyph at
+the end. The glyphs are joined by lines.
+</p>
+<h2>args</h2>
+<ul>
+<li>:height = the height of the <a href="Glyph.html">Glyph</a> (default = 10)
+
+</li>
+<li>:utr_fill_color = the fill colour of the utr part of the glyph (default =
+&#8216;black&#8217;), can be any SVG colour eg rgb(256,0,0) or FF0000, or
+one of the built in <a href="Glyph.html#M000024">gradient</a> types <a
+href="Glyph.html#M000023">Bio::Graphics::Glyph#gradients</a>
+
+</li>
+</ul>
+<pre>
+ [:red_white_h, :green_white_h, :blue_white_h, :yellow_white_h, :red_white_radial, :green_white_radial, :blue_white_radial, :yellow_white_radial ]
+</pre>
+<p>
+or a custom definition of a <a href="Glyph.html#M000024">gradient</a>
+</p>
+<pre>
+ {:type =&gt; :radial,
+ :id =&gt; :custom,
+ :cx =&gt; 5,
+ :cy =&gt; 5,
+ :r =&gt; 50,
+ :fx =&gt; 50,
+ :fy =&gt; 50,
+   :stops =&gt; [ {
+        :offset =&gt; 0,
+        :color =&gt; 'rgb(255,255,255)',
+        :opacity =&gt; 0
+        },  {
+        :offset =&gt; 100,
+        :color =&gt; 'rgb(0,127,200)',
+        :opacity =&gt; 1
+        }, ]
+ }
+</pre>
+<ul>
+<li>:utr_stroke = the outline colour of the utr part of the glyph (default =
+&quot;black&quot;), can be any SVG colour eg rgb(256,0,0) or FF0000
+
+</li>
+<li>:utr_stroke_width = The width of the outline stroke for the utr part of the
+glyph (default = 1)
+
+</li>
+<li>:exon_fill_color = the fill colour of the utr part of the glyph (default =
+&#8216;red&#8217;), can be any SVG colour eg rgb(256,0,0) or FF0000, or one
+of the built in <a href="Glyph.html#M000024">gradient</a> types <a
+href="Glyph.html#M000023">Bio::Graphics::Glyph#gradients</a> or a custom
+definition of a <a href="Glyph.html#M000024">gradient</a>
+
+</li>
+</ul>
+<pre>
+ [:red_white_h, :green_white_h, :blue_white_h, :yellow_white_h, :red_white_radial, :green_white_radial, :blue_white_radial, :yellow_white_radial ]
+</pre>
+<p>
+or a custom definition of a <a href="Glyph.html#M000024">gradient</a>
+</p>
+<pre>
+ {:type =&gt; :radial,
+ :id =&gt; :custom,
+ :cx =&gt; 5,
+ :cy =&gt; 5,
+ :r =&gt; 50,
+ :fx =&gt; 50,
+ :fy =&gt; 50,
+   :stops =&gt; [ {
+        :offset =&gt; 0,
+        :color =&gt; 'rgb(255,255,255)',
+        :opacity =&gt; 0
+        },  {
+        :offset =&gt; 100,
+        :color =&gt; 'rgb(0,127,200)',
+        :opacity =&gt; 1
+        }, ]
+ }
+</pre>
+<ul>
+<li>:exon_stroke = the outline colour of the exon part of the glyph (default =
+&quot;black&quot;) can be any SVG colour eg rgb(256,0,0) or FF0000
+
+</li>
+<li>:exon_stroke_width = The width of the outline stroke for the exon part of
+the glyph (default = 1)
+
+</li>
+<li>:line_color = the colour for the line part that joins the blocks (default =
+&#8216;black&#8217;) can be any SVG colour eg rgb(256,0,0) or FF0000
+
+</li>
+<li>:line_width = the width ffor the line part that joins the blocks (default =
+1)
+
+</li>
+<li>:exon_style = an arbitrary SVG compliant style string eg
+&quot;fill-opacity:0.4;&quot;
+
+</li>
+<li>:utr_style = an arbitrary SVG compliant style string eg
+&quot;fill-opacity:0.4;&quot;
+
+</li>
+<li>:line_style = an arbitrary SVG compliant style string eg
+&quot;fill-opacity:0.4;&quot;
+
+</li>
+<li>:block_gaps = gaps between the rendered blocks - calculated internally by
+<a href="Page.html">Bio::Graphics::Page</a> object
+
+</li>
+<li>:gap_marker = style of the line between blocks - either angled or straight
+
+</li>
+<li>:x = x coordinate of the feature in pixels, usually added by the <a
+href="Page.html">Bio::Graphics::Page</a> object
+
+</li>
+<li>:y = y coordinate of the feature in pixels, usually added by the <a
+href="Page.html">Bio::Graphics::Page</a> object
+
+</li>
+</ul>
+<p>
+<tt>returns</tt>
+</p>
+<ul>
+<li>An <a href="http://www.ruby-doc.org/core-2.0/Array.html">Array</a> of
+Bio::Graphic::Primitive objects
+
+</li>
+</ul>
+        </div>
+      </div>
+
+      <div id="method-M000018" class="method-detail">
+        <a name="M000018"></a>
+
+        <div class="method-heading">
+          <a href="Glyph.src/M000018.html" target="Code" class="method-signature"
+            onclick="popupCode('Glyph.src/M000018.html');return false;">
+          <span class="method-name">up_triangle</span><span class="method-args">(args)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+An upward-pointing triangle glyph
+</p>
+<h2>args</h2>
+<ul>
+<li>:height = the height of the <a href="Glyph.html">Glyph</a> (default = 10)
+
+</li>
+<li>:fill_color = the fill colour of the <a href="Glyph.html">Glyph</a>
+(default = &#8216;red&#8217;), can be any SVG colour eg rgb(256,0,0) or
+FF0000, or one of the built in <a href="Glyph.html#M000024">gradient</a>
+types <a href="Glyph.html#M000023">Bio::Graphics::Glyph#gradients</a>
+
+</li>
+</ul>
+<pre>
+ [:red_white_h, :green_white_h, :blue_white_h, :yellow_white_h, :red_white_radial, :green_white_radial, :blue_white_radial, :yellow_white_radial ]
+</pre>
+<p>
+or a custom definition of a <a href="Glyph.html#M000024">gradient</a>
+</p>
+<pre>
+ {:type =&gt; :radial,
+ :id =&gt; :custom,
+ :cx =&gt; 5,
+ :cy =&gt; 5,
+ :r =&gt; 50,
+ :fx =&gt; 50,
+ :fy =&gt; 50,
+   :stops =&gt; [ {
+        :offset =&gt; 0,
+        :color =&gt; 'rgb(255,255,255)',
+        :opacity =&gt; 0
+        },  {
+        :offset =&gt; 100,
+        :color =&gt; 'rgb(0,127,200)',
+        :opacity =&gt; 1
+        }, ]
+ }
+</pre>
+<ul>
+<li>:stroke = the outline colour of the <a href="Glyph.html">Glyph</a> (default
+= &quot;black&quot;), can be any SVG colour eg rgb(256,0,0) or FF0000
+
+</li>
+<li>:stroke_width = The width of the outline stroke (default = 1), can be any
+SVG colour eg rgb(256,0,0) or FF0000
+
+</li>
+<li>:style = an arbitrary SVG compliant style string eg
+&quot;fill-opacity:0.4;&quot;
+
+</li>
+<li>:x = x coordinate of the feature in pixels, usually added by the <a
+href="Page.html">Bio::Graphics::Page</a> object
+
+</li>
+<li>:y = y coordinate of the feature in pixels, usually added by the <a
+href="Page.html">Bio::Graphics::Page</a> object
+
+</li>
+</ul>
+<h3>returns</h3>
+<ul>
+<li>An <a href="http://www.ruby-doc.org/core-2.0/Array.html">Array</a> of
+Bio::Graphic::Primitive objects
+
+</li>
+</ul>
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

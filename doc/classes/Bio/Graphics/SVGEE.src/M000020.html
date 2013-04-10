@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>gradient (Bio::Graphics::SVGEE)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/bio/graphics/svgee.rb, line 104</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">gradient</span>(<span class="ruby-identifier">a</span>)
+    <span class="ruby-identifier">definition_string</span> = <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">a</span>[<span class="ruby-identifier">:type</span>]
+    <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">:radial</span>
+      <span class="ruby-node">%{&lt;radialGradient id=&quot;#{a[:id]}&quot; cx=&quot;#{a[:cx]}%&quot; cy=&quot;#{a[:cy]}%&quot; r=&quot;#{a[:r]}%&quot; fx=&quot;#{a[:fx]}%&quot; fy=&quot;#{a[:fy]}%&quot;&gt;}</span>
+    <span class="ruby-keyword kw">else</span>
+      <span class="ruby-node">%{&lt;linearGradient id=&quot;#{a[:id]}&quot; x1=&quot;#{a[:x1]}%&quot; x2=&quot;#{a[:x2]}%&quot; y1=&quot;#{a[:y1]}%&quot; y2=&quot;#{a[:y2]}%&quot;&gt;}</span>
+    <span class="ruby-keyword kw">end</span>
+    <span class="ruby-identifier">a</span>[<span class="ruby-identifier">:stops</span>].<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">s</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">definition_string</span> = <span class="ruby-identifier">definition_string</span> <span class="ruby-operator">+</span> <span class="ruby-value str">&quot;\n&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-node">%{&lt;stop offset=&quot;#{s[:offset]}%&quot; style=&quot;stop-color:#{s[:color]};stop-opacity:#{s[:opacity]}&quot; /&gt;}</span>
+    <span class="ruby-keyword kw">end</span>
+    <span class="ruby-identifier">add_def</span> <span class="ruby-identifier">definition_string</span> <span class="ruby-operator">+</span> (<span class="ruby-identifier">a</span>[<span class="ruby-identifier">:type</span>] <span class="ruby-operator">==</span> <span class="ruby-identifier">:linear</span> <span class="ruby-operator">?</span> <span class="ruby-value str">'&lt;/linearGradient&gt;'</span> <span class="ruby-operator">:</span> <span class="ruby-value str">'&lt;/radialGradient&gt;'</span>)
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

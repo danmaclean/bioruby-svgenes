@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>transcript (Bio::Graphics::Glyph)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/bio/graphics/glyph.rb, line 366</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">transcript</span>(<span class="ruby-identifier">args</span>)
+      <span class="ruby-identifier">args</span> = {
+      <span class="ruby-identifier">:height</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">10</span>, 
+      <span class="ruby-identifier">:utr_fill_color</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'black'</span>, 
+      <span class="ruby-identifier">:utr_stroke</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;black&quot;</span>, 
+      <span class="ruby-identifier">:utr_stroke_width</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">1</span>, 
+      <span class="ruby-identifier">:exon_fill_color</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'red'</span>, 
+      <span class="ruby-identifier">:exon_stroke</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;black&quot;</span>, 
+      <span class="ruby-identifier">:exon_stroke_width</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">1</span>, 
+      <span class="ruby-identifier">:line_color</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'black'</span>,
+      <span class="ruby-identifier">:line_width</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">1</span>, 
+      <span class="ruby-identifier">:exon_style</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;fill-opacity:0.4;&quot;</span>,
+      <span class="ruby-identifier">:utr_style</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;&quot;</span>,
+      <span class="ruby-identifier">:line_style</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;&quot;</span>,
+      <span class="ruby-identifier">:block_gaps</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;&quot;</span>,
+      <span class="ruby-identifier">:gap_marker</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;&quot;</span>
+      }.<span class="ruby-identifier">merge!</span>(<span class="ruby-identifier">args</span>)
+      
+      <span class="ruby-identifier">composite</span> = []
+
+      <span class="ruby-keyword kw">if</span> <span class="ruby-keyword kw">not</span> <span class="ruby-identifier">args</span>[<span class="ruby-identifier">:utrs</span>].<span class="ruby-identifier">empty?</span>  <span class="ruby-comment cmt">##draw the utr as terminal element...##terminal utr is the one with the point on...</span>
+        <span class="ruby-identifier">x</span>,<span class="ruby-identifier">width</span> =  <span class="ruby-identifier">args</span>[<span class="ruby-identifier">:strand</span>] <span class="ruby-operator">==</span> <span class="ruby-value str">'-'</span> <span class="ruby-operator">?</span> <span class="ruby-identifier">args</span>[<span class="ruby-identifier">:utrs</span>].<span class="ruby-identifier">shift</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">args</span>[<span class="ruby-identifier">:utrs</span>].<span class="ruby-identifier">pop</span> 
+        <span class="ruby-identifier">composite</span> <span class="ruby-operator">+=</span> <span class="ruby-constant">Glyph</span>.<span class="ruby-identifier">directed</span>(<span class="ruby-identifier">:x</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">x</span>, 
+                                    <span class="ruby-identifier">:y</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">args</span>[<span class="ruby-identifier">:y</span>], 
+                                    <span class="ruby-identifier">:width</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">width</span>, 
+                                    <span class="ruby-identifier">:strand</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">args</span>[<span class="ruby-identifier">:strand</span>], 
+                                    <span class="ruby-identifier">:height</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">args</span>[<span class="ruby-identifier">:height</span>], 
+                                    <span class="ruby-identifier">:fill_color</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">args</span>[<span class="ruby-identifier">:utr_fill_color</span>], 
+                                    <span class="ruby-identifier">:stroke</span> =<span class="ruby-operator">&gt;</span><span class="ruby-identifier">args</span>[<span class="ruby-identifier">:utr_stroke</span>], 
+                                    <span class="ruby-identifier">:stroke_width</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">args</span>[<span class="ruby-identifier">:utr_stroke_width</span>], 
+                                    <span class="ruby-identifier">:style</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">args</span>[<span class="ruby-identifier">:utr_style</span>] )
+        <span class="ruby-comment cmt">##draw the other(s!) </span>
+        <span class="ruby-identifier">args</span>[<span class="ruby-identifier">:utrs</span>].<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">utr</span><span class="ruby-operator">|</span>
+          <span class="ruby-identifier">composite</span> <span class="ruby-operator">&lt;&lt;</span>  <span class="ruby-constant">Bio</span><span class="ruby-operator">::</span><span class="ruby-constant">Graphics</span><span class="ruby-operator">::</span><span class="ruby-constant">Primitive</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">:rectangle</span>, {
+                                                    <span class="ruby-identifier">:x</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">utr</span>.<span class="ruby-identifier">first</span>, 
+                                                    <span class="ruby-identifier">:width</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">utr</span>.<span class="ruby-identifier">last</span>, 
+                                                    <span class="ruby-identifier">:y</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">args</span>[<span class="ruby-identifier">:y</span>], 
+                                                    <span class="ruby-identifier">:height</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">args</span>[<span class="ruby-identifier">:height</span>], 
+                                                    <span class="ruby-identifier">:fill_color</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">args</span>[<span class="ruby-identifier">:utr_fill_color</span>], 
+                                                    <span class="ruby-identifier">:stroke</span> =<span class="ruby-operator">&gt;</span><span class="ruby-identifier">args</span>[<span class="ruby-identifier">:utr_stroke</span>], 
+                                                    <span class="ruby-identifier">:stroke_width</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">args</span>[<span class="ruby-identifier">:utr_stroke_width</span>], 
+                                                    <span class="ruby-identifier">:style</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">args</span>[<span class="ruby-identifier">:utr_style</span>]} )
+        <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">else</span> <span class="ruby-comment cmt">## draw the terminal exon as terminal element  </span>
+        <span class="ruby-identifier">points</span> = <span class="ruby-keyword kw">nil</span>      
+        <span class="ruby-identifier">x</span>,<span class="ruby-identifier">width</span> =  <span class="ruby-identifier">args</span>[<span class="ruby-identifier">:strand</span>] <span class="ruby-operator">==</span> <span class="ruby-value str">'-'</span> <span class="ruby-operator">?</span> <span class="ruby-identifier">args</span>[<span class="ruby-identifier">:exons</span>].<span class="ruby-identifier">shift</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">args</span>[<span class="ruby-identifier">:exons</span>].<span class="ruby-identifier">pop</span> 
+        <span class="ruby-identifier">composite</span> <span class="ruby-operator">+=</span> <span class="ruby-constant">Glyph</span>.<span class="ruby-identifier">directed</span>(<span class="ruby-identifier">:x</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">x</span>, 
+                                    <span class="ruby-identifier">:y</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">args</span>[<span class="ruby-identifier">:y</span>], 
+                                    <span class="ruby-identifier">:width</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">width</span>, 
+                                    <span class="ruby-identifier">:strand</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">args</span>[<span class="ruby-identifier">:strand</span>], 
+                                    <span class="ruby-identifier">:height</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">args</span>[<span class="ruby-identifier">:height</span>], 
+                                    <span class="ruby-identifier">:fill_color</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">args</span>[<span class="ruby-identifier">:exon_fill_color</span>], 
+                                    <span class="ruby-identifier">:stroke</span> =<span class="ruby-operator">&gt;</span><span class="ruby-identifier">args</span>[<span class="ruby-identifier">:exon_stroke</span>], 
+                                    <span class="ruby-identifier">:stroke_width</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">args</span>[<span class="ruby-identifier">:exon_stroke_width</span>], 
+                                    <span class="ruby-identifier">:style</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">args</span>[<span class="ruby-identifier">:exon_style</span>] )
+      <span class="ruby-keyword kw">end</span>
+      <span class="ruby-comment cmt">#draw any remaining exons</span>
+      <span class="ruby-identifier">args</span>[<span class="ruby-identifier">:exons</span>].<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">exon</span><span class="ruby-operator">|</span>
+          <span class="ruby-identifier">composite</span> <span class="ruby-operator">&lt;&lt;</span>  <span class="ruby-constant">Bio</span><span class="ruby-operator">::</span><span class="ruby-constant">Graphics</span><span class="ruby-operator">::</span><span class="ruby-constant">Primitive</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">:rectangle</span>, {
+                                                    <span class="ruby-identifier">:x</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">exon</span>[<span class="ruby-value">0</span>], 
+                                                    <span class="ruby-identifier">:width</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">exon</span>[<span class="ruby-value">1</span>], 
+                                                    <span class="ruby-identifier">:y</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">args</span>[<span class="ruby-identifier">:y</span>], 
+                                                    <span class="ruby-identifier">:height</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">args</span>[<span class="ruby-identifier">:height</span>], 
+                                                    <span class="ruby-identifier">:fill_color</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">args</span>[<span class="ruby-identifier">:exon_fill_color</span>], 
+                                                    <span class="ruby-identifier">:stroke</span> =<span class="ruby-operator">&gt;</span><span class="ruby-identifier">args</span>[<span class="ruby-identifier">:exon_stroke</span>], 
+                                                    <span class="ruby-identifier">:stroke_width</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">args</span>[<span class="ruby-identifier">:exon_stroke_width</span>], 
+                                                    <span class="ruby-identifier">:style</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">args</span>[<span class="ruby-identifier">:exon_style</span>]} )
+      <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">args</span>[<span class="ruby-identifier">:gap_marker</span>] <span class="ruby-operator">==</span> <span class="ruby-value str">&quot;angled&quot;</span> <span class="ruby-keyword kw">and</span> <span class="ruby-keyword kw">not</span> <span class="ruby-identifier">args</span>[<span class="ruby-identifier">:block_gaps</span>].<span class="ruby-identifier">empty?</span>
+        <span class="ruby-identifier">args</span>[<span class="ruby-identifier">:block_gaps</span>].<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">gap</span><span class="ruby-operator">|</span>
+          <span class="ruby-identifier">points</span> = <span class="ruby-node">&quot;#{gap.first},#{args[:y] + (args[:height]/2) } #{gap.first + (gap.last/2)},#{args[:y]} #{gap.first + gap.last},#{args[:y] + (args[:height]/2)}&quot;</span>
+          <span class="ruby-identifier">composite</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-constant">Bio</span><span class="ruby-operator">::</span><span class="ruby-constant">Graphics</span><span class="ruby-operator">::</span><span class="ruby-constant">Primitive</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">:polyline</span>, {
+                                                 <span class="ruby-identifier">:points</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">points</span>, 
+                                                 <span class="ruby-identifier">:stroke</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">args</span>[<span class="ruby-identifier">:line_color</span>], 
+                                                 <span class="ruby-identifier">:stroke_width</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">args</span>[<span class="ruby-identifier">:line_width</span>], 
+                                                 <span class="ruby-identifier">:fill</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;none&quot;</span>, 
+                                                 <span class="ruby-identifier">:line_style</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">args</span>[<span class="ruby-identifier">:line_style</span>]})
+        <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">else</span>
+        <span class="ruby-comment cmt">#add line</span>
+        <span class="ruby-identifier">composite</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-constant">Bio</span><span class="ruby-operator">::</span><span class="ruby-constant">Graphics</span><span class="ruby-operator">::</span><span class="ruby-constant">Primitive</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">:line</span>, {
+                                            <span class="ruby-identifier">:x1</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">args</span>[<span class="ruby-identifier">:x</span>], 
+                                            <span class="ruby-identifier">:x2</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-node">&quot;#{args[:x] + args[:width]}&quot;</span>, 
+                                            <span class="ruby-identifier">:y1</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">args</span>[<span class="ruby-identifier">:y</span>] <span class="ruby-operator">+</span> (<span class="ruby-identifier">args</span>[<span class="ruby-identifier">:height</span>]<span class="ruby-operator">/</span><span class="ruby-value">2</span>), 
+                                            <span class="ruby-identifier">:y2</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">args</span>[<span class="ruby-identifier">:y</span>] <span class="ruby-operator">+</span> (<span class="ruby-identifier">args</span>[<span class="ruby-identifier">:height</span>]<span class="ruby-operator">/</span><span class="ruby-value">2</span>), 
+                                            <span class="ruby-identifier">:stroke</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">args</span>[<span class="ruby-identifier">:line_color</span>], 
+                                            <span class="ruby-identifier">:stroke_width</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">args</span>[<span class="ruby-identifier">:line_width</span>], 
+                                            <span class="ruby-identifier">:line_style</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">args</span>[<span class="ruby-identifier">:line_style</span>]})
+
+      <span class="ruby-keyword kw">end</span>
+      <span class="ruby-identifier">composite</span>
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>
