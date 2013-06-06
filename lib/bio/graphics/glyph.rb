@@ -431,27 +431,30 @@ attr_reader :glyphs
                                                     :stroke_width => args[:exon_stroke_width], 
                                                     :style => args[:exon_style]} )
       end
-      if args[:gap_marker] == "angled" and not args[:block_gaps].empty?
-        args[:block_gaps].each do |gap|
-          points = "#{gap.first},#{args[:y] + (args[:height]/2) } #{gap.first + (gap.last/2)},#{args[:y]} #{gap.first + gap.last},#{args[:y] + (args[:height]/2)}"
-          composite << Bio::Graphics::Primitive.new(:polyline, {
-                                                 :points => points, 
-                                                 :stroke => args[:line_color], 
-                                                 :stroke_width => args[:line_width], 
-                                                 :fill => "none", 
-                                                 :line_style => args[:line_style]})
-        end
-      else
+      if args[:exons].length > 1
+        if args[:gap_marker] == "angled" and not args[:block_gaps].empty? 
+          $stderr.puts args[:exons].length
+          args[:block_gaps].each do |gap|
+            points = "#{gap.first},#{args[:y] + (args[:height]/2) } #{gap.first + (gap.last/2)},#{args[:y]} #{gap.first + gap.last},#{args[:y] + (args[:height]/2)}"
+            composite << Bio::Graphics::Primitive.new(:polyline, {
+                                                  :points => points, 
+                                                  :stroke => args[:line_color], 
+                                                  :stroke_width => args[:line_width], 
+                                                  :fill => "none", 
+                                                  :line_style => args[:line_style]})
+          end
+        else
         #add line
-        composite << Bio::Graphics::Primitive.new(:line, {
-                                            :x1 => args[:x], 
-                                            :x2 => "#{args[:x] + args[:width]}", 
-                                            :y1 => args[:y] + (args[:height]/2), 
-                                            :y2 => args[:y] + (args[:height]/2), 
-                                            :stroke => args[:line_color], 
-                                            :stroke_width => args[:line_width], 
-                                            :line_style => args[:line_style]})
+          composite << Bio::Graphics::Primitive.new(:line, {
+                                              :x1 => args[:x], 
+                                              :x2 => "#{args[:x] + args[:width]}", 
+                                              :y1 => args[:y] + (args[:height]/2), 
+                                              :y2 => args[:y] + (args[:height]/2), 
+                                              :stroke => args[:line_color], 
+                                              :stroke_width => args[:line_width], 
+                                              :line_style => args[:line_style]})
 
+        end
       end
       composite
   end

@@ -8,7 +8,7 @@
 
 ##A very straightforward example that creates all the features and tracks explicitly.
 
-
+require 'rubygems'
 require 'bio-svgenes'
 
 ##create the page
@@ -241,6 +241,13 @@ feature3 = Bio::Graphics::MiniFeature.new(:start => 923,
                            :exons => [1000,1200,1800,2000], 
                            :utrs => [923,1000,2000,2345])
 transcript_track.add(feature3)
+
+feature3 = Bio::Graphics::MiniFeature.new(:start => 923, 
+                           :end => 2345, 
+                           :strand => '-', 
+                           :exons => [1000,1200])
+transcript_track.add(feature3)
+
 
 feature1 = Bio::Graphics::MiniFeature.new(:start => 467, 
                            :end => 15000, 
