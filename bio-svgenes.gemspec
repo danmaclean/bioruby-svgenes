@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = "bio-svgenes"
-  s.version = "0.3.2"
+  s.version = "0.3.3"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Dan MacLean"]
-  s.date = "2013-04-10"
+  s.date = "2013-06-06"
   s.description = "This bio-gem facilitates the creation of pretty, publication quality SVG images from feature data."
   s.email = "maclean.daniel@gmail.com"
   s.extra_rdoc_files = [
