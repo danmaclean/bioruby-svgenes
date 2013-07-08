@@ -358,7 +358,8 @@ module Bio
                                               :exons => f.exons,
                                               :utrs => f.utrs,
                                               :block_gaps => f.block_gaps,
-                                              :height => track.feature_height
+                                              :height => track.feature_height,
+                                              :params => f.params
             }.merge!(track.args))
 
             if f.id

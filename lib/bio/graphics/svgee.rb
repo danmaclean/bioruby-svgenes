@@ -81,7 +81,10 @@ class SVGEE
   end
   
   def common_attributes(a={})
-    %{stroke="#{a[:stroke]}" stroke-width="#{a[:stroke_width]}" style="#{a[:style]}"}
+    param_str = ""
+    a[:params].each{|k,v| param_str << %{ #{k}="#{v}"}} if a[:params]
+
+    %{stroke="#{a[:stroke]}" stroke-width="#{a[:stroke_width]}" style="#{a[:style]}"} + param_str
   end
   
   def method_missing(primitive, args={}) #only used to dynamically select the primitive type.. 
