@@ -5,7 +5,7 @@ module Bio
     #A Bio::Graphics::MiniFeature object represents a single genomic feature (e.g. a gene, transcript, exon, start codon, etc), it is a lightweight object that 
     #holds the minimum information needed to do the render.
 class MiniFeature
-  attr_accessor :start, :end, :strand, :exons, :utrs, :block_gaps, :segment_height, :id
+  attr_accessor :start, :end, :strand, :exons, :utrs, :block_gaps, :segment_height, :id, :params
   #Creates a new MiniFeature
   #
   #== args
@@ -41,6 +41,7 @@ class MiniFeature
     @block_gaps = []
     @id = args[:id]
     @segment_height = args[:segment_height]
+    @params = args[:params]
   end
 end
 
