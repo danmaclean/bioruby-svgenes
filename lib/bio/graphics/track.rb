@@ -118,27 +118,43 @@ class Track
 
   #Calculates how many rows are needed per track for overlapping features
   #and which row each feature should be in. Usually only called by the enclosing Bio::Graphics::Page object.
-  def get_rows
-    current_row = 1
-    @feature_rows = Array.new(@features.length,1)
+  def get_rows(page=nil)
+    @feature_rows = Array.new(@features.length, -1)
+    rows = Hash.new { |h,k| h[k] = [] }
     @features.each_with_index  do |f1, i|
-      @features.each_with_index do |f2, j|
-        next if i == j or j <= i
-        if overlaps(f1,f2)
-          @feature_rows[i] += 1
+      current_row = 1
+      begin
+        found = true
+        rows[current_row].each_with_index do |f2, j|
+          if overlaps(f1, f2, page)
+            found = false
+            current_row += 1
+            break
+          end
         end
-      end
-      @number_rows = @feature_rows.max
+      end until found
+      @feature_rows[i] = current_row
+      rows[current_row] << f1
     end
+    @number_rows = @feature_rows.max
   end
 
   #Calculates whether two Bio::Graphics::MiniFeature objects overlap by examining their start and end positions.
+  #If the page where they are placed is given, then the function also considers the features' labels.
   #
   #+args+
   #* f1 - a Bio::Graphics::MiniFeature object
   #* f2 - a Bio::Graphics::MiniFeature object
-  def overlaps(f1, f2)
-    (f1.start >= f2.start and f1.start <= f2.end) or (f1.end >= f2.start and f1.end <= f2.end)
+  #* page - the optional Bio::Graphics::Page object where the features are placed
+  def overlaps(f1, f2, page=nil)
+    if not page
+      b1 = [f1.start, f1.end]
+      b2 = [f2.start, f2.end]
+    else
+      b1 = page.compute_boundaries(f1)
+      b2 = page.compute_boundaries(f2)
+    end
+    (b2[0] <= b1[1]) and (b1[0] <= b2[1])
   end
   
 end

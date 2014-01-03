@@ -231,15 +231,22 @@ module Bio
           old_nt_per_px_x = @nt_per_px_x
           @tracks.each do |track|
             highest = track.features.map { |feat|
-              feat_end = feat.end
-              feat_end += (8 * @nt_per_px_x * feat.id.to_s.length).to_i if feat.id
-              feat_end
+              compute_boundaries(feat)[1]
             }.max
-            @scale_stop = highest if highest > @scale_stop
-            @nt_per_px_x = (@scale_stop - @scale_start).to_f / @width.to_f
+            if highest > @scale_stop
+              @scale_stop = highest
+              @nt_per_px_x = (@scale_stop - @scale_start).to_f / @width.to_f
+            end
           end
         end while (@nt_per_px_x - old_nt_per_px_x).abs > 1
       end
+
+      def compute_boundaries(feature)
+        feat_end = feature.end
+        feat_end += (8 * @nt_per_px_x * feature.id.to_s.length).to_i if feature.id and @nt_per_px_x
+        [feature.start, feat_end]
+      end
+
 
       #Adds scale bar to the list of objects to be rendered in the final
       def draw_scale
@@ -322,7 +329,7 @@ module Bio
           if track.label
             draw_label(:text => track.name, :y => @track_top += 30, :x => 3)
           end
-          track.get_rows ##work out how many rows and which features belong in each row...
+          track.get_rows(self) ##work out how many rows and which features belong in each row...
           track.features.each_with_index do |f, index|
             x = to_px(f.start - @scale_start) #bottom left of feature
             all_sub_blocks = []
