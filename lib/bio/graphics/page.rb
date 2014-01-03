@@ -227,6 +227,18 @@ module Bio
           @scale_stop = highest if highest > @scale_stop
           @nt_per_px_x = (@scale_stop - @scale_start).to_f / @width.to_f
         end
+        begin
+          old_nt_per_px_x = @nt_per_px_x
+          @tracks.each do |track|
+            highest = track.features.map { |feat|
+              feat_end = feat.end
+              feat_end += (8 * @nt_per_px_x * feat.id.to_s.length).to_i if feat.id
+              feat_end
+            }.max
+            @scale_stop = highest if highest > @scale_stop
+            @nt_per_px_x = (@scale_stop - @scale_start).to_f / @width.to_f
+          end
+        end while (@nt_per_px_x - old_nt_per_px_x).abs > 1
       end
 
       #Adds scale bar to the list of objects to be rendered in the final

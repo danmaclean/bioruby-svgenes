@@ -431,9 +431,8 @@ attr_reader :glyphs
                                                     :stroke_width => args[:exon_stroke_width], 
                                                     :style => args[:exon_style]} )
       end
-      if args[:exons].length > 1
-        if args[:gap_marker] == "angled" and not args[:block_gaps].empty? 
-          $stderr.puts args[:exons].length
+      if not args[:block_gaps].empty?
+        if args[:gap_marker] == "angled"
           args[:block_gaps].each do |gap|
             points = "#{gap.first},#{args[:y] + (args[:height]/2) } #{gap.first + (gap.last/2)},#{args[:y]} #{gap.first + gap.last},#{args[:y] + (args[:height]/2)}"
             composite << Bio::Graphics::Primitive.new(:polyline, {
